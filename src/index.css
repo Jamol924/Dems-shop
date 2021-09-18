@@ -1,0 +1,10 @@
+.slides .slick-prev,
+.slides .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 300;
+}
+
+.fix {
+  overflow: hidden;
+}
