@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../assets/phone.png";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -7,7 +6,7 @@ const Adsjr = ({ datas }) => {
   return (
     <>
       {datas.map((data) => (
-        <Link to="/item">
+        <Link to={`/${data.id}`}>
           <Wrapper>
             <ImgDi>
               <SvgDesign
