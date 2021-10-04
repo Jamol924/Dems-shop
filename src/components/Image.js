@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import clock from "../assets/clock.svg";
 import location from "../assets/location.svg";
 import Slider from "react-slick";
-import { setProducts } from "../redux/active/productActions";
-import { useSelector, useDispatch } from "react-redux";
 
 
-const Image = () => {
+const Image = ({dataProduct}) => {
+
+
   const settings = {
     dots: false,
     infinite: true,
@@ -20,61 +20,68 @@ const Image = () => {
     autoplaySpeed: 2000,
   };
 
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.allProducts.products);
 
-  const getFetch = async () => {
-    const resp = await fetch("http://fakestoreapi.com/products");
-    const jsonProduct = await resp.json();
-    dispatch(setProducts(jsonProduct));
-  };
-
-  useEffect(() => {
-    getFetch();
-  }, []);
-
-  const productList = products.map((product) => {
-    const { image, id, tatle } = product;
-    return (
-      <div key={id}>
-        <img
-          style={{ objectFit: "cover" }}
-          src={image}
-          width="712px"
-          height="400px"
-          alt="main"
-        />
-      </div>
-    );
-  });
-  const productList_mini = products.map((product) => {
-    const { image, id } = product;
-    return (
-      <div key={id}>
-        <img
-          style={{ objectFit: "cover" }}
-          src={image}
-          width="138px"
-          height="80px"
-          alt="other"
-        />
-      </div>
-    );
-  });
 
   return (
     <Wrapper>
       <div className="main-img">
-        <Slider {...settings}>{productList}</Slider>
+        <Slider {...settings}>
+          <div >
+            <img
+              style={{ objectFit: "cover" }}
+              src={dataProduct.images}
+              width="712px"
+              height="400px"
+              alt="main"
+            />
+          </div>
+      </Slider>
       </div>
 
-      <div className="other-img">{productList_mini}</div>
+      <div className="other-img">
+        <div >
+          <img
+            style={{ objectFit: "cover" }}
+            src={dataProduct.images}
+            width="138px"
+            height="80px"
+            alt="other"
+          />
+        </div>
+        <div >
+          <img
+            style={{ objectFit: "cover" }}
+            src={dataProduct.image}
+            width="138px"
+            height="80px"
+            alt="other"
+          />
+        </div>
+        <div >
+          <img
+            style={{ objectFit: "cover" }}
+            src={dataProduct.image}
+            width="138px"
+            height="80px"
+            alt="other"
+          />
+        </div>
+        <div >
+          <img
+            style={{ objectFit: "cover" }}
+            src={dataProduct.image}
+            width="138px"
+            height="80px"
+            alt="other"
+          />
+        </div>
+      </div>
       <StyledInfo>
         <div>
-          <img src={clock} /> <p>July 18,2021 12:20 pm</p>
+          <img src={clock} /> <p> {dataProduct.feature_expired_at} </p>
         </div>
         <div>
-          <img src={location} /> <p>Beshariq shahar, Farg’ona viloyati</p>
+          <img src={location} /> <p>{dataProduct.located_near}</p>
         </div>
       </StyledInfo>
     </Wrapper>

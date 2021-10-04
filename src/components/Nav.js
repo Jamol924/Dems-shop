@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import Modal from "./Modal";
-import Input from "./Input";
-import Menu from '@material-ui/icons/Menu';
-
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -24,61 +20,46 @@ const Nav = () => {
   return (
     <>
       <StyledNav isScroll={pageOffset}>
+        <Link to="/">
         <StyledH1>
           <a href="#">Dems</a>
         </StyledH1>
-        
+        </Link>
+
         <ul>
           <li>
-            <a className="language" href="#">
-              O'Z /
-            </a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a className="language" href="#">
-              РУ
-            </a>
+            <Link to="/AllAds">All Ads</Link>
           </li>
           <li>
-            <a href="#">Home</a>
-          </li>
-          <li className="dropdown">
-            <a href="#">
-              Мой профиль <FontAwesomeIcon icon={faChevronDown} />
-            </a>
-            <div className="dropdown-menu">
-              <h3>Мой профиль</h3>
-              <p>
-                <a href="#">Объявления</a>
-              </p>
-              <p>
-                <a href="#">Сообщения</a>
-              </p>
-              <p>
-                <a href="#">Платежи и счёт Dems</a>
-              </p>
-              <p>
-                <a href="#">Настройки</a>
-              </p>
-            </div>
+            <Link to="/contact">Contact</Link>
           </li>
           <li>
-            <a href="#">Contact</a>
-          </li>
-          <li>
-            <button onClick={() => setModalActive(true)}>
-              <FontAwesomeIcon icon={faPlus} /> <span>Post your Ad</span>
-            </button>
-          </li>
-          <li className = "menuIcon">
-            <Menu style={{color:"white"}} />
+          <Link to="/contact">
+            <ButtonRight>
+              
+                <Button
+                  style={{
+                    width: 250,
+                    height: 45,
+                    borderRadius: 24,
+                    backgroundColor: "#f85c70",
+                    fontSize: 5,
+                  }}
+                  variant="contained"
+                  color="error"
+                >
+                  <AddIcon />
+                  <BtnTitle>Post your Ad</BtnTitle>
+                </Button>
+              
+            </ButtonRight>
+            </Link>
           </li>
         </ul>
       </StyledNav>
-
-      <Modal active={modalActive} setActive={setModalActive}>
-        <Input />
-      </Modal>
     </>
   );
 };
@@ -102,7 +83,7 @@ const StyledNav = styled.nav`
           background: white;
           box-shadow: 5px 0 10px lightgray;
           height: 70px;
-          
+
           a {
             color: black;
           }
@@ -113,43 +94,49 @@ const StyledNav = styled.nav`
 
           a {
             color: white;
+            &.chesk {
+              color: blue;
+              background-color: blue;
+            }
           }
         `}
   a {
-    text-decoration: none;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 300;
     font-size: 15px;
-    font-weight: 600;
     line-height: 16px;
-    font-family: "Inter", sans-serif;
   }
   ul {
     list-style: none;
     display: flex;
     align-items: center;
   }
-  button {
+  /* button {
     margin-left: 25px;
     background: #f85c70;
-    border-radius: 8px;
+    border-radius: 23px;
     border: 1px solid #f85c70;
     color: white;
-    width: 155px;
-    height: 50px;
+    width: 150px;
+    height: 46px;
     cursor: pointer;
     font-family: "Inter", sans-serif;
     span {
       margin-left: 5px;
       font-size: 15px;
     }
+  } */
+  li:nth-child(3) {
+    margin-right: 92px;
   }
   li {
+    margin-left: 32px;
     .line {
       color: white;
       width: 2px;
     }
-    padding-left: 2.25rem;
     position: relative;
-    padding: 10px;
     .language {
       color: black;
       font-family: "Inter", sans-serif;
@@ -174,7 +161,7 @@ const StyledNav = styled.nav`
         transform: translateX(-50%);
         width: 220px;
         background: #fff;
-        &:hover{
+        &:hover {
           transition: all 0.5s ease;
         }
         h3 {
@@ -196,12 +183,9 @@ const StyledNav = styled.nav`
           }
         }
         a {
-          
           text-decoration: none;
           color: black;
           font-family: "Inter", sans-serif;
-          
-          
         }
       }
     }
@@ -216,6 +200,17 @@ const StyledH1 = styled.h1`
     font-family: "Quicksand", sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
+`;
+const ButtonRight = styled.div`
+  width: 155px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+const BtnTitle = styled.div`
+  font-size: 12px;
+  color: white;
 `;
 
 const Line = styled(motion.div)`

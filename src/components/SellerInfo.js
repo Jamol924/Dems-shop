@@ -7,29 +7,29 @@ import rectangle from "../assets/Rectangle 23.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-const SellerInfo = () => {
+const SellerInfo = ({dataSeller}) => {
   return (
     <>
       <Wrapper>
         <h1>Seller Information</h1>
         <div>
           <img src={rectangle} />
-          <h3> Murodjon Tursunov</h3>
+          <h3>{dataSeller.name}</h3>
         </div>
         <div>
           <img src={locat} />
-          <p>Beshariq shahar, Farg’ona viloyati</p>
+          <p>{dataSeller.city_name}</p>
         </div>
         <div>
           <img src={shop} />
-          <p> View Store</p>
+          <p>{dataSeller.state} </p>
         </div>
         <div>
           <img src={call} />
-          <h2>+998 (99) 436XXXX</h2>
+          <h2>{dataSeller.phone_number}</h2>
         </div>
         <h5>
-          <a href="#">Click to revial phone number</a>
+          <a href="#">{dataSeller.business_service}</a>
         </h5>
         <StyledBut>
           <button className="first">
@@ -47,7 +47,7 @@ const SellerInfo = () => {
         </StyledBut>
       </Wrapper>
       <StyledIm>
-        <img src="https://source.unsplash.com/random" alt="Advertisement" />
+        <img src={dataSeller.images} alt="Advertisement" />
       </StyledIm>
     </>
   );

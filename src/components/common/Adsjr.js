@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Adsjr = ({ datas }) => {
   return (
     <>
-      {datas.map((data) => (
-        <Link to={`/${data.id}`}>
+      {datas.map((dat) => (
+        <Link to={`/${dat._id}`}>
           <Wrapper>
             <ImgDi>
               <SvgDesign
@@ -26,37 +26,15 @@ const Adsjr = ({ datas }) => {
                 />
               </SvgDesign>
 
-              <img src={data.img} alt="phone" />
+              <img
+                src={dat.images[0]}
+                alt="phone"
+              />
             </ImgDi>
-            <DivDesign>
-              <Styledh>{data.product}</Styledh>
-              <ul>
-                <li>
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.16665 5.00004C9.16665 7.30004 7.29998 9.16671 4.99998 9.16671C2.69998 9.16671 0.833313 7.30004 0.833313 5.00004C0.833313 2.70004 2.69998 0.833374 4.99998 0.833374C7.29998 0.833374 9.16665 2.70004 9.16665 5.00004Z"
-                      stroke="#999999"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M6.54583 6.32498L5.25416 5.55415C5.02916 5.42082 4.84583 5.09998 4.84583 4.83748V3.12915"
-                      stroke="#999999"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  <span>{data.data}</span>
-                </li>
-                <li>
+            <CardMenu>
+              <CardTitle>{dat.title}</CardTitle>
+              <CardW>
+                <WIcon>
                   <svg
                     width="10"
                     height="10"
@@ -79,9 +57,38 @@ const Adsjr = ({ datas }) => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  <span>{data.name}</span>
-                </li>
-                <li>
+                </WIcon>
+                <WTitle>{dat.description}</WTitle>
+              </CardW>
+              <CardName>
+                <NameIcon>
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.16665 5.00004C9.16665 7.30004 7.29998 9.16671 4.99998 9.16671C2.69998 9.16671 0.833313 7.30004 0.833313 5.00004C0.833313 2.70004 2.69998 0.833374 4.99998 0.833374C7.29998 0.833374 9.16665 2.70004 9.16665 5.00004Z"
+                      stroke="#999999"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M6.54583 6.32498L5.25416 5.55415C5.02916 5.42082 4.84583 5.09998 4.84583 4.83748V3.12915"
+                      stroke="#999999"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </NameIcon>
+                <NameTitle>{dat.year_house_build}</NameTitle>
+              </CardName>
+              <CardLocation>
+                <LocationIcon>
                   <svg
                     width="10"
                     height="10"
@@ -100,13 +107,11 @@ const Adsjr = ({ datas }) => {
                       stroke-width="1.5"
                     />
                   </svg>
-                  <span>{data.location}</span>
-                </li>
-              </ul>
-            </DivDesign>
-            <StyledPrice>
-              <p>{data.price}</p>
-            </StyledPrice>
+                </LocationIcon>
+                <LocationTitle>{dat.region_name}</LocationTitle>
+              </CardLocation>
+              <CardPrice>${dat.price}</CardPrice>
+            </CardMenu>
           </Wrapper>
         </Link>
       ))}
@@ -115,7 +120,9 @@ const Adsjr = ({ datas }) => {
 };
 
 const Wrapper = styled.div`
-  max-width: 235px;
+  margin-left: 20px;
+  width: 235px;
+  height: 346px;
   cursor: pointer;
   border: 1px solid gray;
   margin-bottom: 25px;
@@ -136,9 +143,12 @@ const ImgDi = styled.div`
   position: relative;
   background: white;
   overflow: hidden;
+  width: 100%;
+  height: 170px;
 
   & > img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `;
@@ -150,51 +160,96 @@ const SvgDesign = styled.svg`
   }
 `;
 
-const Styledh = styled.h1`
+const CardMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 21px 18px 27px 18px;
+`;
+const CardTitle = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  font-weight: 600;
-  font-family: "Roboto", sans-serif;
   color: #2a2a2a;
-  padding-top: 21px;
-  padding-bottom: 10px;
-  text-decoration: none;
+  margin-bottom: 16px;
+  width: 100%;
+  display: block;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp:1;
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+const CardW = styled.div`
+  display: flex;
+  margin-bottom: 9px;
+`;
+const WIcon = styled.div`
+  width: 9px;
+  height: 9px;
+  margin-right: 10px;
 `;
 
-const DivDesign = styled.div`
-  svg {
-    display: inline-block;
-    margin-left: 10px;
-  }
-
-  span {
-    display: inline-block;
-    color: #999999;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    font-family: "Roboto", sans-serif;
-    margin-left: 10px;
-    padding: 5px;
-    padding-top: 9px;
-  }
+const WTitle = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #999999;
+  width: 90%;
+  display: block;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp:2;
+  box-orient: vertical;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
-const StyledPrice = styled.div`
-  color: #f85c70;
+const CardName = styled.div`
+  display: flex;
+  margin-bottom: 9px;
+`;
+const NameIcon = styled.div`
+  width: 9px;
+  height: 9px;
+  margin-right: 10px;
+`;
+const NameTitle = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+`;
+const CardLocation = styled.div`
+  display: flex;
+  margin-bottom: 9px;
+`;
+const LocationIcon = styled.div`
+  width: 9px;
+  height: 9px;
+  margin-right: 10px;
+`;
+const LocationTitle = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+`;
+const CardPrice = styled.div`
+  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  font-family: "Roboto", sans-serif;
-  padding-top: 0px;
-  margin-left: 18px;
-  padding-bottom: 10px;
-`;
-
-const StyledHov = styled.div`
-  overflow: hidden;
+  color: #f85c70;
 `;
 
 export default Adsjr;

@@ -1,15 +1,30 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import messages from "../../../assets/messages.svg";
-import user from "../../../assets/user.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { pink } from "@mui/material/colors";
+import Checkbox from "@mui/material/Checkbox";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import PersonIcon from "@mui/icons-material/Person";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import MessageIcon from "@mui/icons-material/Message";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+
+const label = { inputProps: { red: "Checkbox demo" } };
 
 const Nav = () => {
   const { pathname } = useLocation();
+  const [value, setValue] = React.useState("one");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
   return (
     <StyledNav>
       <Content>
@@ -19,51 +34,135 @@ const Nav = () => {
           </StyledH1>
         </Link>
         <StyledB>
-          <ul>
-            <li>
-              <a href="#">Home</a>
-              <Line
-                transition={{ duration: 0.75 }}
-                initial={{ width: "0%" }}
-                animate={{ width: pathname === "/item" ? "50%" : "0%" }}
+          <Box sx={{ width: "auto" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              textColor="red"
+              indicatorColor="secondary"
+              aria-label="wrapped label tabs example"
+              wrapped
+            >
+              <Tab
+                style={{
+                  fontFamily: "Inter",
+                  fontStyle: "normal",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: " #000000",
+                }}
+                value="one"
+                label="Home"
+                wrapped
               />
-            </li>
-            <li>
-              <a href="#">All Ads</a>
-            </li>
-            <li>
-              <a href="#">Pages</a>
-            </li>
-            <li>
-              <a href="#">Stores</a>
-            </li>
-            <li>
-              <a href="#">Blogs</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
+              <Tab
+                style={{
+                  fontFamily: "Inter",
+                  fontStyle: "normal",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: " #000000",
+                }}
+                value="2"
+                label="All Ads"
+              />
+              <Tab
+                style={{
+                  fontFamily: "Inter",
+                  fontStyle: "normal",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: " #000000",
+                }}
+                value="3"
+                label="Pages"
+              />
+              <Tab
+                style={{
+                  fontFamily: "Inter",
+                  fontStyle: "normal",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: " #000000",
+                }}
+                value="4"
+                label="Stores"
+              />
+              <Tab
+                style={{
+                  fontFamily: "Inter",
+                  fontStyle: "normal",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: " #000000",
+                }}
+                value="5"
+                label="Blogs"
+              />
+              <Tab
+                style={{
+                  fontFamily: "Inter",
+                  fontStyle: "normal",
+                  fontWeight: 600,
+                  fontSize: 12,
+                  color: " #000000",
+                }}
+                value="6"
+                label="Contact"
+              />
+            </Tabs>
+          </Box>
         </StyledB>
-        <div>
-          <ul>
-            <li>
-              <a href="#">
-                <img src={messages} alt="messages" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <img src={user} alt="user" />
-              </a>
-            </li>
-            <li>
-              <button>
-                <FontAwesomeIcon icon={faPlus} /> <span>Post your Ad</span>
-              </button>
-            </li>
-          </ul>
-        </div>
+        <StyledRight>
+          <MessageRight>
+            <Checkbox
+              {...label}
+              icon={<TextsmsIcon />}
+              checkedIcon={<MessageIcon />}
+              defaultChecked
+              sx={{
+                color: pink[400],
+                "&.Mui-checked": {
+                  color: pink[500],
+                },
+              }}
+            />
+          </MessageRight>
+          <PersonRight>
+            <Link to="/contact">
+              <Checkbox
+                {...label}
+                icon={<PersonOutlineIcon />}
+                checkedIcon={<PersonIcon />}
+                defaultChecked
+                sx={{
+                  color: pink[400],
+                  "&.Mui-checked": {
+                    color: pink[500],
+                  },
+                }}
+              />
+            </Link>
+          </PersonRight>
+          <ButtonRight>
+            <Link to="/contact">
+              <Button
+                style={{
+                  width: 150,
+                  height: 45,
+                  borderRadius: 24,
+                  backgroundColor: "#f85c70",
+                  fontSize: 5,
+                }}
+                variant="contained"
+                color="error"
+              >
+                <AddIcon />
+                <BtnTitle>Post your Ad</BtnTitle>
+              </Button>
+            </Link>
+          </ButtonRight>
+        </StyledRight>
       </Content>
     </StyledNav>
   );
@@ -87,37 +186,26 @@ const Content = styled.nav`
   align-items: center;
   max-width: 1100px;
   margin: 0 auto;
-
-  a {
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 15px;
-    font-family: "Inter", sans-serif;
-    color: #000000;
-  }
-  ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-  }
-  button {
-    background: #f85c70;
-    border-radius: 18px;
-    border: 1px solid #f85c70;
-    color: white;
-    width: 155px;
-    height: 50px;
-    cursor: pointer;
-    font-family: "Inter", sans-serif;
-    span {
-      margin-left: 5px;
-    }
-  }
-  li {
-    padding-left: 2.25rem;
-    position: relative;
-  }
+`;
+const StyledRight = styled.nav`
+  display: flex;
+`;
+const MessageRight = styled.nav`
+  border: none;
+`;
+const PersonRight = styled.nav`
+  margin-right: 10px;
+`;
+const ButtonRight = styled.div`
+  width: 150px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+const BtnTitle = styled.div`
+  font-size: 12px;
+  color: white;
 `;
 
 const StyledH1 = styled.h1`

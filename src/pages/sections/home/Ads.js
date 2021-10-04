@@ -1,108 +1,31 @@
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Adsjr from "../../../components/common/Adsjr";
-import img from "../../../assets/phone.png";
-import { Link } from "react-router-dom";
+import { setProducts } from "../../../redux/active/productActions";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
-const ProductAds = [
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-  {
-    img: img,
-    product: "Galaxy Note",
-    data: "1 year ago",
-    name: "Murodjon Tursunov",
-    location: "Beshariq  shahar, Farg’ona viloyati",
-    price: "$1,240",
-  },
-];
 const Ads = () => {
+  const dispatch1 = useDispatch();
+  const products1 = useSelector((state) => state.allProducts.products);
+
+
+  const productFetch = async () => {
+    const respons = await axios
+      .post("http://dems.inone.uz/api/ad/latest/get-pagin",{limit:10, page:2})
+      .then(res => {  console.log(res.data.data.data);
+        dispatch1(setProducts(res.data.data.data));
+      })
+      .catch((err) => {
+        console.log("Err", err);
+      });
+  };
+
+
+  useEffect(() => {
+    productFetch();
+  }, []);
+
   return (
     <div>
       <Wrapper>
@@ -111,7 +34,7 @@ const Ads = () => {
             <h1>Featured Ads</h1>
           </div>
           <Row>
-            <Adsjr datas={ProductAds} />
+            <Adsjr datas={products1} />
           </Row>
         </div>
       </Wrapper>
@@ -127,7 +50,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   background: #f5f7fa;
-  
 
   h1 {
     font-style: normal;
@@ -137,25 +59,26 @@ const Wrapper = styled.div`
     text-align: center;
     padding-bottom: 5px;
     font-family: "Quicksand", sans-serif;
+    margin-top:69px;
+    margin-bottom:43px;
   }
 `;
 
 const Row = styled.div`
-  width: 1015px;
+  width: 1020px;
   height: auto;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  margin-right: 20px;
   flex-wrap: wrap;
   margin: 0 auto;
-  @media (max-width:1066px){
+  @media (max-width: 1066px) {
     width: 755px;
   }
-  @media (max-width:800px){
+  @media (max-width: 800px) {
     width: 495px;
   }
 `;
-
-
 
 const StyledH = styled.h1`
   font-size: 24px;

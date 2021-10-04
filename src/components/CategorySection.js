@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCar } from "@fortawesome/free-solid-svg-icons";
 import CategoryItem from ".//common/CategoryItem";
 import chart from "../assets/presention-chart.svg";
 import watch from "../assets/watch.svg";
@@ -11,11 +9,11 @@ import styled from "styled-components";
 
 const CategorySection = () => {
   const data = [
-    { img: chart, title: "Buisness & Industry" },
-    { img: bank, title: "Education" },
-    { img: watch, title: "Electronics" },
-    { img: house, title: "Property" },
-    { img: car, title: "Car & Automobiles" },
+    { id:"busines", img: chart, title: "Buisness & Industry" },
+    { id:"elictronic", img: bank, title: "Education" },
+    { id:"education", img: watch, title: "Electronics" },
+    { id:"automobile", img: house, title: "Property" },
+    { id:"properti", img: car, title: "Car & Automobiles" },
   ];
 
   return (
@@ -25,8 +23,10 @@ const CategorySection = () => {
       </StyledHeading>
       <CategoryList>
         {data.map((item) => (
-          <CategoryItem img={item.img} title={item.title} />
+          <CategoryItem id={item.id}  img={item.img} title={item.title} />
         ))}
+        <CategoryList>
+        </CategoryList>
       </CategoryList>
     </Wrapper>
   );

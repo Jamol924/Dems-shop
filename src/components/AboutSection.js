@@ -120,8 +120,10 @@ const AboutSection = () => {
             </FormText>
             <FormButton>
               <span>
-                <FontAwesomeIcon icon={faSearch} />
-                Search
+                <SearchIcon>
+                  <FontAwesomeIcon icon={faSearch} />
+                </SearchIcon>
+                <SearchInput>Search</SearchInput>
               </span>
             </FormButton>
           </FormInput>
@@ -179,33 +181,40 @@ const WrapperTitle = styled.div`
   justify-content: center;
 `;
 const TitleH1 = styled.h1`
-  font-size: 30px;
-  color: white;
-  font-weight: 600;
+margin-top: -20px;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  color: #FFFFFF;
+
 `;
 const TitleP = styled.p`
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
   font-size: 14px;
-  font-weight: 200;
-  color: white;
+  line-height: 17px;
+  color: #E5E5E5;
+
 `;
 //  Form .. ....... //
 
 const WrapperForm = styled.div`
   position: relative;
-  
 `;
 const FormInput = styled.div`
-  height: 60px;
+  height: 54px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  border-radius: 5px;
- 
+  border-radius: 1px;
 `;
 const FormLocation = styled.div`
-  height: 100%;
+  height: 24px;
   display: flex;
   align-items: center;
   padding-left: 7px;
@@ -215,14 +224,17 @@ const FormLocation = styled.div`
     height: 60%;
   }
   @media (max-width: 870px) {
+    height: 100%;
+    
     width: 48%;
   }
   @media (max-width: 500px) {
     width: 100%;
+    height: 100%;
   }
 `;
 const FormCategory = styled.div`
-  height: 100%;
+  height: 24px;
   display: flex;
   align-items: center;
   border-left: 1px solid grey;
@@ -234,28 +246,29 @@ const FormCategory = styled.div`
   }
   @media (max-width: 870px) {
     width: 48%;
+    height: 100%;
   }
   @media (max-width: 500px) {
     border-top: 1px solid grey;
     width: 100%;
+    height: 100%;
   }
 `;
 const FormText = styled.div`
-  height: 100%;
+  height: 24px;
   display: flex;
-  /* width: 50%; */
   align-items: center;
   border-left: 1px solid grey;
   padding-left: 7px;
   background-color: white;
   & > input {
     border: none;
-    height: 60%;
-    
+    height: 24px;
   }
   @media (max-width: 870px) {
     width: 100%;
     border-top: 1px solid grey;
+    height: 100%;
   }
 `;
 const FormButton = styled.div`
@@ -268,27 +281,42 @@ const FormButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 150px;
+    width: 165px;
     height: 100%;
-    background-color: red;
+    background: #f85c70;
+    color: #ffffff;
     padding: 0px;
-    color: white;
     font-size: 17px;
   }
   @media (max-width: 870px) {
     width: 100%;
-    &>span {
+    & > span {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       height: 100%;
-      background-color: red;
+      background: #f85c70;
       padding: 0px;
       color: white;
       font-size: 17px;
     }
   }
+`;
+const SearchIcon = styled.span`
+  width: 12px;
+  height: 12px;
+  color: white;
+  margin-right: 7px;
+  margin-bottom: 5px;
+`;
+const SearchInput = styled.span`
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 16px;
+  margin-left: 7px;
 `;
 const FormInputActive = styled.div`
   font-size: 14px;
@@ -302,7 +330,7 @@ const LocationStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
   background-color: white;
-  border-top: 1px solid grey; 
+  border-top: 1px solid grey;
   & > p {
     flex: 1 0 30%;
     display: flex;
@@ -316,8 +344,7 @@ const LocationStyles = styled.div`
     color: grey;
     &:hover {
       color: white;
-      background-color: red;
-      border-radius: 5px;
+      background: #f85c70;
     }
   }
 `;
@@ -341,8 +368,7 @@ const LocationSty = styled.div`
     padding: 15px 10px;
     &:hover {
       color: white;
-      background-color: red;
-      border-radius: 5px;
+      background: #f85c70;
     }
   }
 `;

@@ -1,27 +1,32 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const CategoryItem = (props) => {
   return (
-    <StyledCategoryItem>
-      <div className="circle">
-        <img src={props.img} />
-      </div>
-      <div>
-        <p>{props.title}</p>
-        <span>0 ads</span>
-      </div>
-    </StyledCategoryItem>
+    <Link to={props.id}>
+      <StyledCategoryItem>
+        <div className="circle">
+          <img src={props.img} />
+        </div>
+        <div>
+          <p>{props.title}</p>
+          <span>0 ads</span>
+        </div>
+      </StyledCategoryItem>
+    </Link>
   );
 };
+
+
+
 
 const StyledCategoryItem = styled.div`
   width: 235px;
   height: 149px;
   margin: 20px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   background: #f5f7fa;
@@ -57,6 +62,9 @@ const StyledCategoryItem = styled.div`
     }
     span {
       color: #fff;
+    }
+    p {
+      color: white;
     }
   }
 
