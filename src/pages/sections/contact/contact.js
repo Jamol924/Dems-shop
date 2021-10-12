@@ -8,7 +8,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { green } from "@mui/material/colors";
 import Box from "@mui/material/Box";
-import Tizim from "./static/Tizim";
+import {Tizim} from "./static/Tizim";
 import RuyxatdanUtish from "./static/RuyxatdanUtish";
 
 interface TabPanelProps {

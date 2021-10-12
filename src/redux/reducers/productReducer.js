@@ -13,6 +13,19 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export const CategoreReducer = (
+  state = { Categore: [] },
+  { type, payload }
+) => {
+  switch (type) {
+    case ActionType.SELECTED_CATEGORE_PRODUCT:
+      return { ...state, Categore: payload };
+
+    default:
+      return state;
+  }
+};
 export const selectdProductReducer = (state = {}, { type, payload }) => {
   switch (type) {
     case ActionType.SELECTED_PRODUCT:
@@ -27,7 +40,7 @@ export const removeSelectdProduct = (state = {}, { type, payload }) => {
     case ActionType.SELECTED_PRODUCT:
       return { ...state, ...payload };
     case ActionType.REMOVE_SELECTED_PRODUCT:
-      return { };
+      return {};
     default:
       return state;
   }

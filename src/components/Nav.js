@@ -7,7 +7,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
-  const [modalActive, setModalActive] = useState(false);
   const { pathname } = useLocation();
   const [pageOffset, setPageOffset] = useState(false);
   useEffect(() => {
@@ -21,9 +20,9 @@ const Nav = () => {
     <>
       <StyledNav isScroll={pageOffset}>
         <Link to="/">
-        <StyledH1>
-          <a href="#">Dems</a>
-        </StyledH1>
+          <StyledH1>
+            <a href="#">Dems</a>
+          </StyledH1>
         </Link>
 
         <ul>
@@ -37,25 +36,26 @@ const Nav = () => {
             <Link to="/contact">Contact</Link>
           </li>
           <li>
-          <Link to="/contact">
-            <ButtonRight>
-              
-                <Button
-                  style={{
-                    width: 250,
-                    height: 45,
-                    borderRadius: 24,
-                    backgroundColor: "#f85c70",
-                    fontSize: 5,
-                  }}
+            <Link to="/contact">
+              <ButtonRight>
+                {/* <StyledButton
                   variant="contained"
+                 
                   color="error"
                 >
-                  <AddIcon />
-                  <BtnTitle>Post your Ad</BtnTitle>
-                </Button>
-              
-            </ButtonRight>
+                  
+                </StyledButton> */}
+                <StyledButton
+                 startIcon={<AddIcon />}
+                  sx={{
+                    color: "white",
+                    borderRadius: "24px",
+                    backgroundColor: "#f85c70",
+                  }}
+                >
+                  Post your Ad
+                </StyledButton>
+              </ButtonRight>
             </Link>
           </li>
         </ul>
@@ -63,6 +63,22 @@ const Nav = () => {
     </>
   );
 };
+
+const StyledButton = styled(Button)`
+  height: 45px;
+  &.MuiButton-root {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    padding: 0px 20px;
+  }
+  &.css-ssgngi-MuiButtonBase-root-MuiButton-root:hover {
+    background-color: #f32e48;
+    box-shadow: 1px 1px 6px #cccccc;
+  }
+`;
 
 const StyledNav = styled.nav`
   display: flex;
@@ -112,21 +128,6 @@ const StyledNav = styled.nav`
     display: flex;
     align-items: center;
   }
-  /* button {
-    margin-left: 25px;
-    background: #f85c70;
-    border-radius: 23px;
-    border: 1px solid #f85c70;
-    color: white;
-    width: 150px;
-    height: 46px;
-    cursor: pointer;
-    font-family: "Inter", sans-serif;
-    span {
-      margin-left: 5px;
-      font-size: 15px;
-    }
-  } */
   li:nth-child(3) {
     margin-right: 92px;
   }
@@ -202,7 +203,6 @@ const StyledH1 = styled.h1`
   }
 `;
 const ButtonRight = styled.div`
-  width: 155px;
   height: 45px;
   display: flex;
   align-items: center;

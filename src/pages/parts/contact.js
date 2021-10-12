@@ -3,13 +3,10 @@ import styled from 'styled-components';
 import Nav from '../../components/Nav';
 import Registration from '../sections/contact/Registration';
 
-import DirectionSnackbar from "../../pages/sections/contact/static/TizimAnimation"
-
 function Contact() {
     return (
         <Wrapper>
             <Nav />
-            {/* <DirectionSnackbar /> */}
             <Registration />
         </Wrapper>
     )

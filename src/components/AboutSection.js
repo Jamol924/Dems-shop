@@ -1,18 +1,34 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faSearch,
-  faMapMarkerAlt,
-  faMapMarker,
-  faTextWidth,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import axios from "axios";
+import datas from "../pages/sections/Admen/Categore/dataCategore";
 
 const AboutSection = () => {
   const [input, setInput] = React.useState(null);
+  const [regions, setRegions] = useState([]);
+
+  const regionFetch = async () => {
+    axios
+      .post("http://dems.inone.uz/api/region/get-pagin", {
+        limit: 20,
+        page: 1,
+        search: " ",
+      })
+      .then((res) => {
+        setRegions(res.data.data.data);
+      })
+      .catch((er) => console.log(er));
+  };
+  
+
+  useEffect(() =>{
+    regionFetch();
+  },[])
 
   return (
+    
     <Wrapper>
       <WrapperMenu>
         <WrapperTitle>
@@ -130,28 +146,16 @@ const AboutSection = () => {
           <FormInputActive>
             {input === 1 && (
               <LocationStyles>
-                <p>Андижанская Область</p>
-                <p>Бухарская Область</p>
-                <p>Джизакская Область</p>
-                <p>Каракалпакстан</p>
-                <p>Кашкадарьинская область</p>
-                <p>Навоийская область</p>
-                <p>Наманганская область</p>
-                <p>Самаркандская Область</p>
-                <p>Сурхандарьинская область</p>
-                <p>Сырдарьинская область</p>
-                <p>Ташкентская область</p>
-                <p>Ферганская область</p>
-                <p>Хорезмская обл</p>
-              </LocationStyles>
+              {regions.map((regon) =>(
+                <p>{regon.name}</p>
+              ))}
+                </LocationStyles>
             )}
             {input === 2 && (
               <LocationSty>
-                <p>Buisness & Industry</p>
-                <p>Education</p>
-                <p>Electronics</p>
-                <p>Property</p>
-                <p>Car & Automobiles</p>
+                {datas.map((dat) =>(
+                  <p>{dat.title}</p>
+                ))}
               </LocationSty>
             )}
           </FormInputActive>
@@ -181,14 +185,13 @@ const WrapperTitle = styled.div`
   justify-content: center;
 `;
 const TitleH1 = styled.h1`
-margin-top: -20px;
+  margin-top: -20px;
   font-family: Quicksand;
   font-style: normal;
   font-weight: bold;
   font-size: 40px;
   line-height: 50px;
-  color: #FFFFFF;
-
+  color: #ffffff;
 `;
 const TitleP = styled.p`
   font-family: Inter;
@@ -196,8 +199,7 @@ const TitleP = styled.p`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: #E5E5E5;
-
+  color: #e5e5e5;
 `;
 //  Form .. ....... //
 
@@ -220,17 +222,25 @@ const FormLocation = styled.div`
   padding-left: 7px;
   background-color: white;
   & > input {
+    outline: none;
     border: none;
-    height: 60%;
-  }
-  @media (max-width: 870px) {
+    margin-left: 5px;
+    width: 200px;
     height: 100%;
-    
+  }
+  @media (max-width: 950px) {
+    height: 100%;
     width: 48%;
+    & > input {
+      width: 100%;
+    }
   }
   @media (max-width: 500px) {
     width: 100%;
     height: 100%;
+    & > input {
+      width: 100%;
+    }
   }
 `;
 const FormCategory = styled.div`
@@ -241,17 +251,26 @@ const FormCategory = styled.div`
   padding-left: 7px;
   background-color: white;
   & > input {
+    outline: none;
     border: none;
-    height: 60%;
+    margin-left: 5px;
+    width: 200px;
+    height: 100%;
   }
-  @media (max-width: 870px) {
+  @media (max-width: 950px) {
     width: 48%;
     height: 100%;
+    & > input {
+      width: 100%;
+    }
   }
   @media (max-width: 500px) {
     border-top: 1px solid grey;
     width: 100%;
     height: 100%;
+    & > input {
+      width: 100%;
+    }
   }
 `;
 const FormText = styled.div`
@@ -262,13 +281,22 @@ const FormText = styled.div`
   padding-left: 7px;
   background-color: white;
   & > input {
+    outline: none;
     border: none;
-    height: 24px;
+    margin-left: 5px;
+    width: 200px;
+    height: 100%;
+    & > input {
+      width: 100%;
+    }
   }
-  @media (max-width: 870px) {
+  @media (max-width: 950px) {
     width: 100%;
     border-top: 1px solid grey;
     height: 100%;
+    & > input {
+      width: 100%;
+    }
   }
 `;
 const FormButton = styled.div`
@@ -288,7 +316,7 @@ const FormButton = styled.div`
     padding: 0px;
     font-size: 17px;
   }
-  @media (max-width: 870px) {
+  @media (max-width: 950px) {
     width: 100%;
     & > span {
       display: flex;

@@ -82,7 +82,7 @@ const Wrapper = styled.div`
     font-size: 48px;
     line-height: 60px;
     font-family: "Quicksand", sans-serif;
-    padding-bottom: 42px;
+    padding-bottom: 32px;
   }
   h2 {
     font-family: "Quicksand", sans-serif;
@@ -100,7 +100,7 @@ const Wrapper = styled.div`
     line-height: 23px;
     font-family: "Inter", sans-serif;
     color: #999999;
-    padding-top: 42px;
+    padding-top: 0px;
     line-height: 2;
   }
   ul {

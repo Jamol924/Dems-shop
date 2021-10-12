@@ -5,19 +5,23 @@
   import Button from "@mui/material/Button";
   import axios from "axios";
   import { useHistory } from "react-router-dom";
+import { useSnackbar } from "notistack";
+ 
 
-  function Tizim() {
+
+ export const Tizim = () => {
+
     const [data, setData] = useState({
       phone_number: "",
       otp: "",
     });
     const [step, setStep] = useState(0);
     const history = useHistory();
-    // useEffect(() => {
-    //   if(localStorage.getItem("user-info")){
-    //     history.push("/admen")
-    //   }
-    // }, [])
+
+    const {enqueueSnackbar} = useSnackbar()
+    const handleClickVariant = () => () => {
+      enqueueSnackbar("Siz xato kiritdingiz!");
+    };
     const handleSubmit = (e) => {
       e.preventDefault();
       const { phone_number, otp } = data;
@@ -27,9 +31,9 @@
           .post("http://dems.inone.uz/api/sign-in", {
             phone_number,
           })
-          .then((e) =>console.log(e))
+          // .then(( ) =>  handleClickVariant() )
           .then(() => setStep(1))
-          .catch((e) => console.log(e));  
+          .catch(( ) => handleClickVariant );  
       } else {
         axios
           .post("http://dems.inone.uz/api/sign-verify", {
@@ -37,12 +41,14 @@
             otp,
           })
           .then((dd) => {
-            localStorage.setItem("user-info" , JSON.stringify(dd))
+            localStorage.setItem("token" , JSON.stringify(dd.data.data.token))
             history.push("/admen")
           })
           .catch((e) => console.log(e));
       }
     };
+
+ 
 
 
     return (
@@ -86,6 +92,7 @@
             padding: 1.7,
             borderRadius: 2,
           }}
+          // onClick={handleClickVariant("error")}
           fullWidth
           variant="contained"
           >Kirish</StyledButton>
@@ -114,5 +121,6 @@
     }
   `;
 
-  export default Tizim;
 
+
+    

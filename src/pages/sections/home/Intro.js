@@ -1,5 +1,4 @@
 import React from "react";
-// Page Components
 import AboutSection from "../../../components/AboutSection";
 import Nav from "../../../components/Nav";
 import back from "../../../assets/background.jpg";

@@ -68,15 +68,14 @@ const Row = styled.div`
   width: 1020px;
   height: auto;
   display: flex;
-  /* justify-content: space-between; */
   margin-right: 20px;
   flex-wrap: wrap;
   margin: 0 auto;
   @media (max-width: 1066px) {
-    width: 755px;
+    width: 770px;
   }
   @media (max-width: 800px) {
-    width: 495px;
+    width: 530px;
   }
 `;
 
