@@ -1,28 +1,34 @@
+import Cars from "../../../../assets/Cars.jpg"
+import fashion from "../../../../assets/Fashion.jpg"
+import home from "../../../../assets/home.jpg"
+import jobs from "../../../../assets/jobs.jpg"
+import elictronical from "../../../../assets/elictronical.jpg"
+
 
 const datas = [
     {
         id:"Cars",
-        img:'color',
+        img:Cars,
         title:"Cars",
     },
     {
         id:"Home",
-        img:'color',
+        img:home,
         title:"Home",
     },
     {
         id:"Electronics",
-        img:'color',
+        img:elictronical,
         title:"Electronics",
     },
     {
         id:"Jobs",
-        img:'color',
+        img:jobs,
         title:"Jobs",
     },
     {
         id:"FashionStyle",
-        img:'color',
+        img:fashion,
         title:"FashionStyle",
     },
     {

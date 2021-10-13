@@ -4,11 +4,7 @@ import Home from "./pages/parts/Home";
 import Item from "./pages/parts/Item";
 import Contact from "./pages/parts/contact";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Busines from "./pages/sections/categore/Busines";
-import Elictronic from "./pages/sections/categore/Elictronc";
-import Education from "./pages/sections/categore/Education";
-import Automobile from "./pages/sections/categore/Automobile";
-import Properti from "./pages/sections/categore/Properti";
+import Busines from "./pages/sections/categore/BusinesCard/Busines";
 import Admin from "./pages/parts/Admen";
 import TovarCars from "./pages/sections/Admen/TovarCategore/Cars";
 import TovarHome from "./pages/sections/Admen/TovarCategore/Home";
@@ -19,6 +15,14 @@ import TovarChildrensWorld from "./pages/sections/Admen/TovarCategore/ChildrensW
 import TovarbusinesService from "./pages/sections/Admen/TovarCategore/businesService";
 import TovarAgriculture from "./pages/sections/Admen/TovarCategore/Agriculture";
 import { SnackbarProvider } from "notistack";
+import Cars from "./pages/sections/categore/Cars/Cars";
+import Plaze from "./pages/sections/categore/Home/Home";
+import fashion from "./pages/sections/categore/Fashion/fashion";
+import Electronics from "./pages/sections/categore/Elictron/Elictronc";
+import ChildrenWorld from "./pages/sections/categore/ChildWer/ChildrenWorld";
+import BusinesStyle from "./pages/sections/categore/BusinesCard/Busines";
+import Agrikulture from "./pages/sections/categore/Agriculture/Agrikulture";
+import Jobs from "./pages/sections/categore/Jobs/Jobs";
 
 const GlobalStyle = createGlobalStyle`
    * {
@@ -71,13 +75,17 @@ function App() {
               path="/admen/Agriculture"
               component={TovarAgriculture}
             />
-
             <Route exact path="/admen" component={Admin} />
-            <Route exact path="/busines" component={Busines} />
-            <Route exact path="/education" component={Elictronic} />
-            <Route exact path="/elictronic" component={Education} />
-            <Route exact path="/properti" component={Automobile} />
-            <Route exact path="/automobile" component={Properti} />
+
+            <Route exact path="/Cars" component={Cars} />
+            <Route exact path="/Home" component={Plaze} />
+            <Route exact path="/FashionStyle" component={fashion} />
+            <Route exact path="/Electronics" component={Electronics} />
+            <Route exact path="/ChildrensWorld" component={ChildrenWorld} />
+            <Route exact path="/business-service" component={BusinesStyle} />
+            <Route exact path="/Agriculture" component={Agrikulture} />
+            <Route exact path="/Jobs" component={Jobs} />
+
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/:productId" component={Item} />
             <Route exact path="/" component={Home} />

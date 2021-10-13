@@ -9,18 +9,21 @@ const CardElictron = () => {
   const dispatch1 = useDispatch();
   const products1 = useSelector((state) => state.allProducts.products);
 
-
   const productFetch = async () => {
     const respons = await axios
-      .post("http://dems.inone.uz/api/ad/latest/get-pagin",{limit:10, page:1, type:"electronics"})
-      .then(res => {  console.log(res.data.data.data);
+      .post("http://dems.inone.uz/api/ad/latest/get-pagin", {
+        limit: 30,
+        page: 1,
+        type: "electronics",
+      })
+      .then((res) => {
+        console.log(res.data.data.data);
         dispatch1(setProducts(res.data.data.data));
       })
       .catch((err) => {
         console.log("Err", err);
       });
   };
-
 
   useEffect(() => {
     productFetch();
@@ -59,8 +62,8 @@ const Wrapper = styled.div`
     text-align: center;
     padding-bottom: 5px;
     font-family: "Quicksand", sans-serif;
-    margin-top:69px;
-    margin-bottom:43px;
+    margin-top: 69px;
+    margin-bottom: 43px;
   }
 `;
 

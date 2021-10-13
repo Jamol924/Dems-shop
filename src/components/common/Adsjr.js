@@ -27,7 +27,7 @@ const Adsjr = ({ datas }) => {
               </SvgDesign>
 
               <img
-                src={dat.images[0]}
+                src={dat.images}
                 alt="phone"
               />
             </ImgDi>
