@@ -8,7 +8,14 @@ export const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ActionType.SET_PRODUCTS:
       return { ...state, products: payload };
-
+    default:
+      return state;
+  }
+};
+export const productSearch = (state = { data: [] }, { type, payload }) => {
+  switch (type) {
+    case ActionType.SEARCH_VALUE:
+      return { ...state, data: payload };
     default:
       return state;
   }
@@ -41,6 +48,14 @@ export const removeSelectdProduct = (state = {}, { type, payload }) => {
       return { ...state, ...payload };
     case ActionType.REMOVE_SELECTED_PRODUCT:
       return {};
+    default:
+      return state;
+  }
+};
+export const useImages = (state = {}, { type, payload }) => {
+  switch (type) {
+    case ActionType.SET_IMAG:
+      return { ...state, ...payload };
     default:
       return state;
   }

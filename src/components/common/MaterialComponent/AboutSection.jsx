@@ -5,7 +5,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
   width: 100%;
 `;
 export const WrapperMenu = styled.div`
@@ -13,7 +12,6 @@ export const WrapperMenu = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 0px;
 `;
 export const WrapperTitle = styled.div`
   display: flex;
@@ -62,10 +60,17 @@ export const FormLocation = styled.div`
     outline: none;
     border: none;
     margin-left: 5px;
-    width: 200px;
+    width: 100%;
     height: 100%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 16px;
+
   }
-  @media (max-width: 985px) {
+  
+  @media (max-width: 1091px) {
     height: 100%;
     width: 48%;
     & > input {
@@ -94,7 +99,7 @@ export const FormCategory = styled.div`
     width: 200px;
     height: 100%;
   }
-  @media (max-width: 985px) {
+  @media (max-width: 1091px) {
     width: 48%;
     height: 100%;
     & > input {
@@ -102,6 +107,7 @@ export const FormCategory = styled.div`
     }
   }
   @media (max-width: 500px) {
+    border: none;
     border-top: 1px solid grey;
     width: 100%;
     height: 100%;
@@ -127,7 +133,7 @@ export const FormText = styled.div`
       width: 100%;
     }
   }
-  @media (max-width: 985px) {
+  @media (max-width: 1091px) {
     width: 100%;
     height: 100%;
     border: none;
@@ -154,7 +160,7 @@ export const FormButton = styled.div`
     padding: 0px;
     font-size: 17px;
   }
-  @media (max-width: 985px) {
+  @media (max-width: 1091px) {
     width: 100%;
     & > span {
       display: flex;
@@ -183,8 +189,27 @@ export const LocationStyles = styled.div`
   flex-wrap: wrap;
   background-color: white;
   border-top: 1px solid grey;
+  & > div {
+    flex:1 0 97%;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 15px 10px;
+    font-size: 14px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    color: grey;
+    &:hover {
+      color: white;
+      background: #f85c70;
+    }
+  }
   & > option {
     flex: 1 0 30%;
+    cursor: pointer;
     display: flex;
     flex-wrap: wrap;
     transition: all 0.3s ease;
@@ -211,8 +236,27 @@ export const LocationSty = styled.div`
   background-color: white;
   border-top: 1px solid grey;
   color: grey;
+  & > div {
+    flex:1 0 97%;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 15px 10px;
+    font-size: 14px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    color: grey;
+    &:hover {
+      color: white;
+      background: #f85c70;
+    }
+  }
   & > p {
     flex: 1 0 45%;
+    cursor: pointer;
     display: flex;
     flex-wrap: wrap;
     transition: all 0.3s ease;
@@ -228,15 +272,19 @@ export const StyledLoadingButton = styled(LoadingButton)`
   &.css-h4t5eh-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
     background: #f85c70;
     height: 100%;
-    width:200px;
+    width:100%;
     border-radius: 0px;
     &:hover {
       background: #f32e48;
     }
-    @media (max-width: 985px) {
-      line-height: 40px;
-      margin: 0px;
-      width:100%;
-    }
+  }
+`;
+export const ButtonLink = styled.div`
+  height: 100%;
+  width: 200px;
+  @media (max-width: 1091px) {
+    line-height: 40px;
+    margin: 0px;
+    width: 100%;
   }
 `;

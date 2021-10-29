@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Nav from '../../components/Nav';
+import Nav2 from '../../components/Nav2';
 import Registration from '../sections/contact/Registration';
 
 function Contact() {
     return (
         <Wrapper>
-            <Nav />
+            <Nav2 />
             <Registration />
         </Wrapper>
     )
@@ -20,7 +20,3 @@ const Wrapper = styled.div`
   height: auto;
   padding-top: 200px;
 `;
-const VideoBg = styled.div`
-    width: 100vw;
-    height: auto;
-`

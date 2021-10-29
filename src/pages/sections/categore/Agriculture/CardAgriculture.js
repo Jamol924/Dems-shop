@@ -5,15 +5,16 @@ import { setProducts } from "../../../../redux/active/productActions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-const CardBusines = () => {
+const CardBusines = ({filters}) => {
   const dispatch1 = useDispatch();
   const products1 = useSelector((state) => state.allProducts.products);
 
   const productFetch = async () => {
     const respons = await axios
-      .post("http://dems.inone.uz/api/ad/latest/get-pagin", {
-        limit: 20,
+      .post("http://dems.inone.uz/api/ad/get-pagin", {
+        limit: 10,
         page: 1,
+        search:"",
         type: "agriculture",
       })
       .then((res) => {
@@ -25,6 +26,16 @@ const CardBusines = () => {
       });
   };
 
+  const Filter = products1.filter(
+    (eliment) =>
+      (filters.location.length > 0
+        ? eliment.region_id === filters.location
+        : true) &&
+      (filters.search.length > 0
+        ? eliment.title.toLowerCase().includes(filters.search.toLowerCase())
+        : true)
+  );
+
   useEffect(() => {
     productFetch();
   }, []);
@@ -34,10 +45,10 @@ const CardBusines = () => {
       <Wrapper>
         <div className="content">
           <div>
-            <h1>Agriculture</h1>
+            <h1>Сельское хозяйство</h1>
           </div>
           <Row>
-            <Adsjr datas={products1} />
+          <Adsjr datas={Filter.length >= 0 ? Filter : products1} />
           </Row>
         </div>
       </Wrapper>

@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from "react";
-import Nav from "../../../../components/Nav";
-import styled from "styled-components";
 import Grid from "@mui/material/Grid";
-import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import { Box } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
+import { categoreProduct } from "../../../../redux/active/productActions";
+import axios from "axios";
 import {
-  Button,
-  FormControl,
-  FormHelperText,
   InputLabel,
   MenuItem,
-  Paper,
   Select,
   TextareaAutosize,
-  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { categoreProduct } from "../../../../redux/active/productActions";
+import {
+  StyledTextField,
+  Wrapper,
+  Container,
+  MenuContent,
+  ContentRow,
+  StyledFormControl,
+  MenuTitle,
+  StyledButton,
+  StyledColumn,
+  StyledCars,
+} from "../MaterialTovar/Tovar.jsx";
+import Nav2 from "../../../../components/Nav2";
+import LoaderSpinner from "../../../../Loader/loader";
+import { CarsLink } from "../../../../components/Back";
 
 function Cars(props) {
   const cars = props.category;
@@ -143,14 +150,9 @@ function Cars(props) {
     regionFetch();
   }, []);
 
-  const [selectedFile, setSelectedFile] = useState();
-  const changeHandler = (event) => {
-    setSelectedFile(event.target.files);
-  };
-
   const [images, setImages] = useState("");
   const img = [images.data?.data.path];
-  console.log(img);
+  console.log("FormData", img.length);
   const handleImgChange = (e) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
@@ -201,24 +203,14 @@ function Cars(props) {
       .then((res) => console.log("hellool  ", res))
       .catch(() => console.log(localStorage.getItem("token")));
   };
-  const dataCurrens = [
-    {
-      id: "usd",
-      nameCuren: "usd",
-    },
-    {
-      id: "eur",
-      nameCuren: "eur",
-    },
-  ];
-  console.log("sum", sum);
 
   return CategoreRispons.length === 0 ? (
-    "Loading..."
+    <LoaderSpinner />
   ) : (
     <>
       <Wrapper>
-        <Nav />
+        <Nav2 />
+        <CarsLink />
         <Container>
           <Typography sx={{ mb: 3 }} variant="h4">
             информация о продукте
@@ -231,7 +223,6 @@ function Cars(props) {
               value={informase}
               onChange={handleInformasChange}
             />
-
             <ContentRow>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>Марка*</InputLabel>
@@ -240,7 +231,7 @@ function Cars(props) {
                     <MenuItem value={Categor._id}>{Categor.name}</MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
+                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
 
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
@@ -256,7 +247,7 @@ function Cars(props) {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
+                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
@@ -271,7 +262,7 @@ function Cars(props) {
               variant="filled"
             />
             <ContentRow>
-              <StyledFormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>Toplivo</InputLabel>
                 <Select
                   value={toplivo}
@@ -282,22 +273,22 @@ function Cars(props) {
                   <MenuItem value={"Daevo"}>Daywo</MenuItem>
                   <MenuItem value={"Baz"}>Baz</MenuItem>
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
+                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
 
-              <StyledFormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>Novy*</InputLabel>
                 <Select value={novy} label="Age" onChange={handleNovyChange}>
                   <MenuItem value="new">Chevrolet</MenuItem>
                   <MenuItem value="old">Daywo</MenuItem>
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
+                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
           <MenuContent>
             <Typography sx={{ mb: 1 }} variant="h5">
-            цвет*
+              цвет*
             </Typography>
             <ToggleButtonGroup
               value={alignment}
@@ -305,39 +296,77 @@ function Cars(props) {
               onChange={handleAlignment}
               aria-label="text alignment"
             >
-              <ToggleButton sx={{backgroundColor:"white", borderRadius:"none", width:"60px", height:"60px", marginRight:"20px"}} value="white" aria-label="left aligned">
-              </ToggleButton>
-              <ToggleButton sx={{backgroundColor:"red", width:"60px", height:"60px", marginRight:"20px"}} value="red" aria-label="centered">
-              </ToggleButton>
-              <ToggleButton sx={{backgroundColor:"green", width:"60px", height:"60px", marginRight:"20px"}} value="green" aria-label="right aligned">
-              </ToggleButton>
-              <ToggleButton sx={{backgroundColor:"black", width:"60px", height:"60px", marginRight:"20px"}} value="black" aria-label="right aligned">
-              </ToggleButton>
-              <ToggleButton sx={{backgroundColor:"yellow", width:"60px", height:"60px", marginRight:"20px"}} value="yellow" aria-label="right aligned">
-              </ToggleButton>
-              
+              <ToggleButton
+                sx={{
+                  backgroundColor: "white",
+                  borderRadius: "none",
+                  width: "60px",
+                  height: "60px",
+                  marginRight: "20px",
+                }}
+                value="white"
+                aria-label="left aligned"
+              ></ToggleButton>
+              <ToggleButton
+                sx={{
+                  backgroundColor: "red",
+                  width: "60px",
+                  height: "60px",
+                  marginRight: "20px",
+                }}
+                value="red"
+                aria-label="centered"
+              ></ToggleButton>
+              <ToggleButton
+                sx={{
+                  backgroundColor: "green",
+                  width: "60px",
+                  height: "60px",
+                  marginRight: "20px",
+                }}
+                value="green"
+                aria-label="right aligned"
+              ></ToggleButton>
+              <ToggleButton
+                sx={{
+                  backgroundColor: "black",
+                  width: "60px",
+                  height: "60px",
+                  marginRight: "20px",
+                }}
+                value="black"
+                aria-label="right aligned"
+              ></ToggleButton>
+              <ToggleButton
+                sx={{
+                  backgroundColor: "yellow",
+                  width: "60px",
+                  height: "60px",
+                  marginRight: "20px",
+                }}
+                value="yellow"
+                aria-label="right aligned"
+              ></ToggleButton>
             </ToggleButtonGroup>
           </MenuContent>
           <MenuContent>
             <Typography sx={{ mb: 1 }} variant="h5">
-            цена*
+              цена*
             </Typography>
             <Grid spacing={2}>
               <StyledTextField
+                sx={{ mr: 10 }}
                 value={sena}
                 onChange={handleSenaChange}
                 label="сена*"
                 variant="filled"
               />
-              <FormHelperText>With label + helper text</FormHelperText>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>цена*</InputLabel>
                 <Select value={sum} label="sum" onChange={handleSumChange}>
-                  {dataCurrens.map((curren) => (
-                    <MenuItem value={"usd"}>{curren.nameCuren}</MenuItem>
-                  ))}
+                  <MenuItem value={"usd"}>usd</MenuItem>
+                  <MenuItem value={"eur"}>eur</MenuItem>
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
               </StyledFormControl>
             </Grid>
           </MenuContent>
@@ -358,7 +387,6 @@ function Cars(props) {
                     <MenuItem value={Region._id}>{Region.name}</MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>город*</InputLabel>
@@ -369,7 +397,7 @@ function Cars(props) {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>With label + helper text</FormHelperText>
+                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
@@ -379,6 +407,7 @@ function Cars(props) {
             </Typography>
             <TextareaAutosize
               style={{
+                border: "none",
                 height: "200px",
                 outline: "none",
                 fontSize: "17px",
@@ -420,9 +449,20 @@ function Cars(props) {
             </Typography>
 
             <input type="file" id="images" hidden onChange={handleImgChange} />
-            <StyledButton variant="contained" onClick={changeHandler}>
+            <StyledButton variant="contained">
               <label htmlFor="images">выбрать изображение</label>
             </StyledButton>
+            <StyledColumn>
+              <StyledCars>
+                {img.length === 0 ? (
+                  <>
+                    <h1>xechnarsa yuq</h1>
+                  </>
+                ) : (
+                  <img src={`http://dems.inone.uz/api${img}`} />
+                )}
+              </StyledCars>
+            </StyledColumn>
           </Box>
           <Box>
             <StyledButton
@@ -439,94 +479,3 @@ function Cars(props) {
   );
 }
 export default Cars;
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: auto;
-`;
-const Container = styled.div`
-  height: auto;
-  margin: 0px auto;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-top: 120px;
-  padding: 20px 150px;
-  @media (max-width: 765px) {
-    padding: 20px 50px;
-  }
-`;
-const MenuContent = styled.div`
-  width: auto;
-  height: auto;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-`;
-const MenuTitle = styled.div`
-  width: auto;
-  height: auto;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  margin-bottom: 10px;
-`;
-const ContentRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-const StyledButton = styled(Button)`
-  && {
-    background: #f85c70;
-
-    &:hover {
-      background: #f32e48;
-    }
-  }
-`;
-const StyledFormControl = styled(FormControl)`
-  .MuiFilledInput-input {
-    background: white;
-  }
-  .MuiFilledInput-input {
-    background: white;
-  }
-  .MuiInputLabel-root.Mui-focused {
-    color: rgb(153, 149, 149);
-  }
-  && {
-    .MuiInputBase-root.Mui-focused fieldset {
-      border: 1px solid rgb(153, 149, 149);
-    }
-  }
-  width: 45%;
-  margin: 0px;
-  @media (max-width: 600px) {
-    width: 100%;
-    margin: 20px;
-  }
-`;
-
-const StyledTextField = styled(TextField)`
-  .MuiInputLabel-root.Mui-focused {
-    color: rgb(153, 149, 149);
-  }
-  .MuiFilledInput-input {
-    background: white;
-  }
-  && {
-    .MuiInputBase-root.Mui-focused fieldset {
-      border: 1px solid rgb(153, 149, 149);
-    }
-  }
-`;
-const Range = styled.div`
-  width:100%;
-  height: 100%;
-  background: white;
-`

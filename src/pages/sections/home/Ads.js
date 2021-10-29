@@ -8,12 +8,15 @@ import axios from "axios";
 const Ads = () => {
   const dispatch1 = useDispatch();
   const products1 = useSelector((state) => state.allProducts.products);
-
-
+  const filters = useSelector((state) => state.Search.data)
+  console.log( "Qidirish",products1, filters.location )
   const productFetch = async () => {
-    const respons = await axios
-      .post("http://dems.inone.uz/api/ad/latest/get-pagin",{limit:10, page:2})
-      .then(res => {  console.log(res.data.data.data);
+    await axios
+      .post("http://dems.inone.uz/api/ad/latest/get-pagin", {
+        limit: 20,
+        page: 1,
+      })
+      .then((res) => {
         dispatch1(setProducts(res.data.data.data));
       })
       .catch((err) => {
@@ -21,29 +24,39 @@ const Ads = () => {
       });
   };
 
-
   useEffect(() => {
     productFetch();
   }, []);
+
+  const Filter = products1.filter(
+    (eliment) =>
+      (filters.location 
+        ? eliment.region_id === filters.location
+        : true) &&
+      (filters.search 
+        ? eliment.title.toLowerCase().includes(filters.search.toLowerCase())
+        : true) &&
+      (filters.category ? eliment.type === filters.category : true)
+  );
 
   return (
     <div>
       <Wrapper>
         <div className="content">
           <div>
-            <h1>Featured Ads</h1>
+            <h1>Избранные объявления</h1>
           </div>
           <Row>
-            <Adsjr datas={products1} />
+            <Adsjr datas={(Filter.length >= 0 ? Filter :
+              products1) } />
           </Row>
         </div>
       </Wrapper>
-      <StyledH>Show more...</StyledH>
     </div>
   );
 };
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -59,12 +72,12 @@ const Wrapper = styled.div`
     text-align: center;
     padding-bottom: 5px;
     font-family: "Quicksand", sans-serif;
-    margin-top:69px;
-    margin-bottom:43px;
+    margin-top: 69px;
+    margin-bottom: 43px;
   }
 `;
 
-const Row = styled.div`
+export const Row = styled.div`
   width: 1020px;
   height: auto;
   display: flex;
@@ -77,17 +90,6 @@ const Row = styled.div`
   @media (max-width: 800px) {
     width: 530px;
   }
-`;
-
-const StyledH = styled.h1`
-  font-size: 24px;
-  line-height: 30px;
-  font-weight: 500;
-  font-style: normal;
-  font-family: "Quicksand", sans-serif;
-  text-align: center;
-  color: #000000;
-  padding-bottom: 66px;
 `;
 
 export default Ads;

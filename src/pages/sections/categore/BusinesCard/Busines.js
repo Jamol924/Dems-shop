@@ -1,18 +1,40 @@
-import React from 'react'
-import AboutUs from '../../home/AboutUs'
+import React, { useState } from "react";
+import Nav2 from "../../../../components/Nav2";
 import InfoUs from '../../home/InfoUs'
-import Intro from '../../home/Intro'
 import CardBusines from './CardBusines'
+import {
+  Wrapper,
+  NavbarContent,
+  BackContent,
+  SearchContent,
+  AdsContent,
+} from "../../../sections/SearchProduct/SearchCard";
+import {BackBusines} from "../../../../components/Back";
+import SearchMene from "../../../../components/SearchMene";
 
 function Busines() {
-    return (
-        <div>
-            <Intro />
-            <AboutUs />
-            <CardBusines />
-            <InfoUs />
-        </div>
-    )
+  const [data, setData] = useState({ location: "", search: "" });
+  return (
+    <Wrapper>
+      <NavbarContent>
+        <Nav2 />
+      </NavbarContent>
+      <BackContent>
+        <BackBusines />
+      </BackContent>
+      <SearchContent>
+        <SearchMene
+          onFiltersCh={(info) => {
+            setData(info);
+          }}
+        />
+      </SearchContent>
+      <AdsContent>
+        <CardBusines filters={data} />
+      </AdsContent>
+      <InfoUs />
+    </Wrapper>
+  );
 }
 
-export default Busines
+export default Busines;

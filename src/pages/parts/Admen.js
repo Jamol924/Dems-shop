@@ -1,16 +1,25 @@
 import React from 'react';
 import styled from "styled-components"
-import Nav from '../../components/Nav';
+import { BackAdmin } from '../../components/Back';
+import Nav2 from '../../components/Nav2';
 import Categore from '../sections/Admen/Categore';
+import Contact from './contact';
 
 function Admin() {
-    return (
+    const auth = JSON.parse(localStorage.getItem("token"))
+    console.log("auth :",auth)
+    return  auth ? (
         <>
             <Wrapper>
-                <Nav />
+                <Nav2 />
+                <BackAdmin  />
                 <Categore />
             </Wrapper>
         </>
+    ):(
+        <div>
+            <Contact />
+        </div>
     )
 }
 

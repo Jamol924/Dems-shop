@@ -1,6 +1,12 @@
 import { ActionType } from "../contants/Action-Type"
 
 
+export const useImag = (produc) =>{
+    return{
+        type: ActionType.SET_IMAG,
+        payload: produc,
+    }
+};
 export const setProducts = (products) =>{
     return{
         type: ActionType.SET_PRODUCTS,
@@ -22,5 +28,11 @@ export const categoreProduct = (products) =>{
 export const removeSelectdProduct = () =>{
     return{
         type:ActionType.REMOVE_SELECTED_PRODUCT,
+    };
+};
+export const useSearch = (data) =>{
+    return{
+        type:ActionType.SEARCH_VALUE,
+        payload:data,
     };
 };

@@ -11,14 +11,14 @@ import Box from "@mui/material/Box";
 import {Tizim} from "./static/Tizim";
 import RuyxatdanUtish from "./static/RuyxatdanUtish";
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  dir?: string;
-  index: number;
-  value: number;
-}
+// interface TabPanelProps {
+//   children?: React.ReactNode;
+//   dir?: string;
+//   index: number;
+//   value: number;
+// }
 
-function TabPanel(props: TabPanelProps) {
+function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -35,26 +35,12 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: any) {
+function a11yProps(index) {
   return {
     id: `action-tab-${index}`,
     "aria-controls": `action-tabpanel-${index}`,
   };
 }
-
-const fabStyle = {
-  position: "absolute",
-  bottom: 16,
-  right: 16,
-};
-
-const fabGreenStyle = {
-  color: "common.white",
-  bgcolor: green[500],
-  "&:hover": {
-    bgcolor: green[600],
-  },
-};
 
 export default function ContactMenu() {
   const theme = useTheme();
@@ -66,11 +52,6 @@ export default function ContactMenu() {
 
   const handleChangeIndex = (index) => {
     setValue(index);
-  };
-
-  const transitionDuration = {
-    enter: theme.transitions.duration.enteringScreen,
-    exit: theme.transitions.duration.leavingScreen,
   };
 
 
@@ -108,9 +89,10 @@ export default function ContactMenu() {
             
           />
           <StyledTab
-            sx={{ fontWeight: 600 }}
-            label="Ruyxatdan utish"
-            {...a11yProps(1)}
+            sx={{ padding: 3, fontWeight: 600 }}
+            label="Ruyxatdan uting"
+            {...a11yProps(0)}
+            
           />
         </StyledTabs>
       </AppBar>

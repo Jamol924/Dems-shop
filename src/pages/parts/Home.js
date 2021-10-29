@@ -5,13 +5,14 @@ import Intro from "../sections/home/Intro";
 import InfoUs from "../sections/home/InfoUs";
 
 const Home = () => {
+
+
   return (
     <div>
       <Intro />
       <AboutUs />
       <Ads />
       <Statistics />
-      <Ads />
       <InfoUs />
     </div>
   );

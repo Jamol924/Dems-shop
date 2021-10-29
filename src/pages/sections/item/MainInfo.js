@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import Image from "../../../components/Image";
 import Info from "../../../components/Info";
 import Features from "../../../components/Features";
 import SellerInfo from "../../../components/SellerInfo";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { selectedProduct } from "../../../redux/active/productActions";
 import {
-  selectedProduct,
-} from "../../../redux/active/productActions";
+  Wrapper,
+  Left,
+  Right,
+} from "../../../components/MaterialComponent/MainInfo";
 import axios from "axios";
+import LoaderSpinner from "../../../Loader/loader";
 
 const MainInfo = () => {
   const productCard = useSelector((state) => state.productCard);
@@ -19,22 +22,27 @@ const MainInfo = () => {
 
   const fetchProductDetail = async () => {
     const responsve = await axios
-      .post(`http://dems.inone.uz/api/ad/get-by-id`,{limit:10 , _id:`${productId}`})
+      .post(`http://dems.inone.uz/api/ad/get-by-id`, {
+        limit: 10,
+        _id: `${productId}`,
+      }).then((res) => 
+        dispatch(selectedProduct(res.data.data))
+      )
       .catch((err) => {
         console.log("Err", err);
       });
-      dispatch(selectedProduct(responsve.data.data));
-    };
-
+    
+  };
+  console.log("Card", productCard)
+ 
   useEffect(() => {
     if (productId && productId !== " ") fetchProductDetail();
   }, [productId]);
 
-
   return (
     <div>
       {Object.keys(productCard).length === 0 ? (
-        <div>...Loading</div>
+        <LoaderSpinner />
       ) : (
         <Wrapper>
           <Left>
@@ -50,23 +58,5 @@ const MainInfo = () => {
     </div>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-top: 100px;
-`;
-const Left = styled.div`
-  background: white;
-  margin-right: 10px;
-  padding: 10px;
-`;
-const Right = styled.div`
-  background: white;
-  margin-left: 10px;
-  height: max-content;
-  padding: 10px;
-`;
 
 export default MainInfo;

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
-  const { pathname } = useLocation();
   const [pageOffset, setPageOffset] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -27,26 +24,23 @@ const Nav = () => {
 
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <select>
+              <option>UZB</option>
+              <option>RUS</option>
+              <option>ENG</option>
+            </select>
           </li>
           <li>
-            <Link to="/AllAds">All Ads</Link>
+            <Link to="/myProfil">
+              <a href="">Мy profile </a>
+            </Link>
           </li>
+
           <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
-            <Link to="/contact">
+            <Link to="/admen">
               <ButtonRight>
-                {/* <StyledButton
-                  variant="contained"
-                 
-                  color="error"
-                >
-                  
-                </StyledButton> */}
                 <StyledButton
-                 startIcon={<AddIcon />}
+                  startIcon={<AddIcon />}
                   sx={{
                     color: "white",
                     borderRadius: "24px",
@@ -64,7 +58,7 @@ const Nav = () => {
   );
 };
 
-const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)`
   height: 45px;
   &.MuiButton-root {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -80,7 +74,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledNav = styled.nav`
+export const StyledNav = styled.nav`
   display: flex;
   margin: auto;
   justify-content: space-between;
@@ -99,7 +93,6 @@ const StyledNav = styled.nav`
           background: white;
           box-shadow: 5px 0 10px lightgray;
           height: 70px;
-
           a {
             color: black;
           }
@@ -107,13 +100,11 @@ const StyledNav = styled.nav`
       : css`
           background: transparent;
           transition: all 0.5s ease;
-
           a {
             color: white;
-            &.chesk {
-              color: blue;
-              background-color: blue;
-            }
+          }
+          select {
+            color: white;
           }
         `}
   a {
@@ -122,78 +113,35 @@ const StyledNav = styled.nav`
     font-weight: 300;
     font-size: 15px;
     line-height: 16px;
+    display: flex;
+    align-items: center;
   }
   ul {
     list-style: none;
     display: flex;
     align-items: center;
   }
-  li:nth-child(3) {
+  li:nth-child(2) {
     margin-right: 92px;
   }
   li {
     margin-left: 32px;
-    .line {
-      color: white;
-      width: 2px;
-    }
     position: relative;
-    .language {
+  }
+  select {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 5px 0px;
+    option {
+      background: transparent;
       color: black;
-      font-family: "Inter", sans-serif;
-    }
-
-    &.dropdown {
-      position: relative;
-      transition: all 0.5s ease;
-
-      &:hover {
-        transition: all 0.5s ease;
-        .dropdown-menu {
-          display: block;
-        }
-      }
-
-      .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 220px;
-        background: #fff;
-        &:hover {
-          transition: all 0.5s ease;
-        }
-        h3 {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: black;
-          font-family: "Inter", sans-serif;
-        }
-        p {
-          margin: 0px;
-          display: block;
-          text-align: center;
-          padding: 10px 10px;
-          transition: all 0.5s ease;
-          &:hover {
-            background: #f85c70;
-            color: white;
-          }
-        }
-        a {
-          text-decoration: none;
-          color: black;
-          font-family: "Inter", sans-serif;
-        }
-      }
+      border: none;
     }
   }
 `;
 
-const StyledH1 = styled.h1`
+export const StyledH1 = styled.h1`
   a {
     font-size: 36px;
     font-weight: bold;
@@ -202,67 +150,11 @@ const StyledH1 = styled.h1`
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 `;
-const ButtonRight = styled.div`
+export const ButtonRight = styled.div`
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-`;
-const BtnTitle = styled.div`
-  font-size: 12px;
-  color: white;
-`;
-
-const Line = styled(motion.div)`
-  height: 0.3rem;
-  background: #f85c70;
-  width: 0%;
-  position: absolute;
-  bottom: -80%;
-  left: 50%;
-`;
-
-const StyledModal = styled.div`
-  h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 37px;
-  }
-  p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    margin-bottom: 50px;
-  }
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    input {
-      width: 225px;
-      height: 30px;
-      margin-left: 19px;
-      margin-bottom: 15px;
-      text-transform: capitalize;
-    }
-    label {
-      font-family: "Inter", sans-serif;
-      font-style: normal;
-      font-weight: 500;
-    }
-    button {
-      margin-top: 20px;
-    }
-  }
 `;
 
 export default Nav;

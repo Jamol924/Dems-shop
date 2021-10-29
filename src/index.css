@@ -7,7 +7,8 @@
 
 .fix {
   overflow: hidden;
-  background: linear-gradient(  rgba(238, 111, 111, 0.493), rgba(196, 63, 63, 0.199));
+  background: linear-gradient(  rgba(10, 10, 10, 0.103), rgba(29, 27, 27, 0.199), rgba(29, 27, 27, 0.103));
   color: rgb(153, 149, 149);
+  background-color: rgba(24, 22, 22, 0.281);
 
 }

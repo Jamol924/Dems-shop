@@ -1,10 +1,11 @@
-import React from "react";
+import React,{useState} from "react";
 import AboutSection from "../../../components/AboutSection";
 import Nav from "../../../components/Nav";
 import back from "../../../assets/background.jpg";
 import styled from "styled-components";
 
 const Intro = () => {
+  
   return (
     <Wrapper >
       <Nav />
