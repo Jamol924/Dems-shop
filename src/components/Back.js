@@ -112,7 +112,7 @@ export const BackJobs = () => {
                 {productCard?.type}
               </Link>
             )}
-            <Typography>card</Typography>
+            {productCard && <Typography>{productCard?.title}</Typography>}
           </Breadcrumbs>
         </Stack>
       </BackCard>
@@ -421,6 +421,30 @@ export const BackAdminAgriculture = () => {
     </Link>,
     <Typography key="3" color="text.primary">
       Agriculture
+    </Typography>,
+  ];
+  return (
+    <>
+      <BackCard>
+        <Stack spacing={2}>
+          <Breadcrumbs separator="›" aria-label="breadcrumb">
+            {breadcrumbs}
+          </Breadcrumbs>
+        </Stack>
+      </BackCard>
+    </>
+  );
+};
+export const BackAdminFile = () => {
+  const breadcrumbs = [
+    <Link underline="hover" to="/">
+      головная часть
+    </Link>,
+    <Link underline="hover" to="/admen">
+      Admin_panel
+    </Link>,
+    <Typography key="3" color="text.primary">
+      file
     </Typography>,
   ];
   return (

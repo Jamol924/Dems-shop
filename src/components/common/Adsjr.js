@@ -24,6 +24,8 @@ import {
   CardTissotSvg,
 } from "../../icon/CardSvg";
 
+
+
 const Adsjr = ({ datas }) => {
   return (
     <>
@@ -47,13 +49,13 @@ const Adsjr = ({ datas }) => {
                 <WIcon>
                   <CardContactSvg />
                 </WIcon>
-                <WTitle>{dat.description}</WTitle>
+                <WTitle>{dat.view_count}</WTitle>
               </CardW>
               <CardName>
                 <NameIcon>
                   <CardTissotSvg />
                 </NameIcon>
-                <NameTitle>{dat.year_house_build}</NameTitle>
+                <NameTitle>{dat.feature_expired_at}</NameTitle>
               </CardName>
               <CardLocation>
                 <LocationIcon>

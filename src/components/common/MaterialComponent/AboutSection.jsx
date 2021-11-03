@@ -155,7 +155,7 @@ export const FormButton = styled.div`
     justify-content: center;
     width: 165px;
     height: 100%;
-    background: #f85c70;
+    background: #2a3a96;
     color: #ffffff;
     padding: 0px;
     font-size: 17px;
@@ -168,7 +168,7 @@ export const FormButton = styled.div`
       justify-content: center;
       width: 100%;
       height: 100%;
-      background: #f85c70;
+      background: #2a3a96;
       padding: 0px;
       color: white;
       font-size: 17px;
@@ -204,7 +204,7 @@ export const LocationStyles = styled.div`
     color: grey;
     &:hover {
       color: white;
-      background: #f85c70;
+      background: #2a3a96;
     }
   }
   & > option {
@@ -221,7 +221,7 @@ export const LocationStyles = styled.div`
     color: grey;
     &:hover {
       color: white;
-      background: #f85c70;
+      background: #2a3a96;
     }
   }
 `;
@@ -251,7 +251,7 @@ export const LocationSty = styled.div`
     color: grey;
     &:hover {
       color: white;
-      background: #f85c70;
+      background: #2a3a96;
     }
   }
   & > p {
@@ -264,19 +264,23 @@ export const LocationSty = styled.div`
     padding: 15px 10px;
     &:hover {
       color: white;
-      background: #f85c70;
+      background: #2a3a96;
     }
   }
 `;
 export const StyledLoadingButton = styled(LoadingButton)`
   &.css-h4t5eh-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
-    background: #f85c70;
+    background: #3545a3;
     height: 100%;
     width:100%;
     border-radius: 0px;
+    && {
+    background: #3545a3;
+
     &:hover {
-      background: #f32e48;
+      background: #2a3a96;
     }
+  }
   }
 `;
 export const ButtonLink = styled.div`

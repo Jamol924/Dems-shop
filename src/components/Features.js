@@ -40,44 +40,27 @@ const Features = ({ dataFeatures }) => {
   }
   return (
     <>
-      {item === 2 && (
-          <CarsFeater dataCard = {dataFeatures} />
-        )}
-      {item === 3 && (
-          <HomeFeater dataCard = {dataFeatures} />
-        )}
-      {item === 4 && (
-          <ElictronicFeater dataCard = {dataFeatures} />
-        )}
-      {item === 5 && (
-          <JobsFeater dataCard = {dataFeatures} />
-        )}
-      {item === 6 && (
-          <FashionFeater dataCard = {dataFeatures} />
-        )}
-      {item === 7 && (
-          <BolalatFeater dataCard = {dataFeatures} />
-        )}
-      {item === 8 && (
-          <BusinesFeater dataCard = {dataFeatures} />
-        )}
-      {item === 9 && (
-          <AgricultureFeater dataCard = {dataFeatures} />
-        )}
+      {item === 2 && <CarsFeater dataCard={dataFeatures} />}
+      {item === 3 && <HomeFeater dataCard={dataFeatures} />}
+      {item === 4 && <ElictronicFeater dataCard={dataFeatures} />}
+      {item === 5 && <JobsFeater dataCard={dataFeatures} />}
+      {item === 6 && <FashionFeater dataCard={dataFeatures} />}
+      {item === 7 && <BolalatFeater dataCard={dataFeatures} />}
+      {item === 8 && <BusinesFeater dataCard={dataFeatures} />}
+      {item === 9 && <AgricultureFeater dataCard={dataFeatures} />}
     </>
   );
 };
 
 export const Wrapper = styled.div`
-  margin-bottom: 50px;
   background: white;
-  padding-top: 29px;
   display: flex;
+  padding: 0px 30px 30px;
+  justify-content: space-between;
   flex-direction: column;
   div.title {
     display: flex;
     flex-direction: column;
-    padding: 0px 26px;
   }
   div.items {
     display: flex;
@@ -101,9 +84,9 @@ export const Wrapper = styled.div`
   }
 
   div.line {
-    width: 40px;
+    width: 50px;
     height: 5px;
-    background: #f85c70;
+    background: #2a3a96;
     margin: 20px 0;
   }
 `;
@@ -113,13 +96,11 @@ export const PStyled = styled.div`
   flex-direction: column;
   width: 100%;
   div {
-    padding-left: 50px;
-    padding-right: 50px;
     display: flex;
     justify-content: space-between;
   }
   p {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 15px;
     font-weight: 800px;
     font-style: normal;

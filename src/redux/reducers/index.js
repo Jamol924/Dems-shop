@@ -4,7 +4,8 @@ import {
   selectdProductReducer,
   CategoreReducer,
   productSearch,
-  useImages,
+  setImages,
+  setCounter,
 } from "./productReducer";
 
 const reducer = combineReducers({
@@ -12,7 +13,8 @@ const reducer = combineReducers({
   CategoreCard: CategoreReducer,
   productCard: selectdProductReducer,
   Search:productSearch,
-  allImage:useImages,
+  allImage:setImages,
+  allCounter:setCounter,
 });
 
 export default reducer;

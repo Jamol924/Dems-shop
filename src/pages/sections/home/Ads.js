@@ -1,23 +1,28 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import styled from "styled-components";
 import Adsjr from "../../../components/common/Adsjr";
 import { setProducts } from "../../../redux/active/productActions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import PaginationLink from "../../../components/pagenaton/Paginat.js"
 
 const Ads = () => {
   const dispatch1 = useDispatch();
   const products1 = useSelector((state) => state.allProducts.products);
   const filters = useSelector((state) => state.Search.data)
-  console.log( "Qidirish",products1, filters.location )
+  
+  const [pag, setPag] = useState(1); 
+  const [numberOf, setNumberOf] = useState(); 
   const productFetch = async () => {
     await axios
       .post("http://dems.inone.uz/api/ad/latest/get-pagin", {
-        limit: 20,
-        page: 1,
+        limit: 10,
+        page: pag,
       })
       .then((res) => {
         dispatch1(setProducts(res.data.data.data));
+        console.log("Qiymat",res)
+        setNumberOf(res.data.data.total)
       })
       .catch((err) => {
         console.log("Err", err);
@@ -26,7 +31,7 @@ const Ads = () => {
 
   useEffect(() => {
     productFetch();
-  }, []);
+  }, [pag]);
 
   const Filter = products1.filter(
     (eliment) =>
@@ -50,6 +55,7 @@ const Ads = () => {
             <Adsjr datas={(Filter.length >= 0 ? Filter :
               products1) } />
           </Row>
+              <PaginationLink setPag={setPag} pagNumber={numberOf} />
         </div>
       </Wrapper>
     </div>

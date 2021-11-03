@@ -44,10 +44,10 @@ export const ContentRow = styled.div`
 `;
 export const StyledButton = styled(Button)`
   && {
-    background: #f85c70;
+    background: #3545a3;
 
     &:hover {
-      background: #f32e48;
+      background: #2a3a96;
     }
   }
 `;
@@ -113,6 +113,16 @@ export const StyledColumn = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  img{
+    gap: 10px;
+    padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow:1px 1px 7px #ccc;
+  overflow: hidden;
+  border-radius: 7px;
+  width: 100px;
+  height: 100px;
+  }
 `;
 export const StyledCars = styled.div`
   padding: 10px;

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { StyledButton,  } from "./Nav";
+import { useSelector } from "react-redux";
 
 const Nav2 = () => {
   const [pageOffset, setPageOffset] = useState(false);
@@ -13,6 +14,9 @@ const Nav2 = () => {
       else setPageOffset(false);
     });
   }, []);
+
+  const counter = useSelector((state) => state.allCounter);
+  console.log(counter);
 
   return (
     <>
@@ -31,11 +35,16 @@ const Nav2 = () => {
               <option>ENG</option>
             </select>
           </li>
-          <li>
-            <Link to="/myProfil">
-              <a href="">Мy profile </a>
-            </Link>
-          </li>
+          {counter ? (
+            <li style={{ display: "flex" }}>
+              <AccountCircleIcon className="icon" sx={{ color: "black" }} />
+              <Link to="/myProfil">
+                <a href="">Мy profile </a>
+              </Link>
+            </li>
+          ) : (
+            <span></span>
+          )}
 
           <li>
           <Link to="/admen">
@@ -82,15 +91,17 @@ export const StyledNav = styled.nav`
       ? css`
           background: white;
           box-shadow: 5px 0 10px lightgray;
-          height: 70px;
+          height: 60px;
           border-bottom: none;
+          transition: all 0.8s ease;
+
           a {
             color: black;
           }
         `
       : css`
           background: transparent;
-          transition: all 0.5s ease;
+          transition: all 0.8s ease;
           a {
             color: black;
           }

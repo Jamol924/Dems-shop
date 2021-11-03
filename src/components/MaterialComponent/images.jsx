@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+padding: 30px 30px 0px;
   background: white;
-  padding: 25px;
   display: flex;
   flex-direction:column;
 `;
@@ -34,6 +34,7 @@ export const StyledInfo = styled.div`
     margin-right: 30px;
 
     p {
+      font-size: 15px;
       margin-left: 10px;
     }
   }
@@ -41,5 +42,4 @@ export const StyledInfo = styled.div`
 export const MenuSection =styled.div`
   width:100%;
   height:auto;
-  margin-top: 10px;
 `

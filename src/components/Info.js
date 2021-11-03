@@ -22,7 +22,7 @@ const Info = ({ dataInfo }) => {
       <Wrapper>
         <TextArea>
           <div>
-            <h1>Described</h1>
+            <h1>Detailed</h1>
           </div>
           <StyledText>{dataInfo.description}</StyledText>
         </TextArea>

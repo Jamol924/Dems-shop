@@ -1,7 +1,7 @@
 import { ActionType } from "../contants/Action-Type"
 
 
-export const useImag = (produc) =>{
+export const setImag = (produc) =>{
     return{
         type: ActionType.SET_IMAG,
         payload: produc,
@@ -34,5 +34,17 @@ export const useSearch = (data) =>{
     return{
         type:ActionType.SEARCH_VALUE,
         payload:data,
+    };
+};
+export const countItem = (eliment) =>{
+    return{
+        type:ActionType.COUNT_VALUE,
+        payload:eliment,
+    };
+};
+export const language = (eliment) =>{
+    return{
+        type:ActionType.COUNT_VALUE,
+        payload:eliment,
     };
 };

@@ -13,6 +13,7 @@ import SearchMene from "../../../../components/SearchMene";
 import Nav2 from "../../../../components/Nav2";
 import { useSelector } from "react-redux";
 import LoaderSpinner from "../../../../Loader/loader";
+import { PaginationCard } from "../../../../components/pagenaton/Paginat";
 
 
 

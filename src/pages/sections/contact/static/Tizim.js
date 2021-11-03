@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
-import Button from "@mui/material/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import InputMask from "react-input-mask";
+import { StyledButton } from "../../Admen/MaterialTovar/Tovar";
+import { useDispatch, useSelector} from "react-redux";
+import { countItem } from "../../../../redux/active/productActions";
 
 export const Tizim = () => {
+  const [counter, setCounter ] = useState(false);
+  
+  const dispatch = useDispatch();
+  dispatch(countItem(counter));
+
+
   const [data, setData] = useState({
     phone_number: "",
     otp: "",
@@ -39,6 +47,7 @@ export const Tizim = () => {
           otp,
         })
         .then((dd) => {
+          setCounter(true);
           localStorage.setItem("token", JSON.stringify(dd.data.data.token));
           localStorage.setItem("user", JSON.stringify(dd.data.data));
           history.push("/admen");
@@ -110,19 +119,5 @@ export const StyledInputMask = styled(InputMask)`
 const StyledTextField = styled(TextField)`
   .MuiInputLabel-root.Mui-focused {
     color: rgb(153, 149, 149);
-  }
-  && {
-    .MuiInputBase-root.Mui-focused fieldset {
-      border: 1px solid rgb(153, 149, 149);
-    }
-  }
-`;
-const StyledButton = styled(Button)`
-  && {
-    background: #f85c70;
-
-    &:hover {
-      background: #f32e48;
-    }
   }
 `;

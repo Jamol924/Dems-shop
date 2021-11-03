@@ -3,7 +3,6 @@ import Search from "../../../components/Search";
 import Ads from "../home/Ads";
 import styled from "styled-components";
 import Nav2 from "../../../components/Nav2";
-import {useSelector} from "react-redux"
 
 function SearchCard() {
 

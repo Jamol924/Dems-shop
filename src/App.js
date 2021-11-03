@@ -27,6 +27,7 @@ import SearchCard from "./pages/sections/SearchProduct/SearchCard";
 import MyProfil from "./pages/parts/MyProfil";
 import Setting from "./pages/sections/MyProfil/Setting";
 import MyAdss from "./pages/sections/MyProfil/MyAdss";
+import okFilse from "./components/common/okFile";
 
 const GlobalStyle = createGlobalStyle`
    * {
@@ -92,6 +93,7 @@ function App() {
               render={() => <TovarAgriculture categore="agriculture" />}
             />
             <Route exact path="/admen" component={Admin} />
+            <Route exact path="/okFilse" component={okFilse} />
 
             <Route exact path="/Cars" component={Cars} />
             <Route exact path="/Home" component={Plaze} />

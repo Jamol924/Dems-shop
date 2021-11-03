@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { MenuItem, Select, Typography } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { InputLabel, TextareaAutosize } from "@material-ui/core";
+import Nav2 from "../../../../components/Nav2";
+import { BackAdminElictron } from "../../../../components/Back";
+import LoaderSpinner from "../../../../Loader/loader";
+import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import axios from "axios";
+import { Box } from "@mui/system";
 import {
   Wrapper,
   Container,
@@ -9,15 +21,9 @@ import {
   ContentRow,
   StyledFormControl,
 } from "../MaterialTovar/Tovar";
-import axios from "axios";
-import { FailImages } from "../../../../components/common/FailImages";
-import { Box } from "@mui/system";
-import { InputLabel,TextareaAutosize } from "@material-ui/core";
-import Nav2 from "../../../../components/Nav2";
-import { BackAdminElictron } from "../../../../components/Back";
-import LoaderSpinner from "../../../../Loader/loader";
 
-function Electronics({category}) {
+function Electronics({ category }) {
+  const history = useHistory();
   const elictron = category;
   const [area, setArea] = useState("");
   const [zagol, setZagol] = useState("");
@@ -75,7 +81,7 @@ function Electronics({category}) {
       })
       .then((res) => {
         setRegions(res.data.data.data);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((er) => console.log(er));
   };
@@ -109,23 +115,25 @@ function Electronics({category}) {
     setSum(event.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const state = useSelector((state) => state.allImage);
+  const itemImages = Object.values(state);
+  const handlSubmit = (value) => {
+    console.log(value)
     axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {
           type: elictron,
-          title: zagol,
-          electronic_model_id:tur,
+          title: value.name,
+          electronic_model_id: tur,
           subtype: mobil,
           situation: novy,
           currency: sum,
-          price: parseInt(sena),
+          price: parseInt(value.sen),
           region_id: region,
           city_id: gorod,
-          description: area,
-          images: ["/uploads/file-a241f032d0092a7b06b7795d41bbf81e.jpg"],
+          description: value.textarea,
+          images: itemImages,
         },
         {
           headers: {
@@ -135,137 +143,206 @@ function Electronics({category}) {
           },
         }
       )
-      .then((res) => console.log("hellool  ", res))
+      .then((res) => {
+        history.push("/okFilse");
+        console.log(res);
+      })
       .catch(() => console.log(localStorage.getItem("token")));
   };
   const [loading, setLoading] = useState(true);
+
+  const schema = yup.object({
+    name: yup.string().required("This is required field"),
+    sen: yup.string().required("This is required field"),
+    textarea: yup
+      .string()
+      .required("This is required field")
+      .min(90, "You entered less text"),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "all",
+    defaultValues: {
+      name: "",
+      sen: "",
+      textarea: "",
+    },
+  });
 
   return loading ? (
     <LoaderSpinner />
   ) : (
     <>
-      <Wrapper>
-        <Nav2 />
-        <BackAdminElictron />
-        <Container>
-          <Typography sx={{ mb: 3 }} variant="h4">
-            Электроник детаилс
-          </Typography>
-          <MenuContent>
-            <StyledTextField
-              sx={{ mb: 3 }}
-              label="заголовок объявления*"
-              variant="filled"
-              onChange={(e) => setZagol(e.target.value)}
-            />
-            <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <Select value={mobil} onChange={handleMobile}>
-                  <MenuItem value="phone">Телефон</MenuItem>
-                  <MenuItem value="computer">Компьютер</MenuItem>
-                  <MenuItem value="tv">Телевизор </MenuItem>
-                  <MenuItem value="accessories">accessories </MenuItem>
-                  <MenuItem value="other">other </MenuItem>
-                </Select>
-              </StyledFormControl>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <Select value={novy} onChange={handleNovy}>
-                  <MenuItem value="new">Новый</MenuItem>
-                  <MenuItem value="old">В/У</MenuItem>
-                </Select>
-              </StyledFormControl>
-            </ContentRow>
-            <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
-              <Select value={tur} onChange={handleTur}>
-                {val.map((el) => (
-                  <MenuItem value={el._id}>{el.name}</MenuItem>
-                ))}
-              </Select>
-            </StyledFormControl>
-          </MenuContent>
-          <MenuContent>
-            <Typography sx={{ mb: 3 }} variant="h5">
-              цена*
+      <form >
+        <Wrapper>
+          <Nav2 />
+          <BackAdminElictron />
+          <Container>
+            <Typography sx={{ mb: 3 }} variant="h4">
+              Электроник детаилс
             </Typography>
-            <ContentRow>
-              <StyledTextField
-                sx={{ mb: 3 }}
-                onChange={(e) => setSena(e.target.value)}
-                label="сена*"
-                variant="filled"
+            <MenuContent>
+              <Controller
+                name="name"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    sx={{ mb: 3 }}
+                    label="заголовок объявления*"
+                    variant="filled"
+                    onChange={(e) => setZagol(e.target.value)}
+                    helperText={errors?.name?.message}
+                    error={errors?.name}
+                    {...field}
+                  />
+                )}
               />
-              {/* <FormHelperText>With label + helper text</FormHelperText> */}
+              <ContentRow>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <Select value={mobil} onChange={handleMobile}>
+                    <MenuItem value="phone">Телефон</MenuItem>
+                    <MenuItem value="computer">Компьютер</MenuItem>
+                    <MenuItem value="tv">Телевизор </MenuItem>
+                    <MenuItem value="accessories">accessories </MenuItem>
+                    <MenuItem value="other">other </MenuItem>
+                  </Select>
+                </StyledFormControl>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <Select value={novy} onChange={handleNovy}>
+                    <MenuItem value="new">Новый</MenuItem>
+                    <MenuItem value="old">В/У</MenuItem>
+                  </Select>
+                </StyledFormControl>
+              </ContentRow>
+              <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
+                <Select value={tur} onChange={handleTur}>
+                  {val.map((el) => (
+                    <MenuItem value={el._id}>{el.name}</MenuItem>
+                  ))}
+                </Select>
+              </StyledFormControl>
+            </MenuContent>
+            <MenuContent>
+              <Typography sx={{ mb: 3 }} variant="h5">
+                цена*
+              </Typography>
+              <ContentRow>
+                <Controller
+                  name="sen"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <StyledTextField
+                      sx={{ mb: 3 }}
+                      onChange={(e) => setSena(e.target.value)}
+                      label="сена*"
+                      variant="filled"
+                      helperText={errors?.sen?.message}
+                      error={errors?.sen}
+                      {...field}
+                    />
+                  )}
+                />
 
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <Select value={sum} label="sum" onChange={handleSumChange}>
-                  <MenuItem value="uzs">uzs</MenuItem>
-                  <MenuItem value="usd">usd</MenuItem>
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-            </ContentRow>
-          </MenuContent>
-          <MenuContent>
-            <Typography sx={{ mb: 3 }} variant="h5">
-              местонахождение*
-            </Typography>
-            <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>region*</InputLabel>
-                <Select
-                  value={region}
-                  label="sum"
-                  onChange={handleRegionChange}
-                >
-                  {regions.map((Region) => (
-                    <MenuItem value={Region._id}>{Region.name}</MenuItem>
-                  ))}
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>город*</InputLabel>
-                <Select value={gorod} label="sum" onChange={handleGorodChange}>
-                  {gorods.map((Gorod) => (
-                    <MenuItem value={Gorod._id} key={Gorod._id}>
-                      {Gorod.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-            </ContentRow>
-          </MenuContent>
-          <MenuContent>
-            <Typography sx={{ mb: 3 }} variant="h5">
-              описане
-            </Typography>
-            <TextareaAutosize
-              style={{
-                height: "200px",
-                outline: "none",
-                fontSize: "17px",
-                padding: "15px",
-                borderRadius: "4px",
-                maxWidth: "1000px",
-                border: "none",
-              }}
-              placeholder="Добавить краткое описане"
-              onChange={(e) => setArea(e.target.value)}
-            />
-          </MenuContent>
-          <FailImages />
-          <Box>
-            <StyledButton
-              onClick={handleSubmit}
-              sx={{ mt: 4, display: "inline-block" }}
-              variant="contained"
-            >
-              опубликовать
-            </StyledButton>
-          </Box>
-        </Container>
-      </Wrapper>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <Select value={sum} label="sum" onChange={handleSumChange}>
+                    <MenuItem value="uzs">uzs</MenuItem>
+                    <MenuItem value="usd">usd</MenuItem>
+                  </Select>
+                </StyledFormControl>
+              </ContentRow>
+            </MenuContent>
+            <MenuContent>
+              <Typography sx={{ mb: 3 }} variant="h5">
+                местонахождение*
+              </Typography>
+              <ContentRow>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <InputLabel>region*</InputLabel>
+                  <Select
+                    value={region}
+                    label="sum"
+                    onChange={handleRegionChange}
+                  >
+                    {regions.map((Region) => (
+                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                    ))}
+                  </Select>
+                </StyledFormControl>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <InputLabel>город*</InputLabel>
+                  <Select
+                    value={gorod}
+                    label="sum"
+                    onChange={handleGorodChange}
+                  >
+                    {gorods.map((Gorod) => (
+                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                        {Gorod.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </StyledFormControl>
+              </ContentRow>
+            </MenuContent>
+            <MenuContent>
+              <Typography sx={{ mb: 3 }} variant="h5">
+                описане
+              </Typography>
+              <Controller
+                name="textarea"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextareaAutosize
+                    style={{
+                      border: "none",
+                      height: "100px",
+                      outline: "none",
+                      fontSize: "17px",
+                      padding: "15px",
+                      borderRadius: "4px",
+                      maxWidth: "1000px",
+                    }}
+                    placeholder="Добавить краткое описане"
+                    onChange={(e) => setArea(e.target.value)}
+                    helperText={errors.name?.message}
+                    error={errors?.textarea}
+                    {...field}
+                  />
+                )}
+              />
+              <p
+                style={{
+                  color: "#d32f2f",
+                  fontFamily: "Roboto",
+                  fontWeight: 400,
+                  fontSize: "0.75rem",
+                  lineHeight: 1.66,
+                  letterSpacing: " 0.03333em",
+                }}
+              >
+                {errors.textarea?.message}
+              </p>
+            </MenuContent>
+            <AcceptMaxFiles />
+            <Box>
+              <StyledButton
+              onClick={handleSubmit(handlSubmit)}
+                sx={{ mt: 4, display: "inline-block" }}
+                variant="contained"
+              >
+                опубликовать
+              </StyledButton>
+            </Box>
+          </Container>
+        </Wrapper>
+      </form>
     </>
   );
 }

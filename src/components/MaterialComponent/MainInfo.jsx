@@ -1,28 +1,33 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  width: 1000px;
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: space-around;
   margin: 0 auto;
-  @media(max-width:1080px){
+  @media (max-width: 1000px) {
+    width: 70%;
+    margin: 0 auto;
     flex-direction: column;
   }
 `;
 export const Left = styled.div`
-  width:70%;
-  height:auto;
+  width: 680px;
+  height: auto;
   background: white;
-  @media(max-width:1080px){
-    width:100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  @media (max-width: 1000px) {
+    width: 100%;
   }
 `;
 export const Right = styled.div`
+  width: 270px;
   background: white;
-  width:27%;
   height: fit-content;
-  @media(max-width:1080px){
+  border-radius: 5px;
+  @media (max-width: 1000px) {
     width: 100%;
-    margin-top: 20px;
+   
   }
 `;

@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Nav from "../../../../components/Nav";
-
+import { useSelector } from "react-redux";
+import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
 import { MenuItem, Select, Typography } from "@mui/material";
+import { useHistory } from "react-router-dom";
+import { InputLabel, TextareaAutosize } from "@material-ui/core";
+import Nav2 from "../../../../components/Nav2";
+import { BackAdminFashion } from "../../../../components/Back";
+import LoaderSpinner from "../../../../Loader/loader";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import axios from "axios";
+import { Box } from "@mui/system";
 import {
   Wrapper,
   Container,
@@ -10,19 +20,11 @@ import {
   StyledTextField,
   ContentRow,
   StyledFormControl,
-
-  //   Select
 } from "../MaterialTovar/Tovar";
-import axios from "axios";
-import { FailImages } from "../../../../components/common/FailImages";
-import { Box } from "@mui/system";
-import { InputLabel, TextareaAutosize } from "@material-ui/core";
-import Nav2 from "../../../../components/Nav2";
-import { BackAdminFashion } from "../../../../components/Back";
-import LoaderSpinner from "../../../../Loader/loader";
 
-function FashionStyle({category}) {
-  const fashion = category
+function FashionStyle({ category }) {
+  const history = useHistory();
+  const fashion = category;
   const [area, setArea] = useState("");
   const [zagol, setZagol] = useState("");
   const [mobil, setMobil] = useState("clothes");
@@ -79,7 +81,7 @@ function FashionStyle({category}) {
       })
       .then((res) => {
         setRegions(res.data.data.data);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((er) => console.log(er));
   };
@@ -113,23 +115,24 @@ function FashionStyle({category}) {
     setSum(event.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const state = useSelector((state) => state.allImage);
+  const itemImages = Object.values(state);
+  const handlSubmit = (value) => {
     axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {
           type: fashion,
-          title: zagol,
+          title: value.name,
           subtype: mobil,
           situation: novy,
-          size: parseInt(razmer),
+          size: parseInt(value.raz),
           currency: sum,
-          price: parseInt(sena),
+          price: parseInt(value.sen),
           region_id: region,
           city_id: gorod,
-          description: area,
-          images: ["/uploads/file-a241f032d0092a7b06b7795d41bbf81e.jpg"],
+          description: value.textarea,
+          images: itemImages,
         },
         {
           headers: {
@@ -139,13 +142,43 @@ function FashionStyle({category}) {
           },
         }
       )
-      .then((res) => console.log("hellool  ", res))
+      .then((res) => {
+        history.push("/okFilse");
+        console.log(res);
+      })
       .catch(() => console.log(localStorage.getItem("token")));
   };
 
+  const schema = yup.object({
+    name: yup.string().required("This is required field"),
+    raz: yup.string().required("This is required field"),
+    sen: yup.string().required("This is required field"),
+    textarea: yup
+      .string()
+      .required("This is required field")
+      .min(90, "You entered less text"),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "all",
+    defaultValues: {
+      name: "",
+      raz: "",
+      sen: "",
+      textarea: "",
+    },
+  });
+
   const [loading, setLoading] = useState(true);
-  return loading ? ( <LoaderSpinner /> ) : (
+  return loading ? (
+    <LoaderSpinner />
+  ) : (
     <>
+    <form >
       <Wrapper>
         <Nav2 />
         <BackAdminFashion />
@@ -154,11 +187,21 @@ function FashionStyle({category}) {
             Детали моды
           </Typography>
           <MenuContent>
-            <StyledTextField
-              sx={{ mb: 3 }}
-              label="заголовок объявления*"
-              variant="filled"
-              onChange={(e) => setZagol(e.target.value)}
+            <Controller
+              name="name"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <StyledTextField
+                  sx={{ mb: 3 }}
+                  label="заголовок объявления*"
+                  variant="filled"
+                  onChange={(e) => setZagol(e.target.value)}
+                  helperText={errors.name?.message}
+                  error={errors?.name}
+                  {...field}
+                />
+              )}
             />
             <ContentRow>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
@@ -167,7 +210,9 @@ function FashionStyle({category}) {
                   <MenuItem value="watches">watches</MenuItem>
                   <MenuItem value="gifts">gifts </MenuItem>
                   <MenuItem value="accessories">accessories </MenuItem>
-                  <MenuItem value="beauty-and-health">beauty-and-health </MenuItem>
+                  <MenuItem value="beauty-and-health">
+                    beauty-and-health{" "}
+                  </MenuItem>
                 </Select>
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
@@ -189,12 +234,22 @@ function FashionStyle({category}) {
             <Typography sx={{ mb: 3 }} variant="h5">
               Размер
             </Typography>
-            <StyledTextField
-              sx={{ mb: 3 }}
-              onChange={(e) => setRazmer(e.target.value)}
-              label="Размер "
-              variant="filled"
-              type="number"
+            <Controller
+              name="raz"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <StyledTextField
+                  sx={{ mb: 3 }}
+                  onChange={(e) => setRazmer(e.target.value)}
+                  label="Размер "
+                  variant="filled"
+                  type="number"
+                  helperText={errors.raz?.message}
+                  error={errors?.raz}
+                  {...field}
+                />
+              )}
             />
           </MenuContent>
           <MenuContent>
@@ -202,12 +257,22 @@ function FashionStyle({category}) {
               цена*
             </Typography>
             <ContentRow>
-              <StyledTextField
-                sx={{ mb: 3 }}
-                onChange={(e) => setSena(e.target.value)}
-                label="сена*"
-                variant="filled"
-                type="number"
+              <Controller
+                name="sen"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    sx={{ mb: 3 }}
+                    onChange={(e) => setSena(e.target.value)}
+                    label="сена*"
+                    variant="filled"
+                    type="number"
+                    helperText={errors.sen?.message}
+                    error={errors?.sen}
+                    {...field}
+                  />
+                )}
               />
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <Select value={sum} label="sum" onChange={handleSumChange}>
@@ -233,7 +298,6 @@ function FashionStyle({category}) {
                     <MenuItem value={Region._id}>{Region.name}</MenuItem>
                   ))}
                 </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>город*</InputLabel>
@@ -244,7 +308,6 @@ function FashionStyle({category}) {
                     </MenuItem>
                   ))}
                 </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
@@ -252,24 +315,46 @@ function FashionStyle({category}) {
             <Typography sx={{ mb: 3 }} variant="h5">
               описане
             </Typography>
-            <TextareaAutosize
-              style={{
-                height: "200px",
-                outline: "none",
-                fontSize: "17px",
-                padding: "15px",
-                borderRadius: "4px",
-                maxWidth: "1000px",
-                border: "none",
-              }}
-              placeholder="Добавить краткое описане"
-              onChange={(e) => setArea(e.target.value)}
+            <Controller
+              name="textarea"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextareaAutosize
+                  style={{
+                    border: "none",
+                    height: "100px",
+                    outline: "none",
+                    fontSize: "17px",
+                    padding: "15px",
+                    borderRadius: "4px",
+                    maxWidth: "1000px",
+                  }}
+                  placeholder="Добавить краткое описане"
+                  onChange={(e) => setArea(e.target.value)}
+                  helperText={errors.name?.message}
+                  error={errors?.textarea}
+                  {...field}
+                />
+              )}
             />
+            <p
+              style={{
+                color: "#d32f2f",
+                fontFamily: "Roboto",
+                fontWeight: 400,
+                fontSize: "0.75rem",
+                lineHeight: 1.66,
+                letterSpacing: " 0.03333em",
+              }}
+            >
+              {errors.textarea?.message}
+            </p>
           </MenuContent>
-          <FailImages />
+          <AcceptMaxFiles />
           <Box>
             <StyledButton
-              onClick={handleSubmit}
+              onClick={handleSubmit(handlSubmit)}
               sx={{ mt: 4, display: "inline-block" }}
               variant="contained"
             >
@@ -278,6 +363,7 @@ function FashionStyle({category}) {
           </Box>
         </Container>
       </Wrapper>
+      </form>
     </>
   );
 }

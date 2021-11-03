@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding-left: 26px;
-  padding-right: 26px;
+padding: 0px 30px;
   background: white;
-  padding-top: 50px;
   display: flex;
+  justify-content: space-between;
   h1 {
     font-weight: 800;
     font-size: 20px;
@@ -50,7 +49,7 @@ export const Wrapper = styled.div`
   div.line {
     width: 40px;
     height: 5px;
-    background: #f85c70;
+    background: #2a2480;
     margin: 20px 0;
   }
 `;
@@ -58,20 +57,20 @@ export const Wrapper = styled.div`
 export const StyledText = styled.p`
   font-weight: 500;
   font-style: normal;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 22px;
   font-family: "Inter", sans-serif;
   color: #6c6c6c;
-  width: 100%;
-  height: 100%;
 `;
 
 export const StyledInfo = styled.div`
   border-bottom: 1px solid #dfdfdf;
+  span{
+    font-size: 15px;
+  }
 `;
 
 export const List = styled.div`
-  width: 80px;
   margin-top: 40px;
   border-bottom:1px solid #ccc;
   div {
@@ -82,6 +81,5 @@ export const List = styled.div`
   }
 `;
 export const TextArea = styled.div`
-  width: 50%;
   height: auto;
 `;

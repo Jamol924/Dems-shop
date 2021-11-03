@@ -1,3 +1,14 @@
+import { useHistory } from "react-router-dom";
+import { BackAdminElictron, BackAdminJobs } from "../../../../components/Back";
+import React, { useState, useEffect } from "react";
+import Nav from "../../../../components/Nav";
+import Nav2 from "../../../../components/Nav2";
+import LoaderSpinner from "../../../../Loader/loader";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import axios from "axios";
+import { Box } from "@mui/system";
 import {
   Typography,
   Select,
@@ -5,13 +16,6 @@ import {
   InputLabel,
   TextareaAutosize,
 } from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { BackAdminElictron, BackAdminJobs } from "../../../../components/Back";
-import Nav from "../../../../components/Nav";
-import Nav2 from "../../../../components/Nav2";
-import LoaderSpinner from "../../../../Loader/loader";
 import {
   Container,
   MenuContent,
@@ -22,8 +26,9 @@ import {
   StyledButton,
 } from "../MaterialTovar/Tovar";
 
-function Jobs({category}) {
-  const job = category
+function Jobs({ category }) {
+  const history = useHistory();
+  const job = category;
   const [zagol, setZagol] = useState("");
   const [tur, setTur] = useState("retail-sales");
   const handleTur = (e) => {
@@ -49,8 +54,8 @@ function Jobs({category}) {
   const [gorods, setGorods] = useState([]);
   const [region, setRegion] = useState("");
   const [regions, setRegions] = useState([]);
-  const [from, setFrom ] = useState("");
-  const [to, setTo ] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
   const regionFetch = async () => {
     axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
@@ -60,7 +65,7 @@ function Jobs({category}) {
       })
       .then((res) => {
         setRegions(res.data.data.data);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((er) => console.log(er));
   };
@@ -89,24 +94,23 @@ function Jobs({category}) {
 
   const [area, setArea] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handlSubmit = (value) => {
     axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {
           type: job,
-          title: zagol,
+          title: value.name,
           jobs: tur,
           mission_type: qaror,
           employment_type: pостоянная,
           job_type: Частичная,
-          salary_from: parseInt(from),
-          salary_to: parseInt(to),
+          salary_from: parseInt(value.ot),
+          salary_to: parseInt(value.ke),
           currency: sum,
           region_id: region,
           city_id: gorod,
-          description: area
+          description: value.textarea,
         },
         {
           headers: {
@@ -116,12 +120,43 @@ function Jobs({category}) {
           },
         }
       )
-      .then((res) => console.log("hellool  ", res))
+      .then((res) => {
+        history.push("/okFilse");
+        console.log(res);
+      })
       .catch(() => console.log(localStorage.getItem("token")));
   };
+
+  const schema = yup.object({
+    name: yup.string().required("This is required field"),
+    ot: yup.string().required("This is required field"),
+    ke: yup.string().required("This is required field"),
+    textarea: yup
+      .string()
+      .required("This is required field")
+      .min(90, "You entered less text"),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "all",
+    defaultValues: {
+      name: "",
+      ot: "",
+      ke: "",
+      textarea: "",
+    },
+  });
+
   const [loading, setLoading] = useState(true);
-  return loading ? ( <LoaderSpinner /> ) : (
+  return loading ? (
+    <LoaderSpinner />
+  ) : (
     <>
+    <form >
       <Wrapper>
         <Nav2 />
         <BackAdminJobs />
@@ -130,11 +165,21 @@ function Jobs({category}) {
             Детали вакансии
           </Typography>
           <MenuContent>
-            <StyledTextField
-              sx={{ mb: 3 }}
-              label="заголовок объявления*"
-              variant="filled"
-              onChange={(e) => setZagol(e.target.value)}
+            <Controller
+              name="name"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <StyledTextField
+                  sx={{ mb: 3 }}
+                  label="заголовок объявления*"
+                  variant="filled"
+                  onChange={(e) => setZagol(e.target.value)}
+                  helperText={errors.name?.message}
+                  error={errors?.name}
+                  {...field}
+                />
+              )}
             />
             <ContentRow>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
@@ -144,14 +189,24 @@ function Jobs({category}) {
                     Транспортная логистика
                   </MenuItem>
                   <MenuItem value="construction">Строительство</MenuItem>
-                  <MenuItem value="bars-and-restaurants">Бары & ресторан</MenuItem>
-                  <MenuItem value="jurisprudence-and-accounting">Юриспруденция и бухгалтерский учет</MenuItem>
+                  <MenuItem value="bars-and-restaurants">
+                    Бары & ресторан
+                  </MenuItem>
+                  <MenuItem value="jurisprudence-and-accounting">
+                    Юриспруденция и бухгалтерский учет
+                  </MenuItem>
                   <MenuItem value="security">Безопасность</MenuItem>
                   <MenuItem value="house-stuff">Домашние вещи</MenuItem>
-                  <MenuItem value="tourism-entertainment-fun-games">tourism-entertainment-fun-games</MenuItem>
+                  <MenuItem value="tourism-entertainment-fun-games">
+                    tourism-entertainment-fun-games
+                  </MenuItem>
                   <MenuItem value="education">education</MenuItem>
-                  <MenuItem value="it-electronics-and-technology">it-electronics-and-technology</MenuItem>
-                  <MenuItem value="medicine-and-pharmacy">medicine-and-pharmacy</MenuItem>
+                  <MenuItem value="it-electronics-and-technology">
+                    it-electronics-and-technology
+                  </MenuItem>
+                  <MenuItem value="medicine-and-pharmacy">
+                    medicine-and-pharmacy
+                  </MenuItem>
                   <MenuItem value="culturre-and-art">culturre-and-art</MenuItem>
                   <MenuItem value="other">other</MenuItem>
                 </Select>
@@ -177,10 +232,10 @@ function Jobs({category}) {
               <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
                 <Select value={Частичная} onChange={handleЧастичная}>
                   <MenuItem value="permanent-employment">
-                  permanent-employment
+                    permanent-employment
                   </MenuItem>
                   <MenuItem value="temporary-employment">
-                  temporary-employment
+                    temporary-employment
                   </MenuItem>
                 </Select>
               </StyledFormControl>
@@ -191,24 +246,43 @@ function Jobs({category}) {
               Зарплата
             </Typography>
             <ContentRow>
-            <StyledTextField
-              sx={{ mb: 3 }}
-              label="От "
-              variant="filled"
-              onChange={(e) => setFrom(e.target.value)}             
-            />
-            <StyledTextField
-              sx={{ mb: 3 }}
-              label="К "
-              variant="filled"
-              onChange={(e) => setTo(e.target.value)}  
-            />
-            <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+              <Controller
+                name="ot"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    sx={{ mb: 3 }}
+                    label="От "
+                    variant="filled"
+                    onChange={(e) => setFrom(e.target.value)}
+                    helperText={errors.ot?.message}
+                    error={errors?.ot}
+                    {...field}
+                  />
+                )}
+              />
+              <Controller
+                name="ke"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    sx={{ mb: 3 }}
+                    label="К "
+                    variant="filled"
+                    onChange={(e) => setTo(e.target.value)}
+                    helperText={errors.ke?.message}
+                    error={errors?.ke}
+                    {...field}
+                  />
+                )}
+              />
+              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <Select value={sum} label="sum" onChange={handleSumChange}>
                   <MenuItem value="uzs">uzs</MenuItem>
                   <MenuItem value="usd">usd</MenuItem>
                 </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
@@ -228,7 +302,6 @@ function Jobs({category}) {
                     <MenuItem value={Region._id}>{Region.name}</MenuItem>
                   ))}
                 </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <InputLabel>город*</InputLabel>
@@ -239,7 +312,6 @@ function Jobs({category}) {
                     </MenuItem>
                   ))}
                 </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
@@ -247,23 +319,45 @@ function Jobs({category}) {
             <Typography sx={{ mb: 3 }} variant="h5">
               описане
             </Typography>
-            <TextareaAutosize
-              style={{
-                height: "200px",
-                outline: "none",
-                fontSize: "17px",
-                padding: "15px",
-                borderRadius: "4px",
-                maxWidth: "1000px",
-                border: "none",
-              }}
-              placeholder="Добавить краткое описане"
-              onChange={(e) => setArea(e.target.value)}
+            <Controller
+              name="textarea"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextareaAutosize
+                  style={{
+                    border: "none",
+                    height: "100px",
+                    outline: "none",
+                    fontSize: "17px",
+                    padding: "15px",
+                    borderRadius: "4px",
+                    maxWidth: "1000px",
+                  }}
+                  placeholder="Добавить краткое описане"
+                  onChange={(e) => setArea(e.target.value)}
+                  helperText={errors.name?.message}
+                  error={errors?.textarea}
+                  {...field}
+                />
+              )}
             />
+            <p
+              style={{
+                color: "#d32f2f",
+                fontFamily: "Roboto",
+                fontWeight: 400,
+                fontSize: "0.75rem",
+                lineHeight: 1.66,
+                letterSpacing: " 0.03333em",
+              }}
+            >
+              {errors.textarea?.message}
+            </p>
           </MenuContent>
           <Box>
             <StyledButton
-              onClick={handleSubmit}
+              onClick={handleSubmit(handlSubmit)}
               sx={{ mt: 4, display: "inline-block" }}
               variant="contained"
             >
@@ -272,6 +366,7 @@ function Jobs({category}) {
           </Box>
         </Container>
       </Wrapper>
+      </form>
     </>
   );
 }

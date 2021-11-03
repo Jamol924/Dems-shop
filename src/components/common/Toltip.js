@@ -9,7 +9,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 export const  SimpleTooltipsAdd = () => {
   return (
     <div>
-      <Tooltip title="Add" aria-label="Add">
+      <Tooltip style={{fontSize:"10px", width:"45px", height:"45px"}} title="Add" aria-label="Add">
         <Fab color="primary" >
           <AddIcon />
         </Fab>
@@ -18,10 +18,10 @@ export const  SimpleTooltipsAdd = () => {
   );
 }
 
-export const SimpleTooltipsDelit = () => {
+export const SimpleTooltipsDelit = ({delite ,id}) => {
   return (
     <div>
-      <Tooltip title="Delete" aria-label="Delete">
+      <Tooltip  onClick = { () => delite(id)} style={{fontSize:"10px", width:"45px", height:"45px"}} title="Delete" aria-label="Delete">
         <Fab color="secondary" >
         <DeleteIcon />
         </Fab>
@@ -33,7 +33,7 @@ export const SimpleTooltipsDelit = () => {
 export const SimpleTooltipsCreat = () => {
   return (
     <div>
-      <Tooltip title="eskort" aria-label="eskort">
+      <Tooltip style={{fontSize:"10px", width:"45px", height:"45px"}} title="eskort" aria-label="eskort">
         <Fab color="inherit" >
           <VisibilityIcon />
         </Fab>

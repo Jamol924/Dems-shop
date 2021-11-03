@@ -5,7 +5,7 @@ import Contact from "../parts/contact"
 
 function MyProfil() {
   const auth = localStorage.getItem("token");
-  console.log( "AUTH",auth)
+  
   return auth ? (
     <div>
       <Navbar />

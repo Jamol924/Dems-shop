@@ -15,12 +15,11 @@ const Navbar = () => {
   const [pageOffset, setPageOffset] = useState(false);
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
+    // setOpen(true);
     setOpen(localStorage.removeItem("token"));
     window.location.reload();
   };
+ 
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -29,8 +28,6 @@ const Navbar = () => {
     });
   }, []);
 
-  const parse = JSON.parse(localStorage.getItem("use"));
-  console.log("Name", parse)
 
   return (
     <>
@@ -61,22 +58,11 @@ const Navbar = () => {
                 <span><ExitToAppIcon /></span> Log out
               </LogOut>
             </li>
-            <li>
-              <Card>
-                <CardImages>
-                  {/* <img src={`http://dems.inone.uz/api${parse.image}`} alt="sds" /> */}
-                </CardImages>
-                <CardTitle>
-                  {/* <CardH>{parse.name}</CardH> */}
-                  <CardP>Member Since 2020</CardP>
-                </CardTitle>
-              </Card>
-            </li>
           </ul>
         </StyledB>
       </StyledNav>
       <div style={{ marginTop: "200px" }}>
-        <Dialog
+        {/* <Dialog
           open={open}
           onClose={handleClose}
           aria-labelledby="draggable-dialog-title"
@@ -92,7 +78,7 @@ const Navbar = () => {
             </Button>
             <Button onClick={handleClose}>Yes!</Button>
           </DialogActions>
-        </Dialog>
+        </Dialog> */}
       </div>
     </>
   );
@@ -181,7 +167,7 @@ export const StyledNav = styled.nav`
     align-items: center;
   }
   span{
-    color: #6b6a6a;
+    color: black;
   }
   ul {
     list-style: none;

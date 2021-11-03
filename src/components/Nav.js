@@ -3,6 +3,10 @@ import styled, { css } from "styled-components";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useSelector } from "react-redux";
+import langue from "./common/Langue/langue";
+import Langue from "./common/Langue/langue";
 
 const Nav = () => {
   const [pageOffset, setPageOffset] = useState(false);
@@ -12,6 +16,9 @@ const Nav = () => {
       else setPageOffset(false);
     });
   }, []);
+
+  const counter = useSelector((state) => state.allCounter);
+  console.log(counter);
 
   return (
     <>
@@ -24,18 +31,18 @@ const Nav = () => {
 
         <ul>
           <li>
-            <select>
-              <option>UZB</option>
-              <option>RUS</option>
-              <option>ENG</option>
-            </select>
+            <Langue />
           </li>
-          <li>
-            <Link to="/myProfil">
-              <a href="">Мy profile </a>
-            </Link>
-          </li>
-
+          {counter ? (
+            <li style={{ display: "flex" }}>
+              <AccountCircleIcon className="icon" sx={{ color: "white" }} />
+              <Link to="/myProfil">
+                <a href="">Мy profile </a>
+              </Link>
+            </li>
+          ) : (
+            <span></span>
+          )}
           <li>
             <Link to="/admen">
               <ButtonRight>
@@ -44,7 +51,6 @@ const Nav = () => {
                   sx={{
                     color: "white",
                     borderRadius: "24px",
-                    backgroundColor: "#f85c70",
                   }}
                 >
                   Post your Ad
@@ -68,9 +74,12 @@ export const StyledButton = styled(Button)`
     letter-spacing: 0.02857em;
     padding: 0px 20px;
   }
-  &.css-ssgngi-MuiButtonBase-root-MuiButton-root:hover {
-    background-color: #f32e48;
-    box-shadow: 1px 1px 6px #cccccc;
+  && {
+    background: #3545a3;
+
+    &:hover {
+      background: #2a3a96;
+    }
   }
 `;
 
@@ -92,8 +101,11 @@ export const StyledNav = styled.nav`
       ? css`
           background: white;
           box-shadow: 5px 0 10px lightgray;
-          height: 70px;
+          height: 60px;
           a {
+            color: black;
+          }
+          .icon {
             color: black;
           }
         `
@@ -127,6 +139,11 @@ export const StyledNav = styled.nav`
   li {
     margin-left: 32px;
     position: relative;
+    span {
+      margin-right: "5px";
+      font-size: "30px";
+      color: "white";
+    }
   }
   select {
     border: none;

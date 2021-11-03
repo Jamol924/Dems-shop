@@ -1,18 +1,40 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
 import styled from "styled-components";
 import photo from "../../assets/photo.png";
 import medal from "../../assets/medal.svg";
 import people from "../../assets/people.svg";
 import shield from "../../assets/shield-security.svg";
+import axios from "axios";
 
 const StatsInfo = () => {
+
+  const [counter, setCounter] = useState([]);
+  const productFetch = async () => {
+    await axios
+      .post("http://dems.inone.uz/api/ad/latest/get-pagin", {
+        limit: 10,
+        page: 1,
+      })
+      .then((res) => {
+        setCounter(res.data.data.total)
+      })
+      .catch((err) => {
+        console.log("Err", err);
+      });
+  };
+
+  useEffect(() => {
+    productFetch();
+  }, []);
+
+
   return (
     <Wrapper>
       <Content>
         <div className="first">
           <img src={medal} alt="medal" />
           <div>
-            <StyledH>5000+</StyledH>
+            <StyledH>{counter}+</StyledH>
             <p>Published Ads</p>
           </div>
         </div>
@@ -42,7 +64,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 100px 0;
   margin-bottom: 43px;
-  @media (max-width:800px){
+  @media (max-width: 800px) {
     padding: 10px 0;
   }
 
@@ -82,15 +104,17 @@ const Content = styled.div`
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
-  @media (max-width:1000px){
+  img {
+    color: blue;
+  }
+  @media (max-width: 1000px) {
     width: 90%;
   }
-  @media (max-width:800px){
+  @media (max-width: 800px) {
     width: 90%;
     display: flex;
     flex-direction: column;
   }
-
 `;
 
 export default StatsInfo;

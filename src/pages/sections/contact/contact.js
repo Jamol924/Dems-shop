@@ -6,17 +6,9 @@ import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import { green } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import {Tizim} from "./static/Tizim";
 import RuyxatdanUtish from "./static/RuyxatdanUtish";
-
-// interface TabPanelProps {
-//   children?: React.ReactNode;
-//   dir?: string;
-//   index: number;
-//   value: number;
-// }
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -115,16 +107,8 @@ export default function ContactMenu() {
 
 
 const StyledTabs = styled(Tabs)`
-  &&{
-    .MuiTabs-indicator{
-      background: #f85c70;
-    }
-  }
+
 `
 const StyledTab = styled(Tab)`
-  &&{
-    &.Mui-selected{
-      color:#f85c70;
-    }
-  }
+
 `

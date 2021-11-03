@@ -1,13 +1,15 @@
 import { Carousel } from "react-carousel-minimal";
 import styled from "styled-components";
 
-function CarouselApp({dataImg}) {
-  const data = [
+function CarouselApp({ dataImg }) {
+  console.log(dataImg.images[0]);
+  const data = dataImg.images.map((elm) => {
+    return(
     {
-      image: `http://dems.inone.uz/api${dataImg.images[0]}`
-    }
-  ];
-
+      image: `http://dems.inone.uz/api${elm}`
+    })
+  });
+  
   const captionStyle = {
     fontSize: "2em",
     fontWeight: "bold",
@@ -34,7 +36,6 @@ function CarouselApp({dataImg}) {
             dots={true}
             pauseIconColor="white"
             pauseIconSize="40px"
-            // slideBackgroundColor="darkgrey"
             slideImageFit="cover"
             thumbnails={true}
             thumbnailWidth="100px"
@@ -54,13 +55,12 @@ function CarouselApp({dataImg}) {
 
 export default CarouselApp;
 const DemoImgas = styled.div`
-  .thumbnails img{
+  .thumbnails img {
     height: 100px;
     width: 100px;
     object-fit: cover;
   }
-  .active-thumbnail{
+  .active-thumbnail {
     border: none;
   }
-
-`
+`;

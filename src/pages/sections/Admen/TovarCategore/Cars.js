@@ -3,6 +3,14 @@ import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { categoreProduct } from "../../../../redux/active/productActions";
+import Nav2 from "../../../../components/Nav2";
+import LoaderSpinner from "../../../../Loader/loader";
+import { CarsLink } from "../../../../components/Back";
+import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
+import { useHistory } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
 import axios from "axios";
 import {
   InputLabel,
@@ -20,16 +28,11 @@ import {
   MenuContent,
   ContentRow,
   StyledFormControl,
-  MenuTitle,
   StyledButton,
-  StyledColumn,
-  StyledCars,
 } from "../MaterialTovar/Tovar.jsx";
-import Nav2 from "../../../../components/Nav2";
-import LoaderSpinner from "../../../../Loader/loader";
-import { CarsLink } from "../../../../components/Back";
 
 function Cars(props) {
+  let history = useHistory();
   const cars = props.category;
   const dispatch = useDispatch();
   const [models, setModels] = useState([]);
@@ -63,10 +66,6 @@ function Cars(props) {
       });
   };
 
-  const [informase, setInformase] = useState("");
-  const handleInformasChange = (event) => {
-    setInformase(event.target.value);
-  };
   const handleChange = (event) => {
     setAge(event.target.value);
     getModels(event.target.value);
@@ -81,12 +80,12 @@ function Cars(props) {
     setGod(el.target.value);
   };
 
-  const [toplivo, setToplivo] = useState("");
+  const [toplivo, setToplivo] = useState("Chevrolet");
   const handleTolivoChange = (event) => {
     setToplivo(event.target.value);
   };
 
-  const [novy, setNovy] = useState("");
+  const [novy, setNovy] = useState("new");
   const handleNovyChange = (event) => {
     setNovy(event.target.value);
   };
@@ -95,7 +94,7 @@ function Cars(props) {
   const handleSenaChange = (el) => {
     setSena(el.target.value);
   };
-  const [sum, setSum] = useState("");
+  const [sum, setSum] = useState("usd");
   const handleSumChange = (event) => {
     setSum(event.target.value);
   };
@@ -150,29 +149,16 @@ function Cars(props) {
     regionFetch();
   }, []);
 
-  const [images, setImages] = useState("");
-  const img = [images.data?.data.path];
-  console.log("FormData", img.length);
-  const handleImgChange = (e) => {
-    const formData = new FormData();
-    formData.append("file", e.target.files[0]);
-
-    axios
-      .post("http://dems.inone.uz/api/upload-file", formData, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setImages(res);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const handleSubmit = (e) => {
-    console.log(localStorage.getItem("token"));
-    e.preventDefault();
+  const state = useSelector((state) => state.allImage);
+  const itemImages = Object.values(state);
+  const handlSubmit = (values) => {
+    console.log(
+      "QIYMAT",
+      values.name,
+      values.godo,
+      values.sen,
+      values.textarea
+    );
     axios
       .post(
         "http://dems.inone.uz/api/ad/create",
@@ -182,15 +168,15 @@ function Cars(props) {
           color: alignment,
           condition: novy,
           currency: sum,
-          description: textarea,
+          description: values.textarea,
           fuel: toplivo,
-          images: img,
+          images: itemImages,
           model_id: model,
-          price: parseInt(sena),
+          price: parseInt(values.sen),
           region_id: region,
-          title: informase,
+          title: values.name,
           type: cars,
-          year_out: parseInt(god),
+          year_out: parseInt(values.godo),
         },
         {
           headers: {
@@ -200,281 +186,318 @@ function Cars(props) {
           },
         }
       )
-      .then((res) => console.log("hellool  ", res))
-      .catch(() => console.log(localStorage.getItem("token")));
+      .then((res) => {
+        console.log(res);
+        history.push("/okFilse");
+      })
+      .catch(() => console.log());
   };
+
+  const schema = yup.object({
+    name: yup.string().required("This is required field"),
+    godo: yup.string().required("This is required field"),
+    sen: yup.string().required("This is required field"),
+    textarea: yup
+      .string()
+      .required("This is required field")
+      .min(90, "You entered less text"),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "all",
+    defaultValues: {
+      name: "",
+      godo: "",
+      sen: "",
+      textarea: "",
+    },
+  });
 
   return CategoreRispons.length === 0 ? (
     <LoaderSpinner />
   ) : (
     <>
-      <Wrapper>
-        <Nav2 />
-        <CarsLink />
-        <Container>
-          <Typography sx={{ mb: 3 }} variant="h4">
-            информация о продукте
-          </Typography>
-          <MenuContent>
-            <StyledTextField
-              sx={{ mb: 3 }}
-              label="заголовок объявления*"
-              variant="filled"
-              value={informase}
-              onChange={handleInformasChange}
-            />
-            <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>Марка*</InputLabel>
-                <Select value={age} onChange={handleChange}>
-                  {CategoreRispons.data.map((Categor) => (
-                    <MenuItem value={Categor._id}>{Categor.name}</MenuItem>
-                  ))}
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>Модель*</InputLabel>
-                <Select
-                  value={model}
-                  label="Модель"
-                  onChange={handleModelChange}
-                >
-                  {models.map((modelItem) => (
-                    <MenuItem value={modelItem._id} key={modelItem._id}>
-                      {modelItem.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-            </ContentRow>
-          </MenuContent>
-
-          <MenuContent>
-            <StyledTextField
-              value={god}
-              type="number"
-              onChange={handleGodChange}
-              sx={{ mb: 3 }}
-              label="год впуска*"
-              variant="filled"
-            />
-            <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>Toplivo</InputLabel>
-                <Select
-                  value={toplivo}
-                  label="Age"
-                  onChange={handleTolivoChange}
-                >
-                  <MenuItem value={"Chevrolet"}>Chevrolet</MenuItem>
-                  <MenuItem value={"Daevo"}>Daywo</MenuItem>
-                  <MenuItem value={"Baz"}>Baz</MenuItem>
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>Novy*</InputLabel>
-                <Select value={novy} label="Age" onChange={handleNovyChange}>
-                  <MenuItem value="new">Chevrolet</MenuItem>
-                  <MenuItem value="old">Daywo</MenuItem>
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-            </ContentRow>
-          </MenuContent>
-          <MenuContent>
-            <Typography sx={{ mb: 1 }} variant="h5">
-              цвет*
+      <form>
+        <Wrapper>
+          <Nav2 />
+          <CarsLink />
+          <Container>
+            <Typography sx={{ mb: 3 }} variant="h4">
+              информация о продукте
             </Typography>
-            <ToggleButtonGroup
-              value={alignment}
-              exclusive
-              onChange={handleAlignment}
-              aria-label="text alignment"
-            >
-              <ToggleButton
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: "none",
-                  width: "60px",
-                  height: "60px",
-                  marginRight: "20px",
-                }}
-                value="white"
-                aria-label="left aligned"
-              ></ToggleButton>
-              <ToggleButton
-                sx={{
-                  backgroundColor: "red",
-                  width: "60px",
-                  height: "60px",
-                  marginRight: "20px",
-                }}
-                value="red"
-                aria-label="centered"
-              ></ToggleButton>
-              <ToggleButton
-                sx={{
-                  backgroundColor: "green",
-                  width: "60px",
-                  height: "60px",
-                  marginRight: "20px",
-                }}
-                value="green"
-                aria-label="right aligned"
-              ></ToggleButton>
-              <ToggleButton
-                sx={{
-                  backgroundColor: "black",
-                  width: "60px",
-                  height: "60px",
-                  marginRight: "20px",
-                }}
-                value="black"
-                aria-label="right aligned"
-              ></ToggleButton>
-              <ToggleButton
-                sx={{
-                  backgroundColor: "yellow",
-                  width: "60px",
-                  height: "60px",
-                  marginRight: "20px",
-                }}
-                value="yellow"
-                aria-label="right aligned"
-              ></ToggleButton>
-            </ToggleButtonGroup>
-          </MenuContent>
-          <MenuContent>
-            <Typography sx={{ mb: 1 }} variant="h5">
-              цена*
-            </Typography>
-            <Grid spacing={2}>
-              <StyledTextField
-                sx={{ mr: 10 }}
-                value={sena}
-                onChange={handleSenaChange}
-                label="сена*"
-                variant="filled"
-              />
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>цена*</InputLabel>
-                <Select value={sum} label="sum" onChange={handleSumChange}>
-                  <MenuItem value={"usd"}>usd</MenuItem>
-                  <MenuItem value={"eur"}>eur</MenuItem>
-                </Select>
-              </StyledFormControl>
-            </Grid>
-          </MenuContent>
-
-          <MenuContent>
-            <Typography sx={{ mb: 1 }} variant="h5">
-              местонахождение*
-            </Typography>
-            <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>region*</InputLabel>
-                <Select
-                  value={region}
-                  label="sum"
-                  onChange={handleRegionChange}
-                >
-                  {regions.map((Region) => (
-                    <MenuItem value={Region._id}>{Region.name}</MenuItem>
-                  ))}
-                </Select>
-              </StyledFormControl>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>город*</InputLabel>
-                <Select value={gorod} label="sum" onChange={handleGorodChange}>
-                  {gorods.map((Gorod) => (
-                    <MenuItem value={Gorod._id} key={Gorod._id}>
-                      {Gorod.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {/* <FormHelperText>With label + helper text</FormHelperText> */}
-              </StyledFormControl>
-            </ContentRow>
-          </MenuContent>
-          <MenuContent>
-            <Typography sx={{ mb: 1 }} variant="h5">
-              описане
-            </Typography>
-            <TextareaAutosize
-              style={{
-                border: "none",
-                height: "200px",
-                outline: "none",
-                fontSize: "17px",
-                padding: "15px",
-                borderRadius: "4px",
-                maxWidth: "1000px",
-              }}
-              placeholder="Добавить краткое описане"
-              value={textarea}
-              onChange={handleTextareaChange}
-            />
-          </MenuContent>
-
-          <MenuTitle>
-            <Typography variant="h5">
-              Загрузите максимум 15 изображений
-            </Typography>
-            <Typography variant="h7">
-              Загрузите максимум 15 изображений
-            </Typography>
-          </MenuTitle>
-          <Box
-            component="span"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              p: 7,
-              border: "1px dashed grey",
-              borderRadius: "4px",
-            }}
-          >
-            <Typography sx={{ mb: 1 }} variant="h5">
-              фотографии
-            </Typography>
-            <Typography sx={{ mb: 1 }} variant="h7">
-              Загрузите максимум 15 изображений
-            </Typography>
-
-            <input type="file" id="images" hidden onChange={handleImgChange} />
-            <StyledButton variant="contained">
-              <label htmlFor="images">выбрать изображение</label>
-            </StyledButton>
-            <StyledColumn>
-              <StyledCars>
-                {img.length === 0 ? (
-                  <>
-                    <h1>xechnarsa yuq</h1>
-                  </>
-                ) : (
-                  <img src={`http://dems.inone.uz/api${img}`} />
+            <MenuContent>
+              <Controller
+                name="name"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    sx={{ mb: 3 }}
+                    label="заголовок объявления*"
+                    variant="filled"
+                    helperText={errors?.name?.message}
+                    error={errors?.name}
+                    {...field}
+                  />
                 )}
-              </StyledCars>
-            </StyledColumn>
-          </Box>
-          <Box>
-            <StyledButton
-              onClick={handleSubmit}
-              sx={{ mt: 4, display: "inline-block" }}
-              variant="contained"
-            >
-              опубликовать
-            </StyledButton>
-          </Box>
-        </Container>
-      </Wrapper>
+              />
+              <ContentRow>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <InputLabel>Марка*</InputLabel>
+
+                  <Select value={age} onChange={handleChange}>
+                    {CategoreRispons.data.map((Categor) => (
+                      <MenuItem value={Categor._id}>{Categor.name}</MenuItem>
+                    ))}
+                  </Select>
+                </StyledFormControl>
+
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <InputLabel>Модель*</InputLabel>
+
+                  <Select
+                    value={model}
+                    label="Модель"
+                    onChange={handleModelChange}
+                  >
+                    {models.map((modelItem) => (
+                      <MenuItem value={modelItem._id} key={modelItem._id}>
+                        {modelItem.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </StyledFormControl>
+              </ContentRow>
+            </MenuContent>
+
+            <MenuContent>
+              <Controller
+                name="godo"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    value={god}
+                    type="number"
+                    onChange={handleGodChange}
+                    sx={{ mb: 3 }}
+                    label="год впуска*"
+                    variant="filled"
+                    helperText={errors?.godo?.message}
+                    error={errors?.godo}
+                    {...field}
+                  />
+                )}
+              />
+              <ContentRow>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <Select
+                    value={toplivo}
+                    label="Age"
+                    onChange={handleTolivoChange}
+                  >
+                    <MenuItem value={"Chevrolet"}>топливо </MenuItem>
+                    <MenuItem value={"Daevo"}>Бензин </MenuItem>
+                    <MenuItem value={"Baz"}>Этханол </MenuItem>
+                  </Select>
+                </StyledFormControl>
+
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <Select value={novy} label="Age" onChange={handleNovyChange}>
+                    <MenuItem value="new">Новый </MenuItem>
+                    <MenuItem value="old">В/У </MenuItem>
+                  </Select>
+                </StyledFormControl>
+              </ContentRow>
+            </MenuContent>
+            <MenuContent>
+              <Typography sx={{ mb: 1 }} variant="h5">
+                цвет*
+              </Typography>
+              <ToggleButtonGroup
+                value={alignment}
+                exclusive
+                onChange={handleAlignment}
+                aria-label="text alignment"
+              >
+                <ToggleButton
+                  sx={{
+                    backgroundColor: "white",
+                    borderRadius: "none",
+                    width: "60px",
+                    height: "60px",
+                    marginRight: "20px",
+                  }}
+                  value="white"
+                  aria-label="left aligned"
+                ></ToggleButton>
+                <ToggleButton
+                  sx={{
+                    backgroundColor: "red",
+                    width: "60px",
+                    height: "60px",
+                    marginRight: "20px",
+                  }}
+                  value="red"
+                  aria-label="centered"
+                ></ToggleButton>
+                <ToggleButton
+                  sx={{
+                    backgroundColor: "green",
+                    width: "60px",
+                    height: "60px",
+                    marginRight: "20px",
+                  }}
+                  value="green"
+                  aria-label="right aligned"
+                ></ToggleButton>
+                <ToggleButton
+                  sx={{
+                    backgroundColor: "black",
+                    width: "60px",
+                    height: "60px",
+                    marginRight: "20px",
+                  }}
+                  value="black"
+                  aria-label="right aligned"
+                ></ToggleButton>
+                <ToggleButton
+                  sx={{
+                    backgroundColor: "yellow",
+                    width: "60px",
+                    height: "60px",
+                    marginRight: "20px",
+                  }}
+                  value="yellow"
+                  aria-label="right aligned"
+                ></ToggleButton>
+              </ToggleButtonGroup>
+            </MenuContent>
+            <MenuContent>
+              <Typography sx={{ mb: 1 }} variant="h5">
+                цена*
+              </Typography>
+              <Grid spacing={2}>
+                <Controller
+                  name="sen"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <StyledTextField
+                      sx={{ mr: 10 }}
+                      value={sena}
+                      onChange={handleSenaChange}
+                      label="сена*"
+                      variant="filled"
+                      helperText={errors?.sen?.message}
+                      error={errors?.sen}
+                      {...field}
+                    />
+                  )}
+                />
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <Select value={sum} label="sum" onChange={handleSumChange}>
+                    <MenuItem value={"usd"}>usd</MenuItem>
+                    <MenuItem value={"eur"}>eur</MenuItem>
+                  </Select>
+                </StyledFormControl>
+              </Grid>
+            </MenuContent>
+
+            <MenuContent>
+              <Typography sx={{ mb: 1 }} variant="h5">
+                местонахождение*
+              </Typography>
+              <ContentRow>
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <InputLabel>region*</InputLabel>
+                  <Select
+                    value={region}
+                    label="sum"
+                    onChange={handleRegionChange}
+                  >
+                    {regions.map((Region) => (
+                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                    ))}
+                  </Select>
+                </StyledFormControl>
+
+                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                  <InputLabel>город*</InputLabel>
+                  <Select
+                    value={gorod}
+                    label="sum"
+                    onChange={handleGorodChange}
+                  >
+                    {gorods.map((Gorod) => (
+                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                        {Gorod.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </StyledFormControl>
+              </ContentRow>
+            </MenuContent>
+            <MenuContent>
+              <Typography sx={{ mb: 1 }} variant="h5">
+                описане
+              </Typography>
+              <Controller
+                name="textarea"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextareaAutosize
+                    style={{
+                      border: "none",
+                      height: "100px",
+                      outline: "none",
+                      fontSize: "17px",
+                      padding: "15px",
+                      borderRadius: "4px",
+                      maxWidth: "1000px",
+                    }}
+                    placeholder="Био "
+                    placeholder="Добавить краткое описане"
+                    value={textarea}
+                    onChange={handleTextareaChange}
+                    helperText={errors.name?.message}
+                    error={errors?.textarea}
+                    {...field}
+                  />
+                )}
+              />
+              <p
+                style={{
+                  color: "#d32f2f",
+                  fontFamily: "Roboto",
+                  fontWeight: 400,
+                  fontSize: "0.75rem",
+                  lineHeight: 1.66,
+                  letterSpacing: " 0.03333em",
+                }}
+              >
+                {errors.textarea?.message}
+              </p>
+            </MenuContent>
+            <AcceptMaxFiles />
+            <Box>
+              <StyledButton
+                onClick={handleSubmit(handlSubmit)}
+                sx={{ mt: 4, display: "inline-block" }}
+                variant="contained"
+                type="submit"
+              >
+                опубликовать
+              </StyledButton>
+            </Box>
+          </Container>
+        </Wrapper>
+      </form>
     </>
   );
 }

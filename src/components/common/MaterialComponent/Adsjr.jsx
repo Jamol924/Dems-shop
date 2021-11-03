@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import React from "react";
 
 export const Wrapper = styled.div`
   margin-left: 20px;
   width: 235px;
-  height: 346px;
+  height: 345px;
   cursor: pointer;
   border: 1px solid gray;
   margin-bottom: 25px;
@@ -98,8 +97,8 @@ export const WTitle = styled.div`
   width: 90%;
   display: block;
   display: -webkit-box;
-  line-clamp: 2;
-  -webkit-line-clamp:2;
+  line-clamp: 1;
+  -webkit-line-clamp:1;
   box-orient: vertical;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
@@ -164,5 +163,5 @@ export const CardPrice = styled.div`
   font-weight: 600;
   font-size: 18px;
   line-height: 21px;
-  color: #f85c70;
+  color: #3545a3;
 `;

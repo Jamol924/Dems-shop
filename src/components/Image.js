@@ -18,7 +18,7 @@ const Image = ({ dataProduct }) => {
         <CarouselApp dataImg={dataProduct} />
       ) : (
         <img
-          height="400px"
+          height="300px"
           width="100%"
           objectFit="cover"
           src={NoImages}
@@ -32,11 +32,11 @@ const Image = ({ dataProduct }) => {
       </MenuSection>
       <StyledInfo>
         <div>
-          <img src={clock} /> <p>{dataProduct.view_count}</p>
+          <img src={clock} /> <p>{dataProduct.feature_expired_at} </p>
         </div>
         <div>
           <img src={location} />
-          <p> {dataProduct.feature_expired_at} </p>
+          <p>{dataProduct.city_name}</p>
         </div>
       </StyledInfo>
     </Wrapper>
@@ -51,5 +51,5 @@ export const StyledTypo = styled.div`
   line-height: 23px;
   font-style: normal;
   font-family: "Roboto", sans-serif;
-  margin: 15px 0px;
+  margin: 25px 0px;
 `;

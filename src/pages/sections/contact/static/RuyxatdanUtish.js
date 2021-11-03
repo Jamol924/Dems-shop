@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { StyledInputMask } from "./Tizim";
 import axios from "axios";
+import { StyledButton } from "../../Admen/MaterialTovar/Tovar";
 
 const schema = yup.object({
   name: yup.string().required("kritilmadi").min(3, "kamida 3 ta bulsin"),
@@ -77,7 +78,6 @@ function RuyxatdanUtish() {
           )}
         />
         <p style={{ color: "red", marginTop: 10 }}>{errors.email?.message}</p>
-
         <StyledButton
           type="submit"
           sx={{
@@ -97,15 +97,5 @@ function RuyxatdanUtish() {
     </div>
   );
 }
-
-const StyledButton = styled(Button)`
-  && {
-    background: #f85c70;
-
-    &:hover {
-      background: #f32e48;
-    }
-  }
-`;
 
 export default RuyxatdanUtish;

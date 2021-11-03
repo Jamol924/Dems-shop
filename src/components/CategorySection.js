@@ -2,13 +2,16 @@ import React from "react";
 import CategoryItem from ".//common/CategoryItem";
 import styled from "styled-components";
 import datas from "../pages/sections/Admen/Categore/dataCategore";
+import l from "../locale/language.json";
+import { useSelector } from "react-redux";
 
 const CategorySection = () => {
+  // const t = useSelector();
   return (
     <>
       <Wrapper>
         <StyledHeading>
-          <h2>Популярные категории</h2>
+          <h2>{ l.popcat["en"] }</h2>
         </StyledHeading>
         <CategoryList>
           {datas.map((item) => (

@@ -6,7 +6,7 @@ function LoaderSpinner() {
     <LoaderContainer>
       <Loader
         type="Bars"
-        color="#f32e48"
+        color="#2a3a96"
         height={100}
         width={100}
         timeout={6000} //3 secs

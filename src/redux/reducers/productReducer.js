@@ -52,10 +52,18 @@ export const removeSelectdProduct = (state = {}, { type, payload }) => {
       return state;
   }
 };
-export const useImages = (state = {}, { type, payload }) => {
+export const setImages = (state = {}, { type, payload }) => {
   switch (type) {
     case ActionType.SET_IMAG:
       return { ...state, ...payload };
+    default:
+      return state;
+  }
+};
+export const setCounter = (state = localStorage.getItem("token") ? true : false, { type, payload }) => {
+  switch (type) {
+    case ActionType.COUNT_VALUE:
+      return payload;
     default:
       return state;
   }

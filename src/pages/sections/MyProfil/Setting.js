@@ -15,25 +15,35 @@ import {
   StyledTextField,
 } from "../Admen/MaterialTovar/Tovar.jsx";
 import { BackSetting } from "../../../components/Back";
-import { useDispatch } from "react-redux";
-import { useImag } from "../../../redux/active/productActions";
-
-const schema = yup.object({
-  email: yup
-    .string()
-    .required()
-    .min(7, "telifon raqamingiz 7 ta raqamdan kam buldi"),
-});
 
 function Setting() {
- const dispatch = useDispatch()
+  const schema = yup.object({
+    name: yup.string().required("This is required field"),
+    status: yup.string().required("This is required field"),
+    // textarea: yup
+    //   .string()
+    //   .required("This is required field")
+    //   .min(90, "You entered less text"),
+    adres: yup
+      .string()
+      .required("This is required field")
+      .min(10, "You entered less text"),
+    phone:yup.number(7).required(7,"number").positive().integer(),
+    email: yup.string().required("This is required field").email("@gmail.com"),
+  });
   const {
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "all",
     defaultValues: {
-      email: ""
+      name: "",
+      // textarea: "",
+      adres: "",
+      phone: "",
+      email: "",
     },
   });
 
@@ -42,6 +52,7 @@ function Setting() {
   const [images, setImages] = useState("");
 
   const img = images.data?.data.path;
+  console.log("ssd", img);
   const handleImgChange = (e) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
@@ -57,29 +68,26 @@ function Setting() {
       })
       .catch((err) => console.log(err));
   };
-  useEffect(() =>{
-    dispatch(useImag(images))
-  },[img]) 
-
-  const [nam, setName] = useState("");
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
   const [stat, setStatus] = useState("");
-  const [area, setArea] = useState("");
-  const [adres, setAdres] = useState("");
+  // const [area, setArea] = useState("");
   const [nomer, setNomer] = useState("");
-  const [emaill, setEmaill] = useState("");
   const id = user._id;
-  const handleSetting = () => {
+
+  const handleSetting = (value) => {
     axios
       .post(
         "http://dems.inone.uz/api/update-profile",
         {
-          address: adres,
-          email: emaill,
+          address: value.adres,
+          email: value.email,
           _id: id,
           image: img,
-          name: nam,
+          name: value.name,
           phone_number: nomer,
-          short_bio: area,
+          // short_bio: area,
           status: stat,
         },
         {
@@ -91,9 +99,10 @@ function Setting() {
         }
       )
       .then((res) => {
-       console.log(res);
+        console.log(res);
       });
   };
+
   return (
     <>
       <form >
@@ -101,7 +110,7 @@ function Setting() {
           <Navbar />
           <BackSetting />
           <Container>
-            <MenuContent >
+            <MenuContent>
               <ContentRow style={{ display: "flex", flexDirection: "column" }}>
                 <Typography sx={{ mb: 5 }} variant="h5">
                   фотографии*
@@ -119,6 +128,7 @@ function Setting() {
                     type="file"
                     id="images"
                     hidden
+                    multiple
                     onChange={handleImgChange}
                   />
                   <StyledButton variant="contained">
@@ -127,51 +137,112 @@ function Setting() {
                 </ContentRow>
               </ContentRow>
               <ContentRow style={{ display: "flex", justifyContent: "start" }}>
-                <StyledTextField
-                  sx={{ mt: 3, width: "35%" }}
-                  label="Введите ваше имя и фамилию *"
-                  variant="filled"
-                  onChange={(e) => setName(e.target.value)}
+                <Controller
+                  name="name"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <StyledTextField
+                      sx={{ mt: 3, width: "35%" }}
+                      label="Введите ваше имя и фамилию *"
+                      variant="filled"
+                      helperText={errors?.name?.message}
+                      error={errors?.name}
+                      {...field}
+                    />
+                  )}
                 />
-                <StyledTextField
-                  sx={{ mt: 3, mb: 3, width: "35%", ml: 3 }}
-                  label="Положение дел*"
-                  variant="filled"
-                  onChange={(e) => setStatus(e.target.value)}
+                <Controller
+                  name="status"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <StyledTextField
+                      sx={{ mt: 3, mb: 3, width: "35%", ml: 3 }}
+                      label="Положение дел*"
+                      variant="filled"
+                      onChange={(e) => setStatus(e.target.value)}
+                      helperText={errors?.status?.message}
+                      error={errors?.status}
+                      {...field}
+                    />
+                  )}
                 />
               </ContentRow>
-
-              <TextareaAutosize
-                style={{
-                  border: "none",
-                  height: "100px",
-                  outline: "none",
-                  fontSize: "17px",
-                  padding: "15px",
-                  borderRadius: "4px",
-                  maxWidth: "1000px",
-                }}
-                onChange={(e) => setArea(e.target.value)}
-                placeholder="Био "
+              {/* <Controller
+                name="textarea"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextareaAutosize
+                    style={{
+                      border: "none",
+                      height: "100px",
+                      outline: "none",
+                      fontSize: "17px",
+                      padding: "15px",
+                      borderRadius: "4px",
+                      maxWidth: "1000px",
+                    }}
+                    placeholder="Био "
+                    onChange={(e) => setArea(e.target.value)}
+                    helperText={errors.name?.message}
+                    error={errors?.textarea}
+                    {...field}
+                  />
+                )}
               />
+              <p
+                style={{
+                  color: "#d32f2f",
+                  fontFamily: "Roboto",
+                  fontWeight: 400,
+                  fontSize: "0.75rem",
+                  lineHeight: 1.66,
+                  letterSpacing: " 0.03333em",
+                }}
+              >
+                {errors.textarea?.message}
+              </p> */}
+
               <Typography sx={{ mt: 5, mb: 5 }} variant="h5">
                 Установидь адрес
               </Typography>
-              <StyledTextField
-                onChange={(e) => setAdres(e.target.value)}
-                label="Адрес*"
-                variant="filled"
+              <Controller
+                name="adres"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <StyledTextField
+                    label="Адрес*"
+                    variant="filled"
+                    helperText={errors.adres?.message}
+                    error={errors?.adres}
+                    {...field}
+                  />
+                )}
               />
+
               <Typography sx={{ mt: 5, mb: 5 }} variant="h5">
                 Контактная информасийа
               </Typography>
               <ContentRow style={{ display: "flex", justifyContent: "start" }}>
-                <StyledTextField
-                  sx={{ mt: 2, width: "35%" }}
-                  label="Номер телефона "
-                  variant="filled"
-                  type="number"
-                  onChange={(e) => setNomer(e.target.value)}
+                <Controller
+                  name="phone"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <StyledTextField
+                      sx={{ mt: 2, width: "35%" }}
+                      label="Номер телефона "
+                      variant="filled"
+                      type="number"
+                      onChange={(e) => setNomer(e.target.value)}
+                      helperText={errors.phone?.message}
+                      error={errors?.phone}
+                      {...field}
+                    />
+                  )}
                 />
 
                 <Controller
@@ -183,21 +254,19 @@ function Setting() {
                       sx={{ mt: 2, width: "35%", ml: 3 }}
                       label="Адрес электронной  почты "
                       variant="filled"
-                      onChange={(e) => setEmaill(e.target.value)}
+                      helperText={errors.email?.message}
+                      error={errors?.email}
                       {...field}
                     />
                   )}
                 />
-                <p style={{ color: "red", marginTop: 0 }}>
-                  {errors.email?.message}
-                </p>
               </ContentRow>
               <Box>
                 <StyledButton
                   sx={{ mt: 4, display: "inline-block" }}
                   variant="contained"
-                  onClick={handleSetting}
-                 
+                  type="submit"
+                  onClick={handleSubmit(handleSetting)}
                 >
                   Сохранить изменения
                 </StyledButton>
