@@ -1,0 +1,46 @@
+{
+  "data": {
+    "code": 0,
+    "message": "Success",
+    "data": {
+      "status": null,
+      "short_bio": null,
+      "email": null,
+      "address": null,
+      "image": null,
+      "balance": 0,
+      "_id": "6155bcbedda08be2211bad40",
+      "name": "Jamol Temirov",
+      "phone_number": "+998939972626",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiIrOTk4OTM5OTcyNjI2IiwidHlwZSI6InVzZXIiLCJpYXQiOjE2MzM2MTE3NDQsImV4cCI6MTY2NTE2OTM0NH0.HckFeuBUzJPLdEX6BHQG-lmOCgQpVcp2rEIfqrNdEaE"
+    }
+  },
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "content-length": "409",
+    "content-type": "application/json; charset=utf-8"
+  },
+  "config": {
+    "url": "http://dems.inone.uz/api/sign-verify",
+    "method": "post",
+    "data": "{\"phone_number\":\"998939972626\",\"otp\":\"3021\"}",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
+    "transformRequest": [null],
+    "transformResponse": [null],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "maxBodyLength": -1,
+    "transitional": {
+      "silentJSONParsing": true,
+      "forcedJSONParsing": true,
+      "clarifyTimeoutError": false
+    }
+  },
+  "request": {}
+}

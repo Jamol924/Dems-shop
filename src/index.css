@@ -1,0 +1,14 @@
+.slides .slick-prev,
+.slides .slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 300;
+}
+
+.fix {
+  overflow: hidden;
+  background: linear-gradient(  rgba(10, 10, 10, 0.103), rgba(29, 27, 27, 0.199), rgba(29, 27, 27, 0.103));
+  color: rgb(153, 149, 149);
+  background-color: rgba(24, 22, 22, 0.281);
+
+}

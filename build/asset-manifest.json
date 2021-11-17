@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dbf62e67.chunk.css",
+    "main.js": "/static/js/main.0101c99d.chunk.js",
+    "main.js.map": "/static/js/main.0101c99d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6be1934d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6be1934d.js.map",
+    "static/css/2.7651c32e.chunk.css": "/static/css/2.7651c32e.chunk.css",
+    "static/js/2.ff642d5c.chunk.js": "/static/js/2.ff642d5c.chunk.js",
+    "static/js/2.ff642d5c.chunk.js.map": "/static/js/2.ff642d5c.chunk.js.map",
+    "static/js/3.668415bc.chunk.js": "/static/js/3.668415bc.chunk.js",
+    "static/js/3.668415bc.chunk.js.map": "/static/js/3.668415bc.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.7651c32e.chunk.css.map": "/static/css/2.7651c32e.chunk.css.map",
+    "static/css/main.dbf62e67.chunk.css.map": "/static/css/main.dbf62e67.chunk.css.map",
+    "static/js/2.ff642d5c.chunk.js.LICENSE.txt": "/static/js/2.ff642d5c.chunk.js.LICENSE.txt",
+    "static/media/Cars.1f3eb6eb.png": "/static/media/Cars.1f3eb6eb.png",
+    "static/media/agriculture.8981ec2d.png": "/static/media/agriculture.8981ec2d.png",
+    "static/media/background.16a5857a.jpg": "/static/media/background.16a5857a.jpg",
+    "static/media/busines.ee3d7187.png": "/static/media/busines.ee3d7187.png",
+    "static/media/children.11a5e5cb.png": "/static/media/children.11a5e5cb.png",
+    "static/media/clock.b3efb2fb.svg": "/static/media/clock.b3efb2fb.svg",
+    "static/media/elictronic.7d5a037b.png": "/static/media/elictronic.7d5a037b.png",
+    "static/media/fashion.1f3ba1a7.png": "/static/media/fashion.1f3ba1a7.png",
+    "static/media/home.36dbe022.png": "/static/media/home.36dbe022.png",
+    "static/media/jobs.5cf5b3ac.png": "/static/media/jobs.5cf5b3ac.png",
+    "static/media/locat.7f400c11.svg": "/static/media/locat.7f400c11.svg",
+    "static/media/location.3dcae0fe.svg": "/static/media/location.3dcae0fe.svg",
+    "static/media/medal.d5ad2f0a.svg": "/static/media/medal.d5ad2f0a.svg",
+    "static/media/people.ddf3aa41.svg": "/static/media/people.ddf3aa41.svg",
+    "static/media/photo.019a12ec.png": "/static/media/photo.019a12ec.png",
+    "static/media/removeQuti.7d1d8d1f.png": "/static/media/removeQuti.7d1d8d1f.png",
+    "static/media/shield-security.fdda6491.svg": "/static/media/shield-security.fdda6491.svg",
+    "static/media/shop-add.34226366.svg": "/static/media/shop-add.34226366.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6be1934d.js",
+    "static/css/2.7651c32e.chunk.css",
+    "static/js/2.ff642d5c.chunk.js",
+    "static/css/main.dbf62e67.chunk.css",
+    "static/js/main.0101c99d.chunk.js"
+  ]
+}
