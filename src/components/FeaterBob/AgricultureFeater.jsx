@@ -1,26 +1,25 @@
 import React from 'react';
 import {Wrapper, PStyled} from "../Features"
+import {useSelector} from "react-redux";
+import L from "../../locale/language.json"
 
 function AgricultureFeater({dataCard}) {
+  const lan = useSelector(state => state.allLanguage)  
     return (
         <div>
             <Wrapper>
             <div className="title">
-              <h1>Features:</h1>
+              <h1>{L.item.fea[lan]}</h1>
               <div className="line" />
             </div>
             <div className="items">
               <PStyled>
                 <div>
-                  <p>Model</p>
+                  <p>{L.item.mev[lan]}</p>
                   <p>{dataCard.agriculture}</p>
                 </div>
                 <div>
-                  <p>Fuel*</p>
-                  <p>{dataCard.currency}</p>
-                </div>
-                <div>
-                  <p>Location*</p>
+                  <p>{L.item.loc[lan]}*</p>
                   <p>
                     {dataCard.region_name} {dataCard.city_name}
                   </p>

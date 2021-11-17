@@ -4,14 +4,24 @@ import photo from "../../assets/photo.png";
 import medal from "../../assets/medal.svg";
 import people from "../../assets/people.svg";
 import shield from "../../assets/shield-security.svg";
+import { useSelector } from "react-redux";
+import L from "../../locale/language.json"
 import axios from "axios";
 
 const StatsInfo = () => {
-
+  const lan = useSelector(state => state.allLanguage)  
   const [counter, setCounter] = useState([]);
-  const productFetch = async () => {
-    await axios
-      .post("http://dems.inone.uz/api/ad/latest/get-pagin", {
+  const productFetch = async () => {  
+    const instance = axios.create({
+      baseURL: "http://dems.inone.uz/api/",
+      timeout: 1000,
+      headers: {
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
+    });
+    
+     await instance
+      .post("ad/latest/get-pagin", {
         limit: 10,
         page: 1,
       })
@@ -35,21 +45,21 @@ const StatsInfo = () => {
           <img src={medal} alt="medal" />
           <div>
             <StyledH>{counter}+</StyledH>
-            <p>Published Ads</p>
+            <p>{L.foiz.pub[lan]}</p>
           </div>
         </div>
         <div className="first">
           <img src={people} alt="people" />
           <div>
             <StyledH>3256+</StyledH>
-            <p>Registered Users</p>
+            <p>{L.foiz.pub2[lan]}</p>
           </div>
         </div>
         <div className="first">
           <img src={shield} alt="shield" />
           <div>
             <StyledH>2000+</StyledH>
-            <p>Verified Users</p>
+            <p>{L.foiz.pub3[lan]}</p>
           </div>
         </div>
       </Content>

@@ -8,12 +8,18 @@ export default function PaginationLink({ setPag, pagNumber }) {
   const handleClose = (pag) => {
     setPag(pag);
   };
+
   return (
     <MemoryRouter initialEntries={["/inbox"]} initialIndex={0}>
       <Route>
         {({ location }) => {
           const query = new URLSearchParams(location.search);
-          const pages = parseInt(pagNumber/10) > 0 ? parseInt(pagNumber/10) : 1;
+          const pages =
+            parseFloat(pagNumber / 10) - parseInt(pagNumber / 10) > 0
+              ? parseInt(pagNumber / 10) + 1
+              : parseFloat(pagNumber / 10) - parseInt(pagNumber / 10) === 0
+              ? parseInt(pagNumber / 10)
+              : 0;
           return (
             <PaginationCard
               onChange={(_, page) => handleClose(page)}

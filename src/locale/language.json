@@ -1,7 +1,1154 @@
 {
+  "tizim": {
+    "ut": {
+      "uz": "Siz oldin ruyxatdan utgansiz!",
+      "ru": "Вы уже зарегистрировались",
+      "en": "You have already registered"
+    },
+    "xato": {
+      "uz": "Siz xato kiritdingiz!",
+      "ru": "Ты ошибся!",
+      "en": "You made a mistake!"
+    },
+    "xatokrit": {
+      "uz": "Siz xato kiritdingiz!",
+      "ru": "Ты ошибся!",
+      "en": "You made a mistake!"
+    },
+    "utdingiz": {
+      "uz": "Ruyxatdan utdingiz",
+      "ru": "Вы потеряли список",
+      "en": "You lost the list"
+    },
+    "sizutdingiz": {
+      "uz": "Siz ruyxatdan utmagansiz!",
+      "ru": "Вы не зарегистрированы!",
+      "en": "You are not registered!"
+    },
+    "kkriting": {
+      "uz": "Kodni kriteng!",
+      "ru": "Критический код!",
+      "en": "Critical code!"
+    },
+    "tz": {
+      "uz": "Tizimga kirish",
+      "ru": "Авторизоваться",
+      "en": "Sign in"
+    },
+    "rt": {
+      "uz": "Ro'yxatdan o'tish",
+      "ru": "Подписаться",
+      "en": "Sign up"
+    },
+    "number": {
+      "uz": "Telefon raqamingizni kiriting",
+      "ru": "Введите свой номер телефона",
+      "en": "Enter your phone number"
+    },
+    "verf": {
+      "uz": "Tasdiqlovchi kodni kiriting",
+      "ru": "Введите код подтверждения",
+      "en": "Enter confirmation code"
+    },
+    "name": {
+      "uz": "Ismingizni kiriting",
+      "ru": "Введите ваше имя",
+      "en": "Enter your name"
+    },
+    "but1": {
+      "uz": "Kirish",
+      "ru": "Войти",
+      "en": "Sign in"
+    },
+    "but2": {
+      "uz": "Ro'yxatdan o'tish",
+      "ru": "Подписаться",
+      "en": "Sign up"
+    }
+  },
   "popcat": {
-    "uz": "Mashhur kategoriyalar",
-    "ru": "Популярные категории",
-    "en": "Popular categories"
+    "uz": "Bo'limlar",
+    "ru": "Разделы",
+    "en": "Sections"
+  },
+  "poisk": {
+    "uz": "Noutbuk, naushnik va ...",
+    "ru": "Найдите ноутбук, наушник и ...",
+    "en": "Find your laptop, earphone and ..."
+  },
+  "navb": {
+    "ad": {
+      "uz": "Mening reklamalarim",
+      "ru": "Мои объявления",
+      "en": "My adds"
+    },
+    "set": {
+      "uz": "Sozlamalar",
+      "ru": "Настройки",
+      "en": "Settings"
+    },
+    "lout": {
+      "uz": "Chiqish",
+      "ru": "Выйти",
+      "en": "Log out"
+    }
+  },
+  "cardname": {
+    "uz": "Tanlangan reklamalar",
+    "ru": "Избранные объявления",
+    "en": "Featured ads"
+  },
+  "cardfeature": {
+    "uz": "Tavsiya etilgan",
+    "ru": "Рекомендуемые",
+    "en": "Featured"
+  },
+  "foiz": {
+    "pub": {
+      "uz": "Chop etilgan e'lonlar",
+      "ru": "Опубликованные объявления",
+      "en": "Published Ads"
+    },
+    "pub2": {
+      "uz": "Ro'yxatdan o'tgan foydalanuvchilar",
+      "ru": "Зарегистрированные пользователи",
+      "en": "Registered Users"
+    },
+    "pub3": {
+      "uz": "Tasdiqlangan foydalanuvchilar",
+      "ru": "Проверенные пользователи",
+      "en": "Verified Users"
+    }
+  },
+  "navbar": {
+    "profil": {
+      "uz": "Mening profilim",
+      "ru": "Мой профель ",
+      "en": "My profile"
+    },
+    "add": {
+      "uz": "E'loningizni joylashtiring",
+      "ru": "Разместите свое объявление ",
+      "en": "post your ad"
+    }
+  },
+  "asia": {
+    "title": {
+      "uz": "Bir marta bosish bilan sotib oling, soting, ijaraga oling va almashtiring",
+      "ru": "Покупка, продажа, аренда и обмен в один клик",
+      "en": "Buy, Sell, Rent & Exchange in one Click"
+    },
+    "text": {
+      "uz": "29+ toifadagi 2000 dan ortiq faol reklamalarni bepul qidiring",
+      "ru": "Ищите из более чем 2000+ активных объявлений в более чем 29 категориях бесплатно",
+      "en": "Search from over 2000+ Active Ads in 29+ Categories for Free"
+    },
+    "location": {
+      "uz": "Joyni tanlang",
+      "ru": "Выберите место",
+      "en": "Select location"
+    },
+    "locationName": {
+      "uz": "Barcha viloyatlar",
+      "ru": "Все регионы",
+      "en": "All regions"
+    },
+    "category": {
+      "uz": "Kategoriyani tanlang",
+      "ru": "Выберите категорию",
+      "en": "Select category"
+    },
+    "categoryName": {
+      "uz": "Barcha toifalar",
+      "ru": "Все категорье ",
+      "en": "All categories"
+    },
+    "search": {
+      "uz": "Bu yerga kalit so'zni kiriting",
+      "ru": "Введите ключевое слово здесь",
+      "en": "Enter keyword here"
+    },
+    "button": {
+      "uz": "Qidirmoq",
+      "ru": "Поиск",
+      "en": "Search"
+    }
+  },
+  "category": {
+    "cars": {
+      "uz": "Avtomobillar",
+      "ru": "Машины",
+      "en": "Cars"
+    },
+    "home": {
+      "uz": "Uylar",
+      "ru": "Дом",
+      "en": "Home"
+    },
+    "el": {
+      "uz": "Elektronika",
+      "ru": "Электроника",
+      "en": "Electronics"
+    },
+    "job": {
+      "uz": "Ishlar",
+      "ru": "Вакансии",
+      "en": "Jobs"
+    },
+    "fa": {
+      "uz": "Moda uslubi",
+      "ru": "Модный стиль",
+      "en": "Fashion-style"
+    },
+    "chil": {
+      "uz": "Bolalar dunyosi",
+      "ru": "Детский мир",
+      "en": "Childrens-world"
+    },
+    "bus": {
+      "uz": "Biznes-xizmat",
+      "ru": "Бизнес Сервис",
+      "en": "Business-service"
+    },
+    "agr": {
+      "uz": "Qishloq xo'jaligi",
+      "ru": "Сельское хозяйство",
+      "en": "Agriculture"
+    },
+    "carsname": {
+      "uz": "Avtomobillar",
+      "ru": "Машины",
+      "en": "Cars"
+    }
+  },
+  "item": {
+    "det": {
+      "uz": "Tavsif",
+      "ru": "Описание",
+      "en": "Description"
+    },
+    "kur": {
+      "uz": "Ko'rilgan: ",
+      "ru": "Просмотрено:  ",
+      "en": "Viewed: "
+    },
+    "ovr": {
+      "uz": "Umumiy koʻrinish",
+      "ru": "Описание",
+      "en": "Overview"
+    },
+    "con": {
+      "uz": "Holati:",
+      "ru": "Состояние:",
+      "en": "Condition:"
+    },
+    "typ": {
+      "uz": "Element turi:",
+      "ru": "Тип вещи:",
+      "en": "Item Type:"
+    },
+    "fea": {
+      "uz": "Xususiyatlari:",
+      "ru": "Функции:",
+      "en": "Features:"
+    },
+    "bran": {
+      "uz": "Brend",
+      "ru": "Марка",
+      "en": "Brand"
+    },
+    "mod": {
+      "uz": "Model",
+      "ru": "Модель",
+      "en": "Model"
+    },
+    "fuel": {
+      "uz": "Yoqilg'i",
+      "ru": "Топливо",
+      "en": "Fuel"
+    },
+    "mev": {
+      "uz": "Mevalar",
+      "ru": "Фрукты",
+      "en": "Fruits"
+    },
+    "sit": {
+      "uz": "Mevalar",
+      "ru": "Фрукты",
+      "en": "Fruits"
+    },
+    "siz": {
+      "uz": "Hajmi",
+      "ru": "Размер",
+      "en": "Size"
+    },
+    "btype": {
+      "uz": "go'zallik_turi",
+      "ru": "тип красоты",
+      "en": "type of beauty"
+    },
+    "soat": {
+      "uz": "soat modeli",
+      "ru": "модель часов",
+      "en": "watch model "
+    },
+    "acs": {
+      "uz": "aksessuarlar turi",
+      "ru": "тип аксессуаров",
+      "en": "accessories type"
+    },
+    "tip": {
+      "uz": "Turi",
+      "ru": "Тип",
+      "en": "Type"
+    },
+    "god": {
+      "uz": "Chiqarilgan yili",
+      "ru": "Год выпуска ",
+      "en": "Year of issue"
+    },
+    "ser": {
+      "uz": "Xizmatlari",
+      "ru": "Услуги ",
+      "en": "Services"
+    },
+    "loc": {
+      "uz": "Manzil",
+      "ru": "Место нахождения",
+      "en": "Location"
+    },
+    "to": {
+      "uz": "Keyingi ishxaqi",
+      "ru": "Следующая любовь",
+      "en": "The next love"
+    },
+    "jobt": {
+      "uz": "Ish turi",
+      "ru": "Тип задания",
+      "en": "Job type"
+    },
+    "bandlik": {
+      "uz": "Bandlik turi",
+      "ru": "Вид занятости",
+      "en": "Employment type"
+    },
+    "mist": {
+      "uz": "Missiya turi",
+      "ru": "Тип миссии",
+      "en": "Mission type"
+    },
+    "emodel": {
+      "uz": "elektron model",
+      "ru": "электронная модель",
+      "en": "electronic model "
+    },
+    "jobs": {
+      "uz": "Ishlar",
+      "ru": "Вакансии",
+      "en": "Jobs"
+    },
+    "from": {
+      "uz": "Oldingi ish haqi",
+      "ru": "Предыдущая зарплата",
+      "en": "Previous salary"
+    },
+    "mulk": {
+      "uz": "Mulkni sotish",
+      "ru": "Продать недвижимость",
+      "en": "Sell property"
+    },
+    "asosiy": {
+      "uz": "Asosiy",
+      "ru": "Главнай",
+      "en": "Main"
+    },
+    "vpotol": {
+      "uz": "Shift balandligi (m)",
+      "ru": "Высота потолков (м)",
+      "en": "Ceiling height (m)"
+    },
+    "komnat": {
+      "uz": "Asosiy",
+      "ru": "Главнай",
+      "en": "Main"
+    },
+    "Доступный": {
+      "uz": "Arzon (m 2)",
+      "ru": "Доступный (m 2)",
+      "en": "Affordable (m 2)"
+    },
+    "godt": {
+      "uz": "Qurilish / yetkazib berish yili",
+      "ru": "Год постройка /сдачи",
+      "en": "Year of construction / delivery"
+    },
+    "sharoitlar": {
+      "uz": "sharoitlar",
+      "ru": "условия",
+      "en": "conditions"
+    },
+    "qav": {
+      "uz": "Qavat",
+      "ru": "Этаж",
+      "en": "Floor"
+    },
+    "qavb": {
+      "uz": "Uyning qavatlar soni",
+      "ru": "Этажность дома",
+      "en": "Number of storeys of the house"
+    },
+    "kons": {
+      "uz": "Qurilish",
+      "ru": "Конструктион",
+      "en": "Construction"
+    },
+    "map": {
+      "uz": "yaqinida joylashgan",
+      "ru": "расположен рядом",
+      "en": "located near"
+    },
+    "sel": {
+      "uz": "Sotuvchi haqida ma'lumot",
+      "ru": "Информация о продавце",
+      "en": "Seller Information"
+    },
+    "qungiroq": {
+      "uz": "Qung'iroq qiling",
+      "ru": "Позвонить",
+      "en": "Make a call"
+    }
+  },
+  "tovarAdd": {
+    "cars": {
+      "name": {
+        "uz": "Mahsulot haqida ma'lumot",
+        "ru": "Информация о продукте",
+        "en": "Product information"
+      },
+      "toplvo": {
+        "uz": "yoqilg'i",
+        "ru": "топливо",
+        "en": "fuel"
+      },
+      "ben": {
+        "uz": "Benzin",
+        "ru": "Бензин",
+        "en": "Petrol"
+      },
+      "gaz": {
+        "uz": "etanol",
+        "ru": "Этханол",
+        "en": "Ethanol"
+      },
+      "title": {
+        "uz": "sarlavha",
+        "ru": "заголовок объявления",
+        "en": "headline"
+      },
+      "marka": {
+        "uz": "marka",
+        "ru": "марка",
+        "en": "brand"
+      },
+      "model": {
+        "uz": "model",
+        "ru": "модель",
+        "en": "model"
+      },
+      "god": {
+        "uz": "qabul qilingan yil",
+        "ru": "год впуска ",
+        "en": "intake year"
+      },
+      "svet": {
+        "uz": "Rang",
+        "ru": "цвет",
+        "en": "Color"
+      },
+      "sena": {
+        "uz": "narx",
+        "ru": "цена",
+        "en": "price"
+      },
+      "mesto": {
+        "uz": "Manzil",
+        "ru": "местонахождение",
+        "en": "location"
+      },
+      "region": {
+        "uz": "Viloyatlar",
+        "ru": "Провинции",
+        "en": "Provinces"
+      },
+      "gorod": {
+        "uz": "Tumanlar",
+        "ru": "Районы",
+        "en": "Districts"
+      },
+      "opesan": {
+        "uz": "tavsifi",
+        "ru": "описание",
+        "en": "description"
+      },
+      "opesanPlas": {
+        "uz": "Qisqacha tavsif qo'shing",
+        "ru": "Добавить краткое описане",
+        "en": "Add a short description"
+      },
+      "maxImg": {
+        "uz": "Maksimal 12 ta rasm yuklang",
+        "ru": "Загрузите максимум 12 изображений",
+        "en": "Upload a maximum of 12 images"
+      },
+      "foto": {
+        "uz": "Surat",
+        "ru": "фотографии",
+        "en": "Photo"
+      },
+      "but1": {
+        "uz": "Tasvirni tanlang",
+        "ru": "Выберите изображение",
+        "en": "Select an image"
+      },
+      "but12": {
+        "uz": "Nashr qilish",
+        "ru": "Опубликовать ",
+        "en": "Publish"
+      }
+    },
+    "home":{
+      "name":{
+        "uz":"Uy tafsilotlari",
+        "ru":"Детали дома",
+        "en":"House details"
+      },
+      "glav1":{
+        "uz":"uy",
+        "ru":"Главная",
+        "en":"home"
+      },
+      "glav2":{
+        "uz":"Kvartira",
+        "ru":"Квартера",
+        "en":"Apartment"
+      },
+      "glav3":{
+        "uz":"Yer",
+        "ru":"Земля",
+        "en":"Earth"
+      },
+      "glav4":{
+        "uz":"Garaj",
+        "ru":"Гараж",
+        "en":"Garage"
+      },
+      "aren1":{
+        "uz":"Ijaralar",
+        "ru":"Аренда",
+        "en":"Rent"
+      },
+      "aren2":{
+        "uz":"Kunlik ijara",
+        "ru":"Аренда посуточно",
+        "en":"Daily rent"
+      },
+      "aren3":{
+        "uz":"Sotish",
+        "ru":"Продажа",
+        "en":"Sale"
+      },
+      "komnat":{
+        "uz":"xonalar soni",
+        "ru":"количество комнат",
+        "en":"number of rooms"
+      },
+      "god":{
+        "uz":"Qurilish / yetkazib berish yili",
+        "ru":"Год постройки /сдачи",
+        "en":"Year of construction / delivery"
+      },
+      "has":{
+        "uz":"Mebellari bor",
+        "ru":"Есть мебель",
+        "en":"Has furniture "
+      },
+      "has2":{
+        "uz":"Mebel yo'q",
+        "ru":"Без мебели",
+        "en":"No furniture "
+      },
+      "ot":{
+        "uz":"yangilangan",
+        "ru":"отремонтирован",
+        "en":"renovated"
+      },
+      "ot2":{
+        "uz":"Ta'mirlanmagan",
+        "ru":"Не ремонтируется",
+        "en":"Not being repaired"
+      },
+      "have":{
+        "uz":"Brokerlik to'loviga ega bo'ling",
+        "ru":"Есть брокерская комиссия",
+        "en":"Have brokerage fee"
+      },
+      "have2":{
+        "uz":"Brokerlik toʻlovi yoʻq",
+        "ru":"Без брокерской комиссии",
+        "en":"No brokerage fee"
+      },
+      "krpch1":{
+        "uz":"g'isht",
+        "ru":"кирпичный",
+        "en":"brick"
+      },
+      "krpch2":{
+        "uz":"paneli",
+        "ru":"панельный",
+        "en":"panel"
+      },
+      "krpch3":{
+        "uz":"Monolit",
+        "ru":"Монолитный",
+        "en":"Monolithic"
+      },
+      "krpch4":{
+        "uz":"Bloklangan",
+        "ru":"Блочный",
+        "en":"Blocky"
+      },
+      "krpch5":{
+        "uz":"Boshqa",
+        "ru":"Другой",
+        "en":"Another"
+      },
+      "vsota":{
+        "uz":"ship balandligi (m)",
+        "ru":"высота потолков (m)",
+        "en":"ceiling height (m)"
+      },
+      "etaj":{
+        "uz":"Qavat",
+        "ru":"Этаж",
+        "en":"Floor"
+      },
+      "etajd":{
+        "uz":"Uyning qavatlar soni",
+        "ru":"Этажность дома",
+        "en":"Number of storeys of the house"
+      },
+      "komfort":{
+        "uz":"Qulayliklar",
+        "ru":"Комфорт",
+        "en":"Comforts"
+      },
+      "ryadom":{
+        "uz":"Yaqin atrofda",
+        "ru":"Рядом есть",
+        "en":"There is"
+      },
+      "razmer":{
+        "uz":"",
+        "ru":"",
+        "en":""
+      },
+      "razmer1":{
+        "uz":"Hajmi (m) 2",
+        "ru":"Размер (m)2",
+        "en":"Size (m) 2"
+      },
+      "razmer2":{
+        "uz":"Mavjud (m) 2",
+        "ru":"Доступный (m)2",
+        "en":"Available (m) 2"
+      }
+    },
+    "elictorin": {
+      "name": {
+        "uz": "Elektron buyumlar",
+        "ru": "Электроник детаилс",
+        "en": "Electronic items"
+      }
+    },
+    "jobs": {
+      "name": {
+        "uz": "Ish tafsilotlari",
+        "ru": "Детали вакансии",
+        "en": "Job details"
+      },
+      "zarplata": {
+        "uz": "Ish haqi",
+        "ru": "Зарплата",
+        "en": "The salary"
+      },
+      "roz1": {
+        "uz": "Chakana savdo",
+        "ru": "Розничные продажи",
+        "en": "Retail sales"
+      },
+      "roz2": {
+        "uz": "Transport logistikasi",
+        "ru": "Транспортная логистика",
+        "en": "Transport logistics"
+      },
+      "roz3": {
+        "uz": "Qurilish",
+        "ru": "Строительство",
+        "en": "Construction"
+      },
+      "roz4": {
+        "uz": "Barlar va restoran",
+        "ru": "Бары & ресторан",
+        "en": "Bars & Restaurant "
+      },
+      "roz5": {
+        "uz": "Huquq va buxgalteriya hisobi",
+        "ru": "Юриспруденция и бухгалтерский учет",
+        "en": "Jurisprudence and accounting"
+      },
+      "roz6": {
+        "uz": "Xavfsizlik",
+        "ru": "Безопасность",
+        "en": "Security "
+      },
+      "roz7": {
+        "uz": "Uydagi narsalar",
+        "ru": "Домашние вещи",
+        "en": "Homes Things "
+      },
+      "roz8": {
+        "uz": "turizm-ko'ngilochar-qiziqarli-o'yinlar",
+        "ru": "туризм-развлечения-веселые игры",
+        "en": "tourism-entertainment-fun-games "
+      },
+      "roz9": {
+        "uz": "ta'lim",
+        "ru": "образование",
+        "en": "education "
+      },
+      "roz10": {
+        "uz": "bu-elektronika-va-texnologiya",
+        "ru": "ИТ-электроника и технологии",
+        "en": "it-electronics-and-technology "
+      },
+      "roz11": {
+        "uz": "tibbiyot va farmatsiya",
+        "ru": "медицина и аптека",
+        "en": "medicine-and-pharmacy "
+      },
+      "roz12": {
+        "uz": "madaniyat va san'at",
+        "ru": "культура и искусство",
+        "en": "culturre-and-art "
+      },
+      "roz13": {
+        "uz": "boshqa",
+        "ru": "Другие",
+        "en": "other "
+      },
+      "offer1": {
+        "uz": "taklif",
+        "ru": "предложение",
+        "en": "offer"
+      },
+      "offer2": {
+        "uz": "qidirmoq",
+        "ru": "поиск",
+        "en": "search"
+      },
+      "post1": {
+        "uz": "Doimiy bandlik",
+        "ru": "Постоянная занятость",
+        "en": "Permanent employment"
+      },
+      "post2": {
+        "uz": "Vaqtinchalik ish bilan ta'minlash",
+        "ru": "Временное трудоустройство",
+        "en": "Temporary employment"
+      },
+      "per1": {
+        "uz": "doimiy ish bilan ta'minlash",
+        "ru": "постоянная занятость",
+        "en": "permanent-employment"
+      },
+      "per2": {
+        "uz": "vaqtinchalik ish bilan ta'minlash",
+        "ru": "временная занятость",
+        "en": "temporary-employment"
+      },
+      "ot": {
+        "uz": "dan",
+        "ru": "от",
+        "en": "from"
+      },
+      "k": {
+        "uz": "gacha",
+        "ru": "к ",
+        "en": "to"
+      }
+    },
+    "fash": {
+      "name": {
+        "uz": "Moda tafsilotlari",
+        "ru": "Детали моды",
+        "en": "Detail mody"
+      },
+      "now": {
+        "uz": "Yangi",
+        "ru": "Новый",
+        "en": "New"
+      },
+      "raz": {
+        "uz": "Hajmi",
+        "ru": "Размер",
+        "en": "The size"
+      },
+      "clot": {
+        "clot1": {
+          "uz": "Kiyim",
+          "ru": "Одеть",
+          "en": "Clothe"
+        },
+        "clot2": {
+          "uz": "soatlar",
+          "ru": "часы",
+          "en": "watches"
+        },
+        "clot3": {
+          "uz": "sovg'alar",
+          "ru": "подарки",
+          "en": "gifts"
+        },
+        "clot4": {
+          "uz": "aksessuarlar",
+          "ru": "аксессуары",
+          "en": "accessories"
+        },
+        "clot5": {
+          "uz": "go'zallik va salomatlik",
+          "ru": "красота и здоровье",
+          "en": "beauty-and-health"
+        }
+      }
+    },
+    "chil":{
+      "name":{
+        "uz":"Bolalar dunyosi",
+        "ru":"Детский мир",
+        "en":"Child's world"
+      },
+      "clot1":{
+        "uz":"bolalar kiyimlari",
+        "ru":"детская одежда",
+        "en":"childrens-clothing"
+      },
+      "clot2":{
+        "uz":"bollalar poyapzali",
+        "ru":"детские ботинки",
+        "en":"childrens-shoes"
+      },
+      "clot3":{
+        "uz":"bolalar aravachasi",
+        "ru":"детская коляска",
+        "en":"childrens-stroller"
+      },
+      "clot4":{
+        "uz":"bolalar uchun avtomobil o'rindiqlari",
+        "ru":"детские автокресла",
+        "en":"childrens-car-seats"
+      },
+      "clot5":{
+        "uz":"bolalar mebellari",
+        "ru":"детская мебель",
+        "en":"childrens-furniture"
+      },
+      "clot6":{
+        "uz":"o'yinchoqlar",
+        "ru":"игрушки",
+        "en":"toys"
+      },
+      "clot7":{
+        "uz":"bolalar transporti",
+        "ru":"детский транспорт",
+        "en":"childrens-transport"
+      },
+      "clot8":{
+        "uz":"oziqlantirish",
+        "ru":"кормление",
+        "en":"feeding"
+      },
+      "clot9":{
+        "uz":"boshqa",
+        "ru":"Другие",
+        "en":"other"
+      }
+    },
+    "bus":{
+      "name":{
+        "uz":"Biznes va xizmatlar",
+        "ru":"Бизнес & Услуги",
+        "en":"Business & Services"
+      },
+      "bustov":{
+        "bus1":{
+          "uz":"moliyaviy xizmatlar",
+          "ru":"финансовые услуги",
+          "en":"financial-services"
+        },
+        "bus2":{
+          "uz":"transport - ijara",
+          "ru":"аренда транспорта",
+          "en":"transportation-rental"
+        },
+        "bus3":{
+          "uz":"reklama-bosma-marketing-internet",
+          "ru":"реклама-полиграфия-маркетинг-Интернет",
+          "en":"adverising-printing-marketing-internet"
+        },
+        "bus4":{
+          "uz":"qurilmalar",
+          "ru":"устройства",
+          "en":"devices"
+        },
+        "bus5":{
+          "uz":"ta'lim - sport",
+          "ru":"образование-спорт",
+          "en":"education-sports"
+        },
+        "bus6":{
+          "uz":"hayvonlarga xizmat ko'rsatish",
+          "ru":"зоосервис",
+          "en":"animal-services"
+        },
+        "bus7":{
+          "uz":"turizm",
+          "ru":"туризм",
+          "en":"tourism"
+        },
+        "bus8":{
+          "uz":"tarjimon xizmatlari",
+          "ru":"услуги переводчика",
+          "en":"interpreter-services"
+        },
+        "bus9":{
+          "uz":"texnik xizmat ko'rsatish-ta'mirlash-uskunalar",
+          "ru":"техническое обслуживание-ремонт оборудования",
+          "en":"maintenance-repair-of-equipment"
+        },
+        "bus10":{
+          "uz":"yuridik xizmatlar",
+          "ru":"юридические услуги",
+          "en":"juridical-services"
+        },
+        "bus11":{
+          "uz":"boshqalar",
+          "ru":"другие",
+          "en":"others"
+        }
+      }
+    },
+    "agr":{
+      "name":{
+        "uz":"Qishloq xo'jaligi",
+        "ru":"Сельское хозяйство",
+        "en":"Agriculture"
+      },
+      "clot1":{
+        "uz":"poliz ekinlari",
+        "ru":"бахчевые культуры",
+        "en":"melon-crops"
+      },
+      "clot2":{
+        "uz":"yormalar",
+        "ru":"хлопья",
+        "en":"cereals"
+      },
+      "clot3":{
+        "uz":"mevalar",
+        "ru":"фрукты",
+        "en":"fruits"
+      },
+      "clot4":{
+        "uz":"boshqalar",
+        "ru":"others",
+        "en":"others"
+      }
+    }
+  },
+  "footer":{
+    "name":{
+      "uz":"Dems - bu bepul e'lonlar va online sotish va sotib olish xizmatlari hisoblanib, bu yerda siz vaqtingiz va pulingizni tejaysiz, biz bilan birga bo'ling !",
+      "ru":"Dems - это служба бесплатных объявлений и онлайн-продажи и покупки, где вы экономите время и деньги, следите за обновлениями!",
+      "en":"Dems is a free classifieds and online sale and purchase service where you save time and money, stay with us! "
+    },
+    "how":{
+      "uz":"Qanday qilib tez sotish",
+      "ru":"Как быстро продавать",
+      "en":"How tel Sell Fast"
+    },
+    "infor":{
+      "uz":"Hamkor",
+      "ru":"Партнер",
+      "en":"Partner"
+    },
+    "help":{
+      "uz":"Yordam va yordam",  
+      "ru":"Помощь и поддержка",
+      "en":"Help & Support"
+    },
+    "sel":{
+      "uz":"Sotish bo'yicha maslahatlar",
+      "ru":"Советы по продаже",
+      "en":"Selling Tips"
+    },
+    "buy":{
+      "uz":"Tezda sotib oling va soting",
+      "ru":"Покупайте и продавайте быстро",
+      "en":"Buy and Sell Quickly"
+    },
+    "banner":{
+      "uz":"Banner reklama",
+      "ru":"Баннерная реклама",
+      "en":"Banner Advertising"
+    },
+    "pro":{
+      "uz":"Reklamangizni targ'ib qiling",
+      "ru":"Продвигайте свою рекламу",
+      "en":"Promote your Ad"
+    },
+    "com":{
+      "uz":"Kompaniya va aloqa ma'lumotlari",
+      "ru":"Компания и контактная информация",
+      "en":"Company & Contact Info"
+    },
+    "itm":{
+      "uz":"Xizmat ko'rsatish shartlari",
+      "ru":"условия обслуживания",
+      "en":"Terms of Service"
+    },
+    "liv":{
+      "uz":"ko'p so'raladigan savollar",
+      "ru":"часто задаваемые вопросы",
+      "en":"FAQ"
+    },
+    "ter":{
+      "uz":"Foydalanish shartlari",
+      "ru":"Условия и положения",
+      "en":"Terms & Conditions"
+    }
+  },
+  "settng":{
+    "but1":{
+      "uz":"O'zgartirish",
+      "ru":"Изменить",
+      "en":"Change"
+    },
+    "ved":{
+      "uz":"Ism va familiyangizni kiriting *",
+      "ru":"Введите ваше имя и фамилию *",
+      "en":"Enter your first and last name *"
+    },
+    "pol":{
+      "uz":"Holat*",
+      "ru":"Положение дел*",
+      "en":"Status*"
+    },
+    "ustanov":{
+      "uz":"Manzilni belgilang",
+      "ru":"Установидь адрес",
+      "en":"Set the address"
+    },
+    "adres":{
+      "uz":"Manzil",
+      "ru":"Адрес",
+      "en":"Address"
+    },
+    "contact":{
+      "uz":"Bog'lanish uchun ma'lumot",
+      "ru":"Контактная информасийа",
+      "en":"Contact information"
+    },
+    "nomer":{
+      "uz":"Telefon raqami",
+      "ru":"Номер телефона",
+      "en":"Phone number"
+    },
+    "email":{
+      "uz":"E-mail manzili",
+      "ru":"Адрес электронной  почты ",
+      "en":"E-mail address"
+    },
+    "but2":{
+      "uz":"O'zgarishlarni saqlang",
+      "ru":"Сохранить изменения",
+      "en":"Save changes"
+    }
+  },
+  "ok":{
+    "uz":"Sizning eloningiz joylandi",
+    "ru":"Ваше объявление было размещено",
+    "en":"Your ad has been posted"
+  },
+  "glavne":{
+    "uz":"bosh qismi",
+    "ru":"головная часть",
+    "en":"head part"
+  },
+  "ketogor":{
+    "uz":"kategoriya",
+    "ru":"категория",
+    "en":"category"
+  },
+  "moyprfel":{
+    "uz":"mening profilim",
+    "ru":" мой профайл",
+    "en":"my profile"
+  },
+  "nastroyke":{
+    "uz":"sozlamalar",
+    "ru":"настройки",
+    "en":"settings"
+  },
+  "til":{
+    "uzbek":{
+      "uz":"O'zbek",
+      "ru":"Узбекский",
+      "en":"Uzbek"
+    },
+    "rus":{
+      "uz":"Rus",
+      "ru":"Русский",
+      "en":"Russian"
+    },
+    "eng":{
+      "uz":"Ingliz",
+      "ru":"Английский",
+      "en":"English"
+    }
+  },
+  "Foter":{
+    "name":{
+      "uz":"DEMS.uz ning foydalanuvchi bilan kelishuvi",
+      "ru":"Пользовательское соглашение DEMS.uz",
+      "en":"DEMS.uz user agreement"
+    },
+    "qoida":{
+      "uz":"UMUMIY QOIDALAR",
+      "ru":"ОСНОВНЫЕ ПРАВИЛА",
+      "en":"GENERAL RULES"
+    },
+    "qoida1":{
+      "uz":"DEMS MChJ, (matnda keyingi o‘rinlarda Bajaruvchi va/yoki Kompaniya) Bajaruvchining internet-saytlari – http://DEMS.uz da xizmat ko‘rsatish to‘g‘risidagi mazkur ommaviy kelishuvni (matnda keyingi o‘rinlarda Kelishuv va/yoki Oferta) e‘lon qiladi.",
+      "ru":"ООО «ДЭМС» (далее - Исполнитель и / или Компания), сайты Исполнителя - настоящее публичное соглашение об обслуживании на http://DEMS.uz (далее - Соглашение и / или Оферта).",
+      "en":"DEMS LLC, (hereinafter referred to as the Executor and / or the Company) Executor's websites - this public agreement on service on http://DEMS.uz (hereinafter referred to as the Agreement and / or Offer)."
+    },
+    "qoida2":{
+      "uz":"Mazkur ofertada, agar matnda boshqa hol belgilanmasa, quyida keltirilgan atamalar quyidagi ma‘nolarni anglatadi:  ",
+      "ru":"В этом предложении, если в тексте не указано иное, следующие термины имеют следующие значения:",
+      "en":"In this offer, unless otherwise specified in the text, the following terms have the following meanings:"
+    }
   }
 }
+
+
+

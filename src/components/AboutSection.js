@@ -1,4 +1,5 @@
-import React,{useState} from "react";
+import React from "react";
+import Search from "./Search";
 import {
   Wrapper,
   WrapperMenu,
@@ -6,19 +7,21 @@ import {
   TitleH1,
   TitleP,
 } from "../components/common/MaterialComponent/AboutSection";
-import Search from "./Search";
+import { useSelector } from "react-redux";
+import L from "../locale/language.json"
+
 const AboutSection = () => {
+
+  const lan = useSelector(state => state.allLanguage)  
   return (
     <Wrapper>
       <WrapperMenu>
         <WrapperTitle>
           <TitleH1>
-            Buy, Sell, Rent & Exchange in one Click
-            {/* Покупка, продажа, аренда и обмен в один клик */}
-            {/* Bir marta bosish bilan sotib oling, soting, ijaraga oling va almashing */}
+            {L.asia.title[lan]}
           </TitleH1>
           <TitleP>
-            Search from over 2000+ Active Ads in 29+ Categories for Free
+          {L.asia.text[lan]}
           </TitleP>
         </WrapperTitle>
        <Search  />

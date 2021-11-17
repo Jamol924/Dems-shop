@@ -9,6 +9,7 @@ import LoaderSpinner from "../../../../Loader/loader";
 import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
+import L from "../../../../locale/language.json"
 import * as yup from "yup";
 import {
   InputLabel,
@@ -27,9 +28,12 @@ import {
   ContentRow,
   StyledFormControl,
   StyledButton,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Home({ category }) {
+  const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const homee = category;
   const [zagol, setZagol] = useState("");
@@ -90,15 +94,7 @@ function Home({ category }) {
   const handleVisota = (event) => {
     setVisota(event.target.value);
   };
-  const [etaj, setEtaj] = useState("");
-  const [etajj, setEtajj] = useState("");
 
-  const [razmer, setRazmer] = useState("");
-  const [dostup, setDostup] = useState("");
-
-  const [ryadom, setRyadom] = useState("");
-
-  const [sena, setSena] = useState("");
   const [sum, setSum] = useState("uzs");
   const handleSumChange = (e) => {
     setSum(e.target.value);
@@ -202,9 +198,9 @@ function Home({ category }) {
           floor: parseInt(value.etaj),
           floor_of_house: parseInt(value.etajd),
           appliances: personName,
-          located_near: ryadom,
+          located_near: (value.rya),
           size: parseInt(value.raz),
-          available_size: parseInt(value.rya),
+          available_size: parseInt(value.dos),
           price: parseInt(value.sen),
           currency: sum,
           region_id: region,
@@ -241,7 +237,7 @@ function Home({ category }) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -274,10 +270,11 @@ function Home({ category }) {
       <form>
         <Wrapper>
           <Nav2 />
+          <MinNav />
           <BackAdminHome />
           <Container style={{ marginTop: 0 }}>
             <Typography sx={{ mb: 3 }} variant="h4">
-              Детали дома
+            {L.tovarAdd.home.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -287,47 +284,47 @@ function Home({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="заголовок объявления*"
+                    label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
                     value={zagol}
                     onChange={handleZagol}
                     helperText={errors?.name?.message}
                     error={errors?.name}
                     {...field}
-                  />
+                  />  
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
                   <Select value={glavne} onChange={handleGlavneChange}>
-                    <MenuItem value="home">Главная</MenuItem>
-                    <MenuItem value="apartment">Квартера</MenuItem>
-                    <MenuItem value="earth">Земля</MenuItem>
-                    <MenuItem value="garage">Гараж</MenuItem>
+                    <StyledMenuItem value="home">{L.tovarAdd.home.glav1[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="apartment">{L.tovarAdd.home.glav2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="earth">{L.tovarAdd.home.glav3[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="garage">{L.tovarAdd.home.glav4[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={arend} onChange={handleArend}>
-                    <MenuItem value="sell">Аренда</MenuItem>
-                    <MenuItem value="rent">Аренда посуточно</MenuItem>
-                    <MenuItem value="dialy-rent">Продажа</MenuItem>
+                    <StyledMenuItem value="sell">{L.tovarAdd.home.aren1[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="rent">{L.tovarAdd.home.aren2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="dialy-rent">{L.tovarAdd.home.aren3[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
                   <Select value={tips} label="sum" onChange={handleTips}>
                     {tip.map((tp) => (
-                      <MenuItem value={tp._id}>{tp.name}</MenuItem>
+                      <StyledMenuItem value={tp._id}>{tp.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={novy} label="Age" onChange={handleNovyChange}>
-                    <MenuItem value="new">новий</MenuItem>
-                    <MenuItem value="old">B/</MenuItem>
+                    <StyledMenuItem value="new">{L.tovarAdd.fash.now[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="old">B/У</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
@@ -340,7 +337,7 @@ function Home({ category }) {
                     value={komnat}
                     onChange={handleKomnat}
                     sx={{ mb: 3, mt: 3 }}
-                    label="количество комнат*"
+                    label={L.tovarAdd.home.komnat[lan]}
                     variant="filled"
                     type="number"
                     helperText={errors?.kol?.message}
@@ -358,7 +355,7 @@ function Home({ category }) {
                     value={god}
                     onChange={handleGod}
                     sx={{ mb: 3 }}
-                    label="Год постройки /сдачи"
+                    label={L.tovarAdd.home.god[lan]}
                     variant="filled"
                     type="number"
                     helperText={errors?.god?.message}
@@ -368,10 +365,10 @@ function Home({ category }) {
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
                   <Select value={has} label="has" onChange={handleHas}>
-                    <MenuItem value={false}>Has furniture</MenuItem>
-                    <MenuItem value={true}>No furniture</MenuItem>
+                    <StyledMenuItem value={false}>{L.tovarAdd.home.has[lan]}</StyledMenuItem>
+                    <StyledMenuItem value={true}>{L.tovarAdd.home.has2[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <Controller
@@ -383,7 +380,7 @@ function Home({ category }) {
                       value={visota}
                       onChange={handleVisota}
                       sx={{ mb: 3 }}
-                      label="высота потолков (m)"
+                      label={L.tovarAdd.home.vsota[lan]}
                       variant="filled"
                       type="number"
                       helperText={errors?.potol?.message}
@@ -394,32 +391,32 @@ function Home({ category }) {
                 />
               </ContentRow>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
                   <Select value={otremont} label="has" onChange={handleRem}>
-                    <MenuItem value="repaired">отремонтирован</MenuItem>
-                    <MenuItem value="not-repaired">Не пьемонтируется</MenuItem>
+                    <StyledMenuItem value="repaired">{L.tovarAdd.home.ot[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="not-repaired">{L.tovarAdd.home.ot2[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={kir} label="has" onChange={handleKir}>
-                    <MenuItem value="brick">кирпичный</MenuItem>
-                    <MenuItem value="panel">панельный</MenuItem>
-                    <MenuItem value="monolithic">Монолитный</MenuItem>
-                    <MenuItem value="foam-block">Блочный</MenuItem>
-                    <MenuItem value="other">Другой</MenuItem>
+                    <StyledMenuItem value="brick">{L.tovarAdd.home.krpch1[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="panel">{L.tovarAdd.home.krpch2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="monolithic">{L.tovarAdd.home.krpch3[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="foam-block">{L.tovarAdd.home.krpch4[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="other">{L.tovarAdd.home.krpch5[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
               <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
                 <Select value={cost} label="has" onChange={handleCost}>
-                  <MenuItem value={true}>Have brokerage fee</MenuItem>
-                  <MenuItem value={false}>No brokerage fee</MenuItem>
+                  <StyledMenuItem value={true}>{L.tovarAdd.home.have[lan]}</StyledMenuItem>
+                  <StyledMenuItem value={false}>{L.tovarAdd.home.have2[lan]}</StyledMenuItem>
                 </Select>
               </StyledFormControl>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h4">
-                Этаж
+                {L.tovarAdd.home.etaj[lan]}
               </Typography>
               <ContentRow>
                 <Controller
@@ -429,10 +426,9 @@ function Home({ category }) {
                   render={({ field }) => (
                     <StyledTextField
                       sx={{ mb: 3 }}
-                      label="Этаж"
+                      label={L.tovarAdd.home.etaj[lan]}
                       variant="filled"
                       type="number"
-                      onChange={(e) => setEtaj(e.target.value)}
                       helperText={errors?.etaj?.message}
                       error={errors?.etaj}
                       {...field}
@@ -446,10 +442,9 @@ function Home({ category }) {
                   render={({ field }) => (
                     <StyledTextField
                       sx={{ mb: 3, width: 400 }}
-                      label="Этажность дома"
+                      label={L.tovarAdd.home.etajd[lan]}
                       variant="filled"
                       type="number"
-                      onChange={(e) => setEtajj(e.target.value)}
                       helperText={errors?.etajd?.message}
                       error={errors?.etajd}
                       {...field}
@@ -460,7 +455,7 @@ function Home({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h4">
-                Comforts
+              {L.tovarAdd.home.komfort[lan]}
               </Typography>
               <StyledFormControl variant="filled" sx={{ mb: 3, minWidth: 120 }}>
                 <Select
@@ -471,10 +466,10 @@ function Home({ category }) {
                   label="sum"
                 >
                   {names.map((tp) => (
-                    <MenuItem key={tp._id} value={tp._id}>
+                    <StyledMenuItem key={tp._id} value={tp._id}>
                       {/* <Checkbox checked={personName.indexOf(tp.name) > -1} /> */}
                       <ListItemText primary={tp.name} />
-                    </MenuItem>
+                    </StyledMenuItem>
                   ))}
                 </Select>
               </StyledFormControl>
@@ -484,8 +479,7 @@ function Home({ category }) {
                 defaultValue=""
                 render={({ field }) => (
                   <StyledTextField
-                    label="Рядом есть"
-                    onChange={(e) => setRyadom(e.target.value)}
+                    label={L.tovarAdd.home.ryadom[lan]}
                     variant="filled"
                     helperText={errors?.rya?.message}
                     error={errors?.rya}
@@ -496,7 +490,7 @@ function Home({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h4">
-                Размер
+                {L.tovarAdd.fash.raz[lan]}
               </Typography>
               <Controller
                 name="raz"
@@ -505,13 +499,13 @@ function Home({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="Размер (m)2"
-                    onChange={(e) => setRazmer(e.target.value)}
+                    label={L.tovarAdd.home.razmer1[lan]}
                     variant="filled"
                     sx={{ mb: 3 }}
                     helperText={errors?.raz?.message}
                     error={errors?.raz}
                     {...field}
+                    type="number"
                   />
                 )}
               />
@@ -521,12 +515,12 @@ function Home({ category }) {
                 defaultValue=""
                 render={({ field }) => (
                   <StyledTextField
-                    label="Доступный (m)2"
-                    onChange={(e) => setDostup(e.target.value)}
+                    label={L.tovarAdd.home.razmer2[lan]}
                     variant="filled"
                     helperText={errors?.dos?.message}
                     error={errors?.dos}
                     {...field}
+                    type="number"
                   />
                 )}
               />
@@ -534,7 +528,7 @@ function Home({ category }) {
 
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                цена*
+                {L.tovarAdd.cars.sena[lan]} *
               </Typography>
               <ContentRow>
                 <Controller
@@ -544,19 +538,19 @@ function Home({ category }) {
                   render={({ field }) => (
                     <StyledTextField
                       sx={{ mb: 3 }}
-                      onChange={(e) => setSena(e.target.value)}
-                      label="сена*"
+                      label={L.tovarAdd.cars.sena[lan]}
                       variant="filled"
                       helperText={errors?.sen?.message}
                       error={errors?.sen}
                       {...field}
+                      type="number"
                     />
                   )}
                 />
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={sum} label="sum" onChange={handleSumChange}>
-                    <MenuItem value={"uzs"}>uzs</MenuItem>
-                    <MenuItem value={"usd"}>usd</MenuItem>
+                    <StyledMenuItem value={"uzs"}>uzs</StyledMenuItem>
+                    <StyledMenuItem value={"usd"}>usd</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
@@ -564,32 +558,32 @@ function Home({ category }) {
 
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                местонахождение*
+              {L.tovarAdd.cars.mesto[lan]} *
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>region*</InputLabel>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                  <InputLabel>{L.tovarAdd.cars.region[lan]} *</InputLabel>
                   <Select
                     value={region}
                     label="sum"
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>город*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.gorod[lan]} *</InputLabel>
                   <Select
                     value={gorod}
                     label="sum"
                     onChange={handleGorodChange}
                   >
                     {gorods.map((Gorod) => (
-                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                      <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                         {Gorod.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -597,7 +591,7 @@ function Home({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                описане
+              {L.tovarAdd.cars.opesan[lan]} *
               </Typography>
               <Controller
                 name="textarea"
@@ -614,7 +608,7 @@ function Home({ category }) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder="Добавить краткое описане"
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
                     value={textarea}
                     onChange={handleTextareaChange}
                     helperText={errors.name?.message}

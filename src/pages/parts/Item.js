@@ -1,18 +1,27 @@
 import { BackJobs } from "../../components/Back";
+import FatureTovar from "../../components/common/FeatureTovar";
+import MinNav from "../../components/common/MineNavbar/MinNav";
 import Nav2 from "../../components/Nav2";
-import MainInfo from "../sections/item/MainInfo";
-import Nav from "../sections/item/Nav";
+import { Wrapper, Row, Blocc } from "../sections/home/Feature";
 
+import MainInfo from "../sections/item/MainInfo";
 
 function Item() {
-
   return (
-    <div>
+    <Blocc>
       <Nav2 />
+      <MinNav />
       <BackJobs />
       <MainInfo />
-    </div>
+      <Wrapper>
+        <Row>
+          <FatureTovar />
+        </Row>
+      </Wrapper>
+    </Blocc>
   );
 }
 
 export default Item;
+
+

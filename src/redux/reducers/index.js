@@ -6,6 +6,10 @@ import {
   productSearch,
   setImages,
   setCounter,
+  setLanguage,
+  setCars,
+  setElim,
+  productFeature,
 } from "./productReducer";
 
 const reducer = combineReducers({
@@ -15,6 +19,10 @@ const reducer = combineReducers({
   Search:productSearch,
   allImage:setImages,
   allCounter:setCounter,
+  allLanguage:setLanguage,
+  allSetCars:setCars,
+  allSetElim: setElim,
+  allProduc:productFeature,
 });
 
 export default reducer;

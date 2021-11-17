@@ -1,4 +1,4 @@
-import { TextareaAutosize, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Navbar, { CardImages } from "./Navbar";
 import { Box } from "@mui/system";
@@ -6,6 +6,9 @@ import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import L from "../../../locale/language.json";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom"; 
 import {
   Wrapper,
   ContentRow,
@@ -15,20 +18,19 @@ import {
   StyledTextField,
 } from "../Admen/MaterialTovar/Tovar.jsx";
 import { BackSetting } from "../../../components/Back";
+import MinNav from "../../../components/common/MineNavbar/MinNav";
 
 function Setting() {
+  const history = useHistory();
+  const lan = useSelector((state) => state.allLanguage);
   const schema = yup.object({
     name: yup.string().required("This is required field"),
     status: yup.string().required("This is required field"),
-    // textarea: yup
-    //   .string()
-    //   .required("This is required field")
-    //   .min(90, "You entered less text"),
     adres: yup
       .string()
       .required("This is required field")
       .min(10, "You entered less text"),
-    phone:yup.number(7).required(7,"number").positive().integer(),
+    phone: yup.number(7).required(7, "number").positive().integer(),
     email: yup.string().required("This is required field").email("@gmail.com"),
   });
   const {
@@ -72,7 +74,6 @@ function Setting() {
     console.log(errors);
   }, [errors]);
   const [stat, setStatus] = useState("");
-  // const [area, setArea] = useState("");
   const [nomer, setNomer] = useState("");
   const id = user._id;
 
@@ -87,7 +88,6 @@ function Setting() {
           image: img,
           name: value.name,
           phone_number: nomer,
-          // short_bio: area,
           status: stat,
         },
         {
@@ -100,20 +100,22 @@ function Setting() {
       )
       .then((res) => {
         console.log(res);
+        history.push("/myProfil")
       });
   };
 
   return (
     <>
-      <form >
+      <form>
         <Wrapper>
           <Navbar />
+          <MinNav />
           <BackSetting />
           <Container>
             <MenuContent>
               <ContentRow style={{ display: "flex", flexDirection: "column" }}>
                 <Typography sx={{ mb: 5 }} variant="h5">
-                  фотографии*
+                  {L.tovarAdd.cars.foto[lan]} *
                 </Typography>
                 <ContentRow
                   style={{ display: "flex", justifyContent: "start" }}
@@ -121,7 +123,7 @@ function Setting() {
                   <CardImages>
                     <img
                       src={`http://dems.inone.uz/api${images.data?.data.path}`}
-                      alt="sds"
+                      alt="photo"
                     />
                   </CardImages>
                   <input
@@ -132,19 +134,19 @@ function Setting() {
                     onChange={handleImgChange}
                   />
                   <StyledButton variant="contained">
-                    <label htmlFor="images">Изменить </label>
+                    <label htmlFor="images">{L.settng.but1[lan]} </label>
                   </StyledButton>
                 </ContentRow>
               </ContentRow>
-              <ContentRow style={{ display: "flex", justifyContent: "start" }}>
+              <ContentRow style={{ display: "flex", justifyContent: "space-between" }}>
                 <Controller
                   name="name"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <StyledTextField
-                      sx={{ mt: 3, width: "35%" }}
-                      label="Введите ваше имя и фамилию *"
+                      sx={{mb:2}}
+                      label={L.settng.ved[lan]}
                       variant="filled"
                       helperText={errors?.name?.message}
                       error={errors?.name}
@@ -158,8 +160,7 @@ function Setting() {
                   defaultValue=""
                   render={({ field }) => (
                     <StyledTextField
-                      sx={{ mt: 3, mb: 3, width: "35%", ml: 3 }}
-                      label="Положение дел*"
+                      label={L.settng.pol[lan]}
                       variant="filled"
                       onChange={(e) => setStatus(e.target.value)}
                       helperText={errors?.status?.message}
@@ -169,44 +170,9 @@ function Setting() {
                   )}
                 />
               </ContentRow>
-              {/* <Controller
-                name="textarea"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextareaAutosize
-                    style={{
-                      border: "none",
-                      height: "100px",
-                      outline: "none",
-                      fontSize: "17px",
-                      padding: "15px",
-                      borderRadius: "4px",
-                      maxWidth: "1000px",
-                    }}
-                    placeholder="Био "
-                    onChange={(e) => setArea(e.target.value)}
-                    helperText={errors.name?.message}
-                    error={errors?.textarea}
-                    {...field}
-                  />
-                )}
-              />
-              <p
-                style={{
-                  color: "#d32f2f",
-                  fontFamily: "Roboto",
-                  fontWeight: 400,
-                  fontSize: "0.75rem",
-                  lineHeight: 1.66,
-                  letterSpacing: " 0.03333em",
-                }}
-              >
-                {errors.textarea?.message}
-              </p> */}
 
               <Typography sx={{ mt: 5, mb: 5 }} variant="h5">
-                Установидь адрес
+                {L.settng.ustanov[lan]}
               </Typography>
               <Controller
                 name="adres"
@@ -214,7 +180,7 @@ function Setting() {
                 defaultValue=""
                 render={({ field }) => (
                   <StyledTextField
-                    label="Адрес*"
+                    label={L.settng.adres[lan]}
                     variant="filled"
                     helperText={errors.adres?.message}
                     error={errors?.adres}
@@ -224,17 +190,17 @@ function Setting() {
               />
 
               <Typography sx={{ mt: 5, mb: 5 }} variant="h5">
-                Контактная информасийа
+                {L.settng.contact[lan]}
               </Typography>
-              <ContentRow style={{ display: "flex", justifyContent: "start" }}>
+              <ContentRow style={{ display: "flex", justifyContent: "space-between" }}>
                 <Controller
                   name="phone"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
                     <StyledTextField
-                      sx={{ mt: 2, width: "35%" }}
-                      label="Номер телефона "
+                      sx={{ mb: 2 }}
+                      label={L.settng.nomer[lan]}
                       variant="filled"
                       type="number"
                       onChange={(e) => setNomer(e.target.value)}
@@ -251,8 +217,8 @@ function Setting() {
                   defaultValue=""
                   render={({ field }) => (
                     <StyledTextField
-                      sx={{ mt: 2, width: "35%", ml: 3 }}
-                      label="Адрес электронной  почты "
+                      sx={{ mb: 3}}
+                      label={L.settng.email[lan]}
                       variant="filled"
                       helperText={errors.email?.message}
                       error={errors?.email}
@@ -268,7 +234,8 @@ function Setting() {
                   type="submit"
                   onClick={handleSubmit(handleSetting)}
                 >
-                  Сохранить изменения
+                  
+                  {L.settng.but2[lan]}
                 </StyledButton>
               </Box>
             </MenuContent>

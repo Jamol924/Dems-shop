@@ -71,8 +71,9 @@ export const StyledInfo = styled.div`
 `;
 
 export const List = styled.div`
-  margin-top: 40px;
   border-bottom:1px solid #ccc;
+  margin: 0px 30px;
+  margin-top: 40px;
   div {
     padding:4px;
     display: flex;
@@ -81,5 +82,6 @@ export const List = styled.div`
   }
 `;
 export const TextArea = styled.div`
+width: 60%;
   height: auto;
 `;

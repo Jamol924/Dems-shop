@@ -12,6 +12,14 @@ export const productReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+export const productFeature = (state = { qiymat: [], products: [] }, { type, payload }) => {
+  switch (type) {
+    case ActionType.SET_PRODFEAT:
+      return { ...state, products: payload };
+    default:
+      return state;
+  }
+};
 export const productSearch = (state = { data: [] }, { type, payload }) => {
   switch (type) {
     case ActionType.SEARCH_VALUE:
@@ -60,10 +68,44 @@ export const setImages = (state = {}, { type, payload }) => {
       return state;
   }
 };
-export const setCounter = (state = localStorage.getItem("token") ? true : false, { type, payload }) => {
+export const setCars = (state = { }, { type, payload }) => {
+  switch (type) {
+    case ActionType.CARSELIMENT_VALUE:
+      return { ...state, ...payload };
+    default:
+      return state;
+  }
+};
+export const setCounter = (
+  state = localStorage.getItem("token") ? true : false,
+  { type, payload }
+) => {
   switch (type) {
     case ActionType.COUNT_VALUE:
       return payload;
+    default:
+      return state;
+  }
+};
+
+export const setLanguage = (
+  state = localStorage.getItem("language") ,
+  { type, payload }
+) => {
+  switch (type) {
+    case ActionType.LANGUE_VALUE: {
+      localStorage.setItem("language", payload);
+      return payload;
+    }
+    default:
+      return state;
+  }
+};
+export const setElim = (state = { },  { type, payload }) => {
+  switch (type) {
+    case ActionType.El_VALUE: {
+      return {...state, ...payload};
+    }
     default:
       return state;
   }

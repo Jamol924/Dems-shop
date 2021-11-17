@@ -21,19 +21,20 @@ const MainInfo = () => {
   const dispatch = useDispatch();
 
   const fetchProductDetail = async () => {
-     await axios
+    await axios
       .post(`http://dems.inone.uz/api/ad/get-by-id`, {
         limit: 10,
         _id: `${productId}`,
-      }).then((res) => 
-        dispatch(selectedProduct(res.data.data))
-      )
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(selectedProduct(res.data.data));
+      })
       .catch((err) => {
         console.log("Err", err);
-      });
-    
+      }); 
   };
- 
+
   useEffect(() => {
     if (productId && productId !== " ") fetchProductDetail();
   }, [productId]);

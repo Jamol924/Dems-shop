@@ -12,6 +12,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { Box } from "@mui/system";
 import axios from "axios";
+import L from "../../../../locale/language.json"
 import {
   Wrapper,
   Container,
@@ -20,9 +21,12 @@ import {
   StyledTextField,
   ContentRow,
   StyledFormControl,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Businesservice({ category }) {
+  const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const busines = category;
   const [area, setArea] = useState("");
@@ -119,7 +123,7 @@ function Businesservice({ category }) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -143,10 +147,11 @@ function Businesservice({ category }) {
       <form >
         <Wrapper>
           <Nav2 />
+          <MinNav />
           <BackAdminBusines />
           <Container>
             <Typography sx={{ mb: 3 }} variant="h4">
-              Бизнес & Услуги
+              {L.tovarAdd.bus.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -156,7 +161,7 @@ function Businesservice({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="заголовок объявления*"
+                    label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
                     onChange={(e) => setZagol(e.target.value)}
                     helperText={errors.name?.message}
@@ -168,38 +173,38 @@ function Businesservice({ category }) {
               <ContentRow>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={businser} onChange={handleMobile}>
-                    <MenuItem value="financial-services">
-                      financial-services
-                    </MenuItem>
-                    <MenuItem value="transportation-rental">
-                      transportation-rental
-                    </MenuItem>
-                    <MenuItem value="adverising-printing-marketing-internet">
-                      adverising-printing-marketing-internet
-                    </MenuItem>
-                    <MenuItem value="devices">devices</MenuItem>
-                    <MenuItem value="education-sports">
-                      education-sports
-                    </MenuItem>
-                    <MenuItem value="animal-services">animal-services</MenuItem>
-                    <MenuItem value="tourism">tourism</MenuItem>
-                    <MenuItem value="interpreter-services">
-                      interpreter-services
-                    </MenuItem>
-                    <MenuItem value="maintenance-repair-of-equipment">
-                      maintenance-repair-of-equipment
-                    </MenuItem>
-                    <MenuItem value="juridical-services">
-                      juridical-services
-                    </MenuItem>
-                    <MenuItem value="others">others</MenuItem>
+                    <StyledMenuItem value="financial-services">
+                      {L.tovarAdd.bus.bustov.bus1[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="transportation-rental">
+                      {L.tovarAdd.bus.bustov.bus2[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="adverising-printing-marketing-internet">
+                      {L.tovarAdd.bus.bustov.bus3[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="devices">{L.tovarAdd.bus.bustov.bus4[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="education-sports">
+                      {L.tovarAdd.bus.bustov.bus5[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="animal-services">{L.tovarAdd.bus.bustov.bus6[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="tourism">{L.tovarAdd.bus.bustov.bus7[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="interpreter-services">
+                      {L.tovarAdd.bus.bustov.bus8[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="maintenance-repair-of-equipment">
+                      {L.tovarAdd.bus.bustov.bus9[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="juridical-services">
+                   {L.tovarAdd.bus.bustov.bus10[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="others">{L.tovarAdd.bus.bustov.bus11[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                цена*
+              {L.tovarAdd.cars.sena[lan]} *
               </Typography>
               <ContentRow>
                 <Controller
@@ -210,7 +215,7 @@ function Businesservice({ category }) {
                     <StyledTextField
                       sx={{ mb: 3 }}
                       onChange={(e) => setSena(e.target.value)}
-                      label="сена*"
+                      label={L.tovarAdd.cars.sena[lan]} 
                       variant="filled"
                       type="number"
                       helperText={errors.sen?.message}
@@ -221,40 +226,40 @@ function Businesservice({ category }) {
                 />
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={sum} label="sum" onChange={handleSumChange}>
-                    <MenuItem value="uzs">uzs</MenuItem>
-                    <MenuItem value="usd">usd</MenuItem>
+                    <StyledMenuItem value="uzs">uzs</StyledMenuItem>
+                    <StyledMenuItem value="usd">usd</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                местонахождение*
+              {L.tovarAdd.cars.mesto[lan]} *
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>region*</InputLabel>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                  <InputLabel>{L.tovarAdd.cars.region[lan]} *</InputLabel>
                   <Select
                     value={region}
                     label="sum"
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>город*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.gorod[lan]} *</InputLabel>
                   <Select
                     value={gorod}
                     label="sum"
                     onChange={handleGorodChange}
                   >
                     {gorods.map((Gorod) => (
-                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                      <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                         {Gorod.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -262,7 +267,7 @@ function Businesservice({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                описане
+              {L.tovarAdd.cars.opesan[lan]} *
               </Typography>
               <Controller
                 name="textarea"
@@ -279,7 +284,7 @@ function Businesservice({ category }) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder="Добавить краткое описане"
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
                     onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}

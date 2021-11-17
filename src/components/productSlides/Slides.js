@@ -2,7 +2,6 @@ import { Carousel } from "react-carousel-minimal";
 import styled from "styled-components";
 
 function CarouselApp({ dataImg }) {
-  console.log(dataImg.images[0]);
   const data = dataImg.images.map((elm) => {
     return(
     {
@@ -40,11 +39,10 @@ function CarouselApp({ dataImg }) {
             thumbnails={true}
             thumbnailWidth="100px"
             thumbnailHeight="100px"
+            overflow="hidden"
             style={{
-              textAlign: "center",
-              maxWidth: "850px",
-              maxHeight: "600px",
               margin: "0px auto 30px",
+              overflow: "hidden"
             }}
           />
         </div>
@@ -59,6 +57,7 @@ const DemoImgas = styled.div`
     height: 100px;
     width: 100px;
     object-fit: cover;
+    
   }
   .active-thumbnail {
     border: none;

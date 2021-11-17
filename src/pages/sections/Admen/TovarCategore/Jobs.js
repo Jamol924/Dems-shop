@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { BackAdminElictron, BackAdminJobs } from "../../../../components/Back";
+import {  BackAdminJobs } from "../../../../components/Back";
 import React, { useState, useEffect } from "react";
-import Nav from "../../../../components/Nav";
 import Nav2 from "../../../../components/Nav2";
 import LoaderSpinner from "../../../../Loader/loader";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,6 +8,8 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import { Box } from "@mui/system";
+import L from "../../../../locale/language.json"
+import { useSelector } from "react-redux";
 import {
   Typography,
   Select,
@@ -24,9 +25,12 @@ import {
   ContentRow,
   StyledFormControl,
   StyledButton,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Jobs({ category }) {
+  const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const job = category;
   const [zagol, setZagol] = useState("");
@@ -134,7 +138,7 @@ function Jobs({ category }) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -159,10 +163,11 @@ function Jobs({ category }) {
     <form >
       <Wrapper>
         <Nav2 />
+        <MinNav />
         <BackAdminJobs />
         <Container>
           <Typography sx={{ mb: 3 }} variant="h4">
-            Детали вакансии
+          {L.tovarAdd.jobs.name[lan]}
           </Typography>
           <MenuContent>
             <Controller
@@ -172,7 +177,7 @@ function Jobs({ category }) {
               render={({ field }) => (
                 <StyledTextField
                   sx={{ mb: 3 }}
-                  label="заголовок объявления*"
+                  label={L.tovarAdd.cars.title[lan]}
                   variant="filled"
                   onChange={(e) => setZagol(e.target.value)}
                   helperText={errors.name?.message}
@@ -182,68 +187,68 @@ function Jobs({ category }) {
               )}
             />
             <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+              <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
                 <Select value={tur} onChange={handleTur}>
-                  <MenuItem value="retail-sales">Розничные продажи</MenuItem>
-                  <MenuItem value="transport-logistics">
-                    Транспортная логистика
-                  </MenuItem>
-                  <MenuItem value="construction">Строительство</MenuItem>
-                  <MenuItem value="bars-and-restaurants">
-                    Бары & ресторан
-                  </MenuItem>
-                  <MenuItem value="jurisprudence-and-accounting">
-                    Юриспруденция и бухгалтерский учет
-                  </MenuItem>
-                  <MenuItem value="security">Безопасность</MenuItem>
-                  <MenuItem value="house-stuff">Домашние вещи</MenuItem>
-                  <MenuItem value="tourism-entertainment-fun-games">
-                    tourism-entertainment-fun-games
-                  </MenuItem>
-                  <MenuItem value="education">education</MenuItem>
-                  <MenuItem value="it-electronics-and-technology">
-                    it-electronics-and-technology
-                  </MenuItem>
-                  <MenuItem value="medicine-and-pharmacy">
-                    medicine-and-pharmacy
-                  </MenuItem>
-                  <MenuItem value="culturre-and-art">culturre-and-art</MenuItem>
-                  <MenuItem value="other">other</MenuItem>
+                  <StyledMenuItem value="retail-sales">{L.tovarAdd.jobs.roz1[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="transport-logistics">
+                    {L.tovarAdd.jobs.roz2[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="construction">{L.tovarAdd.jobs.roz3[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="bars-and-restaurants">
+                     {L.tovarAdd.jobs.roz4[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="jurisprudence-and-accounting">
+                    {L.tovarAdd.jobs.roz5[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="security">{L.tovarAdd.jobs.roz6[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="house-stuff">{L.tovarAdd.jobs.roz7[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="tourism-entertainment-fun-games">
+                    {L.tovarAdd.jobs.roz8[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="education">{L.tovarAdd.jobs.roz9[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="it-electronics-and-technology">
+                    {L.tovarAdd.jobs.roz10[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="medicine-and-pharmacy">
+                    {L.tovarAdd.jobs.roz11[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="culturre-and-art">{L.tovarAdd.jobs.roz12[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="other">{L.tovarAdd.jobs.roz13[lan]} </StyledMenuItem>
                 </Select>
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <Select value={qaror} onChange={handleQaror}>
-                  <MenuItem value="offer">offer</MenuItem>
-                  <MenuItem value="search ">search </MenuItem>
+                  <StyledMenuItem value="offer">{L.tovarAdd.jobs.offer1[lan]} </StyledMenuItem>
+                  <StyledMenuItem value="search"> {L.tovarAdd.jobs.offer2[lan]} </StyledMenuItem>
                 </Select>
               </StyledFormControl>
             </ContentRow>
             <ContentRow>
               <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
                 <Select value={pостоянная} onChange={handleПостоянная}>
-                  <MenuItem value="part-time-employment">
-                    Постоянная занятость
-                  </MenuItem>
-                  <MenuItem value="full-time-employment">
-                    Временное трудоустройство
-                  </MenuItem>
+                  <StyledMenuItem value="part-time-employment">
+                    {L.tovarAdd.jobs.post1[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="full-time-employment">
+                    {L.tovarAdd.jobs.post2[lan]} 
+                  </StyledMenuItem>
                 </Select>
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
                 <Select value={Частичная} onChange={handleЧастичная}>
-                  <MenuItem value="permanent-employment">
-                    permanent-employment
-                  </MenuItem>
-                  <MenuItem value="temporary-employment">
-                    temporary-employment
-                  </MenuItem>
+                  <StyledMenuItem value="permanent-employment">
+                    {L.tovarAdd.jobs.per1[lan]} 
+                  </StyledMenuItem>
+                  <StyledMenuItem value="temporary-employment">
+                    {L.tovarAdd.jobs.per2[lan]} 
+                  </StyledMenuItem>
                 </Select>
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
           <MenuContent>
             <Typography sx={{ mb: 3 }} variant="h5">
-              Зарплата
+            {L.tovarAdd.jobs.zarplata[lan]}
             </Typography>
             <ContentRow>
               <Controller
@@ -253,7 +258,7 @@ function Jobs({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="От "
+                    label={L.tovarAdd.jobs.ot[lan]}
                     variant="filled"
                     onChange={(e) => setFrom(e.target.value)}
                     helperText={errors.ot?.message}
@@ -269,7 +274,7 @@ function Jobs({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="К "
+                    label={L.tovarAdd.jobs.k[lan]}
                     variant="filled"
                     onChange={(e) => setTo(e.target.value)}
                     helperText={errors.ke?.message}
@@ -280,36 +285,36 @@ function Jobs({ category }) {
               />
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                 <Select value={sum} label="sum" onChange={handleSumChange}>
-                  <MenuItem value="uzs">uzs</MenuItem>
-                  <MenuItem value="usd">usd</MenuItem>
+                  <StyledMenuItem value="uzs">uzs</StyledMenuItem>
+                  <StyledMenuItem value="usd">usd</StyledMenuItem>
                 </Select>
               </StyledFormControl>
             </ContentRow>
           </MenuContent>
           <MenuContent>
             <Typography sx={{ mb: 3 }} variant="h5">
-              местонахождение*
+            {L.tovarAdd.cars.mesto[lan]}
             </Typography>
             <ContentRow>
-              <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>region*</InputLabel>
+              <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <InputLabel>{L.tovarAdd.cars.region[lan]}*</InputLabel>
                 <Select
                   value={region}
                   label="sum"
                   onChange={handleRegionChange}
                 >
                   {regions.map((Region) => (
-                    <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                    <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                   ))}
                 </Select>
               </StyledFormControl>
               <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                <InputLabel>город*</InputLabel>
+                <InputLabel>{L.tovarAdd.cars.gorod[lan]}*</InputLabel>
                 <Select value={gorod} label="sum" onChange={handleGorodChange}>
                   {gorods.map((Gorod) => (
-                    <MenuItem value={Gorod._id} key={Gorod._id}>
+                    <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                       {Gorod.name}
-                    </MenuItem>
+                    </StyledMenuItem>
                   ))}
                 </Select>
               </StyledFormControl>
@@ -317,7 +322,7 @@ function Jobs({ category }) {
           </MenuContent>
           <MenuContent>
             <Typography sx={{ mb: 3 }} variant="h5">
-              описане
+            {L.tovarAdd.cars.opesan[lan]}
             </Typography>
             <Controller
               name="textarea"
@@ -334,7 +339,7 @@ function Jobs({ category }) {
                     borderRadius: "4px",
                     maxWidth: "1000px",
                   }}
-                  placeholder="Добавить краткое описане"
+                  placeholder={L.tovarAdd.cars.opesanPlas[lan]}
                   onChange={(e) => setArea(e.target.value)}
                   helperText={errors.name?.message}
                   error={errors?.textarea}

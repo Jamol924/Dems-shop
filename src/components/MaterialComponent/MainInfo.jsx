@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   margin: 0 auto;
   @media (max-width: 1000px) {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     flex-direction: column;
   }
@@ -22,10 +22,11 @@ export const Left = styled.div`
   }
 `;
 export const Right = styled.div`
-  width: 270px;
+  width: 290px;
   background: white;
   height: fit-content;
   border-radius: 5px;
+  margin-bottom: 20px;
   @media (max-width: 1000px) {
     width: 100%;
    

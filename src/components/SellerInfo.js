@@ -1,32 +1,24 @@
 import React, { useState } from "react";
 import locat from "../assets/locat.svg";
 import shop from "../assets/shop-add.svg";
-import rectangle from "../assets/Rectangle 23.svg";
-import { Wrapper } from "./MaterialComponent/SellerInfo";
+import { Wrapper} from "./MaterialComponent/SellerInfo";
 import { Typography } from "@mui/material";
 import { StyledButton } from "../pages/sections/Admen/MaterialTovar/Tovar.jsx";
-import axios from "axios"
+import { useSelector } from "react-redux";
+import L from "../locale/language.json"
 
 const SellerInfo = ({ dataSeller }) => {
-  const [count, setCount] = useState("Qo'ng'iroq qiling");
+  const lan = useSelector(state => state.allLanguage)  
+  const [count, setCount] = useState(L.item.qungiroq[lan]);
   const handleCount = () => {
     setCount(dataSeller.phone_number);
   };
 
-  axios
-    .post(`http://dems.inone.uz/api/update-profile`, {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-      },
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
   return (
     <>
       <Wrapper>
-        <Typography variant="h6">Seller Information</Typography>
+        <Typography variant="h6">{L.item.sel[lan]}</Typography>
         <div>
-          <img src={rectangle} />
           <h3>{dataSeller.name}</h3>
         </div>
         <div>

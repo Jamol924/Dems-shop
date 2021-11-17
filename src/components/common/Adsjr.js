@@ -1,5 +1,5 @@
 import React from "react";
-import NoImages from "../../assets/NoImages.jpg"
+import NoImages from "../../assets/NoImages.jpg";
 import {
   Wrapper,
   ImgDi,
@@ -20,11 +20,18 @@ import { Link } from "react-router-dom";
 import {
   CardContactSvg,
   CardImgSvg,
+  CardIconSvg, 
   CardLocationSvg,
   CardTissotSvg,
 } from "../../icon/CardSvg";
 
-
+function day(data) {
+  if (data == null) {
+    return null;
+  }
+  let d = new Date(data).toISOString().slice(0,-14);
+  return d;
+}
 
 const Adsjr = ({ datas }) => {
   return (
@@ -32,15 +39,15 @@ const Adsjr = ({ datas }) => {
       {datas.map((dat) => (
         <Link to={`/${dat._id}`}>
           <Wrapper>
+              <CardIconSvg /> 
             <ImgDi>
-              <CardImgSvg />
               {dat.images.length >= 1 ? (
                 <img
                   src={`http://dems.inone.uz/api${dat.images[0]}`}
                   alt="phone"
                 />
               ) : (
-                <img src = {NoImages}  alt ="No images"/>
+                <img src={NoImages} alt="No images" />
               )}
             </ImgDi>
             <CardMenu>
@@ -49,13 +56,13 @@ const Adsjr = ({ datas }) => {
                 <WIcon>
                   <CardContactSvg />
                 </WIcon>
-                <WTitle>{dat.view_count}</WTitle>
+                <WTitle>{dat.user_phone_number}</WTitle>
               </CardW>
               <CardName>
                 <NameIcon>
                   <CardTissotSvg />
                 </NameIcon>
-                <NameTitle>{dat.feature_expired_at}</NameTitle>
+                <NameTitle>{day(dat.expired_at)}</NameTitle>
               </CardName>
               <CardLocation>
                 <LocationIcon>

@@ -9,6 +9,7 @@ import LoaderSpinner from "../../../../Loader/loader";
 import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
+import L from "../../../../locale/language.json"
 import * as yup from "yup";
 import axios from "axios";
 import { Box } from "@mui/system";
@@ -20,9 +21,12 @@ import {
   StyledTextField,
   ContentRow,
   StyledFormControl,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Electronics({ category }) {
+  const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const elictron = category;
   const [area, setArea] = useState("");
@@ -157,7 +161,7 @@ function Electronics({ category }) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -180,10 +184,11 @@ function Electronics({ category }) {
       <form >
         <Wrapper>
           <Nav2 />
+          <MinNav />
           <BackAdminElictron />
           <Container>
             <Typography sx={{ mb: 3 }} variant="h4">
-              Электроник детаилс
+              {L.tovarAdd.elictorin.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -193,7 +198,7 @@ function Electronics({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="заголовок объявления*"
+                    label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
                     onChange={(e) => setZagol(e.target.value)}
                     helperText={errors?.name?.message}
@@ -203,33 +208,33 @@ function Electronics({ category }) {
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
                   <Select value={mobil} onChange={handleMobile}>
-                    <MenuItem value="phone">Телефон</MenuItem>
-                    <MenuItem value="computer">Компьютер</MenuItem>
-                    <MenuItem value="tv">Телевизор </MenuItem>
-                    <MenuItem value="accessories">accessories </MenuItem>
-                    <MenuItem value="other">other </MenuItem>
+                    <StyledMenuItem value="phone">Телефон</StyledMenuItem>
+                    <StyledMenuItem value="computer">Компьютер</StyledMenuItem>
+                    <StyledMenuItem value="tv">Телевизор </StyledMenuItem>
+                    <StyledMenuItem value="accessories">accessories </StyledMenuItem>
+                    <StyledMenuItem value="other">other </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={novy} onChange={handleNovy}>
-                    <MenuItem value="new">Новый</MenuItem>
-                    <MenuItem value="old">В/У</MenuItem>
+                    <StyledMenuItem value="new">{L.tovarAdd.fash.now[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="old">В/У</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
               <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
                 <Select value={tur} onChange={handleTur}>
                   {val.map((el) => (
-                    <MenuItem value={el._id}>{el.name}</MenuItem>
+                    <StyledMenuItem value={el._id}>{el.name}</StyledMenuItem>
                   ))}
                 </Select>
               </StyledFormControl>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                цена*
+              {L.tovarAdd.cars.sena[lan]}*
               </Typography>
               <ContentRow>
                 <Controller
@@ -240,51 +245,52 @@ function Electronics({ category }) {
                     <StyledTextField
                       sx={{ mb: 3 }}
                       onChange={(e) => setSena(e.target.value)}
-                      label="сена*"
+                      label={L.tovarAdd.cars.sena[lan]}
                       variant="filled"
                       helperText={errors?.sen?.message}
                       error={errors?.sen}
                       {...field}
+                      type="number"
                     />
                   )}
                 />
 
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={sum} label="sum" onChange={handleSumChange}>
-                    <MenuItem value="uzs">uzs</MenuItem>
-                    <MenuItem value="usd">usd</MenuItem>
+                    <StyledMenuItem value="uzs">uzs</StyledMenuItem>
+                    <StyledMenuItem value="usd">usd</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                местонахождение*
+              {L.tovarAdd.cars.mesto[lan]}*
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>region*</InputLabel>
+              <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                  <InputLabel>{L.tovarAdd.cars.region[lan]}*</InputLabel>
                   <Select
                     value={region}
                     label="sum"
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>город*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.gorod[lan]}*</InputLabel>
                   <Select
                     value={gorod}
                     label="sum"
                     onChange={handleGorodChange}
                   >
                     {gorods.map((Gorod) => (
-                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                      <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                         {Gorod.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -292,7 +298,7 @@ function Electronics({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                описане
+              {L.tovarAdd.cars.opesan[lan]}
               </Typography>
               <Controller
                 name="textarea"
@@ -309,7 +315,7 @@ function Electronics({ category }) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder="Добавить краткое описане"
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]}
                     onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}

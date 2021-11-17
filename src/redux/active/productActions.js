@@ -13,6 +13,12 @@ export const setProducts = (products) =>{
         payload: products,
     }
 };
+export const setProdFeat = (products) =>{
+    return{
+        type: ActionType.SET_PRODFEAT,
+        payload: products,
+    }
+};
 export const selectedProduct = (prod) =>{
     return{
         type:ActionType.SELECTED_PRODUCT,
@@ -44,7 +50,19 @@ export const countItem = (eliment) =>{
 };
 export const language = (eliment) =>{
     return{
-        type:ActionType.COUNT_VALUE,
+        type:ActionType.LANGUE_VALUE,
         payload:eliment,
+    };
+};
+export const carsEliment = (eliment) =>{
+    return{
+        type:ActionType.CARSELIMENT_VALUE,
+        payload:eliment,
+    };
+};
+export const eliment = (el) =>{
+    return{
+        type:ActionType.El_VALUE,
+        payload:el,
     };
 };

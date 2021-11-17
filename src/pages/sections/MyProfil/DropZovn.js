@@ -6,6 +6,7 @@ import { Typography } from "@mui/material";
 import { MenuTitle, StyledButton, StyledColumn } from "../Admen/MaterialTovar/Tovar";
 import { useDispatch, useSelector } from "react-redux";
 import { setImag } from "../../../redux/active/productActions";
+import L from "../../../locale/language.json"
 
 const uploader = async (file) => {
   try {
@@ -39,6 +40,7 @@ const uploaderFiles = async (fileList = []) => {
 };
 
 export const AcceptMaxFiles = () => {
+  const lan = useSelector(state => state.allLanguage)  
   const dispatch = useDispatch();
 
   const [files, setFiles] = useState([]);
@@ -70,10 +72,10 @@ export const AcceptMaxFiles = () => {
 
   return (
     <>
-      <MenuTitle>
-        <Typography variant="h5">Загрузите максимум 12 изображений</Typography>
-        <Typography variant="h7">Загрузите максимум 12 изображений</Typography>
-      </MenuTitle>
+      {/* <MenuTitle>
+        <Typography variant="h5">{L.tovarAdd.cars.maxImg[lan]}</Typography>
+        <Typography variant="h7">{L.tovarAdd.cars.maxImg[lan]}</Typography>
+      </MenuTitle> */}
       <Box
         component="span"
         sx={{
@@ -87,15 +89,15 @@ export const AcceptMaxFiles = () => {
         }}
       >
         <Typography sx={{ mb: 1 }} variant="h5">
-          фотографии
+        {L.tovarAdd.cars.foto[lan]}
         </Typography>
         <Typography sx={{ mb: 1 }} variant="h7">
-          Загрузите максимум 12 изображений
+        {L.tovarAdd.cars.maxImg[lan]}
         </Typography>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           <StyledButton variant="contained">
-            <label htmlFor="images">выбрать изображение</label>
+            <label htmlFor="images">{L.tovarAdd.cars.but1[lan]}</label>
           </StyledButton>
         </div>
         <StyledColumn>{acceptedFileItems}</StyledColumn>

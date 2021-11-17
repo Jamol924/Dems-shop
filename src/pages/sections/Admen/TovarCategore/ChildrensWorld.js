@@ -12,6 +12,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { Box } from "@mui/system";
 import axios from "axios";
+import L from "../../../../locale/language.json"
 import {
   Wrapper,
   Container,
@@ -20,9 +21,12 @@ import {
   StyledTextField,
   ContentRow,
   StyledFormControl,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function ChildrensWorld({ category }) {
+  const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const children = category;
   const [area, setArea] = useState("");
@@ -127,7 +131,7 @@ function ChildrensWorld({ category }) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -151,10 +155,11 @@ function ChildrensWorld({ category }) {
       <form >
         <Wrapper>
           <Nav2 />
+          <MinNav />
           <BackAdminChildren />
           <Container>
             <Typography sx={{ mb: 3 }} variant="h4">
-              Детский мир
+              {L.tovarAdd.chil.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -164,7 +169,7 @@ function ChildrensWorld({ category }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="заголовок объявления*"
+                    label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
                     onChange={(e) => setZagol(e.target.value)}
                     helperText={errors.name?.message}
@@ -174,40 +179,40 @@ function ChildrensWorld({ category }) {
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl variant="filled" sx={{ mb:3, minWidth: 120 }}>
                   <Select value={mobil} onChange={handleMobile}>
-                    <MenuItem value="childrens-clothing">
-                      childrens-clothing
-                    </MenuItem>
-                    <MenuItem value="childrens-shoes">childrens-shoes</MenuItem>
-                    <MenuItem value="childrens-stroller">
-                      childrens-stroller
-                    </MenuItem>
-                    <MenuItem value="childrens-car-seats">
-                      childrens-car-seats
-                    </MenuItem>
-                    <MenuItem value="childrens-furniture">
-                      childrens-furniture
-                    </MenuItem>
-                    <MenuItem value="toys">toys </MenuItem>
-                    <MenuItem value="childrens-transport">
-                      childrens-transport
-                    </MenuItem>
-                    <MenuItem value="feeding">feeding </MenuItem>
-                    <MenuItem value="other">other</MenuItem>
+                    <StyledMenuItem value="childrens-clothing">
+                      {L.tovarAdd.chil.clot1[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="childrens-shoes">{L.tovarAdd.chil.clot2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="childrens-stroller">
+                      {L.tovarAdd.chil.clot3[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="childrens-car-seats">
+                      {L.tovarAdd.chil.clot4[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="childrens-furniture">
+                      {L.tovarAdd.chil.clot5[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="toys">{L.tovarAdd.chil.clot6[lan]} </StyledMenuItem>
+                    <StyledMenuItem value="childrens-transport">
+                      {L.tovarAdd.chil.clot7[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="feeding">{L.tovarAdd.chil.clot8[lan]} </StyledMenuItem>
+                    <StyledMenuItem value="other">{L.tovarAdd.chil.clot9[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={novy} onChange={handleNovy}>
-                    <MenuItem value="new">Новый</MenuItem>
-                    <MenuItem value="old">В/У</MenuItem>
+                    <StyledMenuItem value="new">{L.tovarAdd.fash.now[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="old">В/У</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                Razmer
+              {L.tovarAdd.fash.raz[lan]}
               </Typography>
               <Controller
                 name="raz"
@@ -217,7 +222,7 @@ function ChildrensWorld({ category }) {
                   <StyledTextField
                     sx={{ mb: 3 }}
                     onChange={(e) => setRazmer(e.target.value)}
-                    label="Размер "
+                    label={L.tovarAdd.fash.raz[lan]}
                     variant="filled"
                     type="number"
                     helperText={errors.raz?.message}
@@ -229,7 +234,7 @@ function ChildrensWorld({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                цена*
+              {L.tovarAdd.cars.sena[lan]} *
               </Typography>
               <ContentRow>
                 <Controller
@@ -240,7 +245,7 @@ function ChildrensWorld({ category }) {
                     <StyledTextField
                       sx={{ mb: 3 }}
                       onChange={(e) => setSena(e.target.value)}
-                      label="сена*"
+                      label={L.tovarAdd.cars.sena[lan]}
                       variant="filled"
                       type="number"
                       helperText={errors.sen?.message}
@@ -251,41 +256,41 @@ function ChildrensWorld({ category }) {
                 />
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={sum} label="sum" onChange={handleSumChange}>
-                    <MenuItem value="uzs">uzs</MenuItem>
-                    <MenuItem value="usd">usd</MenuItem>
+                    <StyledMenuItem value="uzs">uzs</StyledMenuItem>
+                    <StyledMenuItem value="usd">usd</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                местонахождение*
+              {L.tovarAdd.cars.mesto[lan]} *
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>region*</InputLabel>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                  <InputLabel>{L.tovarAdd.cars.region[lan]} *</InputLabel>
                   <Select
                     value={region}
                     label="sum"
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
 
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>город*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.gorod[lan]} *</InputLabel>
                   <Select
                     value={gorod}
                     label="sum"
                     onChange={handleGorodChange}
                   >
                     {gorods.map((Gorod) => (
-                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                      <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                         {Gorod.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -293,7 +298,7 @@ function ChildrensWorld({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                описане
+              {L.tovarAdd.cars.opesan[lan]} *
               </Typography>
               <Controller
                 name="textarea"
@@ -310,7 +315,7 @@ function ChildrensWorld({ category }) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder="Добавить краткое описане"
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
                     onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}

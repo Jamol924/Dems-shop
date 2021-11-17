@@ -3,15 +3,19 @@ import clock from "../assets/clock.svg";
 import location from "../assets/location.svg";
 import styled from "styled-components";
 import NoImages from "../assets/NoImages.jpg";
-import {
-  Wrapper,
-  StyledInfo,
-  MenuSection,
-} from "./MaterialComponent/images";
+import { Wrapper, StyledInfo, MenuSection } from "./MaterialComponent/images";
 import { Typography } from "@mui/material";
 import CarouselApp from "./productSlides/Slides";
+import SliderSlice from "./common/SliceCarousel/SliceCarousel";
 
 const Image = ({ dataProduct }) => {
+  function day(dataProduct) {
+    if (dataProduct == null) {
+      return null;
+    }
+    let d = new Date(dataProduct).toGMTString().slice(0, -12);
+    return d;
+  }
   return (
     <Wrapper>
       {dataProduct.images.length >= 1 ? (
@@ -19,7 +23,7 @@ const Image = ({ dataProduct }) => {
       ) : (
         <img
           height="300px"
-          width="100%"
+          width="auto"
           objectFit="cover"
           src={NoImages}
           alt="No images"
@@ -27,12 +31,15 @@ const Image = ({ dataProduct }) => {
       )}
 
       <MenuSection>
-        <Typography variant="h4">{dataProduct.title}</Typography>
-        <StyledTypo>{dataProduct.price}</StyledTypo>
+        <StyledTypography variant="h4">{dataProduct.title}</StyledTypography>
+        <StyledTypo>
+          {dataProduct.price} <span>{dataProduct.currency}</span>
+        </StyledTypo>
       </MenuSection>
+
       <StyledInfo>
         <div>
-          <img src={clock} /> <p>{dataProduct.feature_expired_at} </p>
+          <img src={clock} /> <p>{day(dataProduct.expired_at)}</p>
         </div>
         <div>
           <img src={location} />
@@ -52,4 +59,17 @@ export const StyledTypo = styled.div`
   font-style: normal;
   font-family: "Roboto", sans-serif;
   margin: 25px 0px;
+  @media (max-width: 550px) {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 20px;
+    font-style: normal;
+    font-family: "Roboto", sans-serif;
+    margin: 20px 0px;
+  }
+`;
+export const StyledTypography = styled(Typography)`
+  @media (max-width: 550px) {
+    font-size: 10px;
+  }
 `;

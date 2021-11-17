@@ -7,15 +7,15 @@ import { useHistory } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import InputMask from "react-input-mask";
 import { StyledButton } from "../../Admen/MaterialTovar/Tovar";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { countItem } from "../../../../redux/active/productActions";
+import L from "../../../../locale/language.json";
 
-export const Tizim = () => {
-  const [counter, setCounter ] = useState(false);
-  
+export const Tizim = ({onSuccess}) => {
+  const [counter, setCounter] = useState(false);
+
   const dispatch = useDispatch();
   dispatch(countItem(counter));
-
 
   const [data, setData] = useState({
     phone_number: "",
@@ -25,8 +25,14 @@ export const Tizim = () => {
   const history = useHistory();
 
   const { enqueueSnackbar } = useSnackbar();
-  const handleClickVariant = () => () => {
-    enqueueSnackbar("Siz xato kiritdingiz!");
+  const handleClickVariant = (variant) => () => {
+    enqueueSnackbar(L.tizim.sizutdingiz[lon], { variant });
+  };
+  const handleClickSuc = (variant) => () => {
+    enqueueSnackbar(L.tizim.kkriting[lon], { variant });
+  };
+  const handleClickNumber = (variant) => () => {
+    enqueueSnackbar(L.tizim.xatokrit[lon], { variant });
   };
 
   const handleSubmit = (e) => {
@@ -38,8 +44,16 @@ export const Tizim = () => {
         .post("http://dems.inone.uz/api/sign-in", {
           phone_number,
         })
-        .then(() => setStep(1))
-        .catch(() => handleClickVariant);
+        .then(() => (setStep(1), handleClickSuc("success")()))
+        .catch((error) => {
+          if(error.response.data.code === 55001){
+            handleClickNumber("error")()
+          }else{
+            handleClickVariant("warning")()
+            onSuccess()
+          }
+        });
+        
     } else {
       axios
         .post("http://dems.inone.uz/api/sign-verify", {
@@ -55,7 +69,7 @@ export const Tizim = () => {
         .catch((e) => console.log(e));
     }
   };
-
+  const lon = useSelector((state) => state.allLanguage);
   return (
     <div>
       <form
@@ -63,10 +77,10 @@ export const Tizim = () => {
         style={{ display: "flex", flexDirection: "column", gap: "20px" }}
       >
         <InputLabel sx={{ mt: 2 }} htmlFor="input-with-icon-adornment">
-          Telifon raqamingizni kiriting
+          {L.tizim.number[lon]}
         </InputLabel>
         <StyledInputMask
-          style={{marginBottom:0}}
+          style={{ marginBottom: 0 }}
           onChange={(e) => setData({ ...data, phone_number: e.target.value })}
           placeholder="+998 (__) ___-__-__"
           mask="+\9\9\8 (99) 999-99-99"
@@ -75,16 +89,14 @@ export const Tizim = () => {
         {step === 1 && (
           <>
             <InputLabel sx={{ mt: 2 }} htmlFor="input-with-icon-adornment">
-            Tasdiqlash kodini kiriting
+              {L.tizim.verf[lon]}
             </InputLabel>
-            <StyledTextField
+            <StyledInputMask
               sx={{ marginTop: 0, marginBottom: 0 }}
-              fullWidth
-              required
               onChange={(e) => setData({ ...data, otp: e.target.value })}
-              variant="outlined"
               placeholder="_  _  _  _"
-              mask="9  9  9  9"
+              mask="9999"
+              required
             />
           </>
         )}
@@ -101,7 +113,7 @@ export const Tizim = () => {
           fullWidth
           variant="contained"
         >
-          Kirish
+          {L.tizim.but1[lon]}
         </StyledButton>
       </form>
     </div>
@@ -115,9 +127,9 @@ export const StyledInputMask = styled(InputMask)`
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
-`;
-const StyledTextField = styled(TextField)`
-  .MuiInputLabel-root.Mui-focused {
-    color: rgb(153, 149, 149);
+  @media(max-width:550px){
+    padding: 10px;
+  font-size: 17px;
   }
 `;
+

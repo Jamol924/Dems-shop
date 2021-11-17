@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
   }
   
   h3 {
-    margin-left: 9px;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -31,6 +30,18 @@ export const Wrapper = styled.div`
     font-family: "Roboto", sans-serif;
   }
 
+`;
+
+export const StyleImg = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius:50%;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 `;
 
 export const StyledBut = styled.div`

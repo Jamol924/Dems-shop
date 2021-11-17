@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import PaginationLink from "../../../../components/pagenaton/Paginat";
 import {Wrapper, Row } from "../../home/Ads";
+import L from "../../../../locale/language.json"
 
 const CardBusines = ({ filters }) => {
   const dispatch1 = useDispatch();
@@ -13,9 +14,16 @@ const CardBusines = ({ filters }) => {
 
   const [pag, setPag] = useState(1);
   const [numberOf, setNumberOf] = useState();
-  const productFetch = () => {
-    axios
-      .post("http://dems.inone.uz/api/ad/get-pagin", {
+  const productFetch = async () => {
+    const instance = axios.create({
+      baseURL: "http://dems.inone.uz/api/",
+      timeout: 1000,
+      headers: {
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
+    });
+     await instance
+      .post("ad/get-pagin", {
         limit: 10,
         page: pag,
         search: "",
@@ -42,13 +50,15 @@ const CardBusines = ({ filters }) => {
   useEffect(() => {
     productFetch();
   }, [pag]);
+  const lan = useSelector(state => state.allLanguage)  
+
 
   return (
     <div>
       <Wrapper>
         <div className="content">
           <div>
-            <h1>Бизнес & Сервис</h1>
+            <h1>{L.category.bus[lan]}</h1>
           </div>
           <Row>
             <Adsjr datas={Filter.length >= 0 ? Filter : products1} />

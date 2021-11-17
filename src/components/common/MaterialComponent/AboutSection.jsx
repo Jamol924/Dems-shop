@@ -6,6 +6,9 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  @media(max-width:550px){
+    margin-top: 20px;
+  } 
 `;
 export const WrapperMenu = styled.div`
   width: 90%;
@@ -26,7 +29,14 @@ export const TitleH1 = styled.h1`
   font-weight: bold;
   font-size: 40px;
   line-height: 50px;
+  text-align: center;
   color: #ffffff;
+  @media (max-width: 550px) {
+    margin-top: -30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+  }
 `;
 export const TitleP = styled.p`
   font-family: Inter;
@@ -35,6 +45,12 @@ export const TitleP = styled.p`
   font-size: 14px;
   line-height: 17px;
   color: #e5e5e5;
+  @media (max-width: 550px) {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+  }
 `;
 //  Form .. ....... //
 
@@ -67,9 +83,8 @@ export const FormLocation = styled.div`
     font-weight: 300;
     font-size: 15px;
     line-height: 16px;
-
   }
-  
+
   @media (max-width: 1091px) {
     height: 100%;
     width: 48%;
@@ -190,7 +205,7 @@ export const LocationStyles = styled.div`
   background-color: white;
   border-top: 1px solid grey;
   & > div {
-    flex:1 0 97%;
+    flex: 1 0 97%;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
     display: flex;
@@ -223,6 +238,11 @@ export const LocationStyles = styled.div`
       color: white;
       background: #2a3a96;
     }
+    @media(max-width:550px){
+      flex: 1 0 40%;
+      padding: 10px 10px;
+      font-size: 12px;
+    }
   }
 `;
 export const LocationSty = styled.div`
@@ -237,7 +257,7 @@ export const LocationSty = styled.div`
   border-top: 1px solid grey;
   color: grey;
   & > div {
-    flex:1 0 97%;
+    flex: 1 0 97%;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
     display: flex;
@@ -266,21 +286,27 @@ export const LocationSty = styled.div`
       color: white;
       background: #2a3a96;
     }
+    @media(max-width:550px){
+      flex: 1 0 40%;
+      padding: 10px 10px;
+      font-size: 12px;
+    }
   }
 `;
 export const StyledLoadingButton = styled(LoadingButton)`
   &.css-h4t5eh-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
     background: #3545a3;
     height: 100%;
-    width:100%;
+    width: 100%;
     border-radius: 0px;
     && {
-    background: #3545a3;
+      background: #3545a3;
+      color: white;
 
-    &:hover {
-      background: #2a3a96;
+      &:hover {
+        background: #2a3a96;
+      }
     }
-  }
   }
 `;
 export const ButtonLink = styled.div`

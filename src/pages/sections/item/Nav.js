@@ -68,5 +68,5 @@ export const StyledTab = styled(Tab)`
 `;
 
 export const StyledB = styled.div`
-  padding-left: 30px;
+  /* padding-right: 30px; */
 `;

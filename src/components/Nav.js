@@ -4,11 +4,14 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useSelector } from "react-redux";
-import langue from "./common/Langue/langue";
-import Langue from "./common/Langue/langue";
-
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { language } from "../redux/active/productActions";
+import { useDispatch, useSelector } from "react-redux";
+import L from "../locale/language.json";
 const Nav = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const [pageOffset, setPageOffset] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -17,8 +20,9 @@ const Nav = () => {
     });
   }, []);
 
+  const [age, setAge] = useState(localStorage.getItem("language") || "uz");
+  const dispatch = useDispatch();
   const counter = useSelector((state) => state.allCounter);
-  console.log(counter);
 
   return (
     <>
@@ -31,13 +35,26 @@ const Nav = () => {
 
         <ul>
           <li>
-            <Langue />
+            <StyledFormControl fullWidth>
+              <Select
+                sx={{ display: "flex" }}
+                value={age}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                  dispatch(language(e.target.value));
+                }}
+              >
+                <MenuItem value="uz">{L.til.uzbek[lan]}</MenuItem>
+                <MenuItem value="ru">{L.til.rus[lan]}</MenuItem>
+                <MenuItem value="en">{L.til.eng[lan]}</MenuItem>
+              </Select>
+            </StyledFormControl>
           </li>
           {counter ? (
             <li style={{ display: "flex" }}>
               <AccountCircleIcon className="icon" sx={{ color: "white" }} />
               <Link to="/myProfil">
-                <a href="">Мy profile </a>
+                <a href="">{L.navbar.profil[lan]} </a>
               </Link>
             </li>
           ) : (
@@ -46,14 +63,8 @@ const Nav = () => {
           <li>
             <Link to="/admen">
               <ButtonRight>
-                <StyledButton
-                  startIcon={<AddIcon />}
-                  sx={{
-                    color: "white",
-                    borderRadius: "24px",
-                  }}
-                >
-                  Post your Ad
+                <StyledButton startIcon={<AddIcon />}>
+                  {L.navbar.add[lan]}
                 </StyledButton>
               </ButtonRight>
             </Link>
@@ -76,10 +87,32 @@ export const StyledButton = styled(Button)`
   }
   && {
     background: #3545a3;
+    color: white;
+    padding: 0px 20px;
+    border-radius: 24px;
 
     &:hover {
       background: #2a3a96;
     }
+  }
+`;
+
+export const StyledFormControl = styled(FormControl)`
+  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+    color: white;
+  }
+  .css-1oybtu7-MuiInputBase-root-MuiOutlinedInput-root {
+    color: white;
+  }
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: none;
+    color: white;
+  }
+  .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    color: white;
+  }
+  .css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+    color: white;
   }
 `;
 
@@ -95,12 +128,15 @@ export const StyledNav = styled.nav`
   right: 0;
   z-index: 300;
   transition: all 0.6s ease;
-
+  @media (max-width: 550px) {
+    display: none;
+  }
   ${(props) =>
     props.isScroll
       ? css`
           background: white;
           box-shadow: 5px 0 10px lightgray;
+          transition: all 0.5s ease;
           height: 60px;
           a {
             color: black;
@@ -108,14 +144,31 @@ export const StyledNav = styled.nav`
           .icon {
             color: black;
           }
+          .css-1oybtu7-MuiInputBase-root-MuiOutlinedInput-root {
+            color: black;
+          }
+          .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+            color: black;
+          }
+          .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+            color: black;
+          }
+          .css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+            color: black;
+          }
         `
       : css`
           background: transparent;
           transition: all 0.5s ease;
+          height: 80px;
           a {
             color: white;
           }
           select {
+            color: white;
+          }
+          .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+            padding-right: 32 px;
             color: white;
           }
         `}
@@ -134,10 +187,10 @@ export const StyledNav = styled.nav`
     align-items: center;
   }
   li:nth-child(2) {
-    margin-right: 92px;
+    margin-right: 50px;
   }
   li {
-    margin-left: 32px;
+    margin-left: 15px;
     position: relative;
     span {
       margin-right: "5px";

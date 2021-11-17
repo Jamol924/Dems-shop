@@ -5,8 +5,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { StyledButton,  } from "./Nav";
 import { useSelector } from "react-redux";
-
+import Langue from "./common/Langue/langue";
+import L from "../locale/language.json"
 const Nav2 = () => {
+  const lan = useSelector(state => state.allLanguage)  
   const [pageOffset, setPageOffset] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -16,8 +18,6 @@ const Nav2 = () => {
   }, []);
 
   const counter = useSelector((state) => state.allCounter);
-  console.log(counter);
-
   return (
     <>
       <StyledNav isScroll={pageOffset}>
@@ -29,17 +29,13 @@ const Nav2 = () => {
 
         <ul>
           <li>
-            <select>
-              <option>UZB</option>
-              <option>RUS</option>
-              <option>ENG</option>
-            </select>
+            <Langue />
           </li>
           {counter ? (
             <li style={{ display: "flex" }}>
               <AccountCircleIcon className="icon" sx={{ color: "black" }} />
               <Link to="/myProfil">
-                <a href="">Мy profile </a>
+                <a href="">{L.navbar.profil[lan]} </a>
               </Link>
             </li>
           ) : (
@@ -57,7 +53,7 @@ const Nav2 = () => {
                     backgroundColor: "#f85c70",
                   }}
                 >
-                  Post your Ad
+                  {L.navbar.add[lan]}
                 </StyledButton>
               </ButtonRight>
             </Link>
@@ -84,7 +80,9 @@ export const StyledNav = styled.nav`
   right: 0;
   z-index: 300;
   transition: all 0.6s ease;
-  border-bottom: 1px solid #ccc;
+  @media(max-width:550px){
+    display: none;
+  } 
 
   ${(props) =>
     props.isScroll
@@ -93,7 +91,7 @@ export const StyledNav = styled.nav`
           box-shadow: 5px 0 10px lightgray;
           height: 60px;
           border-bottom: none;
-          transition: all 0.8s ease;
+          transition: all 0.5s ease;
 
           a {
             color: black;
@@ -101,7 +99,9 @@ export const StyledNav = styled.nav`
         `
       : css`
           background: transparent;
-          transition: all 0.8s ease;
+          transition: all 0.5s ease;
+          box-shadow: 5px 0 5px lightgray;
+          height: 80px;
           a {
             color: black;
           }
@@ -124,10 +124,10 @@ export const StyledNav = styled.nav`
     align-items: center;
   }
   li:nth-child(2) {
-    margin-right: 92px;
+    margin-right: 50px;
   }
   li {
-    margin-left: 32px;
+    margin-left: 15px;
     position: relative;
   }
   select {

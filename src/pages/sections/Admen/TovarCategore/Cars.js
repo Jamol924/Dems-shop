@@ -12,6 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
+import L from "../../../../locale/language.json";
 import {
   InputLabel,
   MenuItem,
@@ -29,9 +30,12 @@ import {
   ContentRow,
   StyledFormControl,
   StyledButton,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar.jsx";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Cars(props) {
+  const lan = useSelector((state) => state.allLanguage);
   let history = useHistory();
   const cars = props.category;
   const dispatch = useDispatch();
@@ -186,8 +190,7 @@ function Cars(props) {
           },
         }
       )
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         history.push("/okFilse");
       })
       .catch(() => console.log());
@@ -200,7 +203,7 @@ function Cars(props) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -224,10 +227,11 @@ function Cars(props) {
       <form>
         <Wrapper>
           <Nav2 />
+          <MinNav />
           <CarsLink />
           <Container>
             <Typography sx={{ mb: 3 }} variant="h4">
-              информация о продукте
+              {L.tovarAdd.cars.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -237,7 +241,7 @@ function Cars(props) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="заголовок объявления*"
+                    label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
                     helperText={errors?.name?.message}
                     error={errors?.name}
@@ -246,18 +250,24 @@ function Cars(props) {
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>Марка*</InputLabel>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, display: "flex", minWidth: 120 }}
+                >
+                  <InputLabel>{L.tovarAdd.cars.marka[lan]}*</InputLabel>
 
-                  <Select value={age} onChange={handleChange}>
+                  <Select
+                    value={age}
+                    onChange={handleChange}
+                  >
                     {CategoreRispons.data.map((Categor) => (
-                      <MenuItem value={Categor._id}>{Categor.name}</MenuItem>
+                      <StyledMenuItem  value={Categor._id}>{Categor.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
 
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>Модель*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.model[lan]}*</InputLabel>
 
                   <Select
                     value={model}
@@ -265,9 +275,9 @@ function Cars(props) {
                     onChange={handleModelChange}
                   >
                     {models.map((modelItem) => (
-                      <MenuItem value={modelItem._id} key={modelItem._id}>
+                      <StyledMenuItem value={modelItem._id} key={modelItem._id}>
                         {modelItem.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -285,7 +295,7 @@ function Cars(props) {
                     type="number"
                     onChange={handleGodChange}
                     sx={{ mb: 3 }}
-                    label="год впуска*"
+                    label={L.tovarAdd.cars.god[lan]}
                     variant="filled"
                     helperText={errors?.godo?.message}
                     error={errors?.godo}
@@ -294,29 +304,38 @@ function Cars(props) {
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <Select
                     value={toplivo}
                     label="Age"
                     onChange={handleTolivoChange}
                   >
-                    <MenuItem value={"Chevrolet"}>топливо </MenuItem>
-                    <MenuItem value={"Daevo"}>Бензин </MenuItem>
-                    <MenuItem value={"Baz"}>Этханол </MenuItem>
+                    <StyledMenuItem value={"Chevrolet"}>
+                      {L.tovarAdd.cars.toplvo[lan]}{" "}
+                    </StyledMenuItem>
+                    <StyledMenuItem value={"Daevo"}>
+                      {L.tovarAdd.cars.ben[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value={"Baz"}>
+                      {L.tovarAdd.cars.gaz[lan]}{" "}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
 
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={novy} label="Age" onChange={handleNovyChange}>
-                    <MenuItem value="new">Новый </MenuItem>
-                    <MenuItem value="old">В/У </MenuItem>
+                    <StyledMenuItem value="new">{L.tovarAdd.fash.now[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="old">В/У </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 1 }} variant="h5">
-                цвет*
+                {L.tovarAdd.cars.svet[lan]}*
               </Typography>
               <ToggleButtonGroup
                 value={alignment}
@@ -379,7 +398,7 @@ function Cars(props) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 1 }} variant="h5">
-                цена*
+                {L.tovarAdd.cars.sena[lan]}*
               </Typography>
               <Grid spacing={2}>
                 <Controller
@@ -388,21 +407,22 @@ function Cars(props) {
                   defaultValue=""
                   render={({ field }) => (
                     <StyledTextField
-                      sx={{ mr: 10 }}
+                      sx={{ mb: 3, mr: 10 }}
                       value={sena}
                       onChange={handleSenaChange}
-                      label="сена*"
+                      label={L.tovarAdd.cars.sena[lan]}
                       variant="filled"
                       helperText={errors?.sen?.message}
                       error={errors?.sen}
                       {...field}
+                      type="number"
                     />
                   )}
                 />
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={sum} label="sum" onChange={handleSumChange}>
-                    <MenuItem value={"usd"}>usd</MenuItem>
-                    <MenuItem value={"eur"}>eur</MenuItem>
+                    <StyledMenuItem value="uzs">uzs</StyledMenuItem>
+                    <StyledMenuItem value="usd">usd</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </Grid>
@@ -410,33 +430,36 @@ function Cars(props) {
 
             <MenuContent>
               <Typography sx={{ mb: 1 }} variant="h5">
-                местонахождение*
+                {L.tovarAdd.cars.mesto[lan]}*
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>region*</InputLabel>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
+                  <InputLabel>{L.tovarAdd.cars.region[lan]}*</InputLabel>
                   <Select
                     value={region}
                     label="sum"
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
 
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>город*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.gorod[lan]}*</InputLabel>
                   <Select
                     value={gorod}
                     label="sum"
                     onChange={handleGorodChange}
                   >
                     {gorods.map((Gorod) => (
-                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                      <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                         {Gorod.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -444,7 +467,7 @@ function Cars(props) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 1 }} variant="h5">
-                описане
+                {L.tovarAdd.cars.opesan[lan]}
               </Typography>
               <Controller
                 name="textarea"
@@ -462,7 +485,7 @@ function Cars(props) {
                       maxWidth: "1000px",
                     }}
                     placeholder="Био "
-                    placeholder="Добавить краткое описане"
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]}
                     value={textarea}
                     onChange={handleTextareaChange}
                     helperText={errors.name?.message}
@@ -488,7 +511,7 @@ function Cars(props) {
             <Box>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 4, display: "inline-block" }}
+                sx={{ mt: 2, display: "inline-block" }}
                 variant="contained"
                 type="submit"
               >

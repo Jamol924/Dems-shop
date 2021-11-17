@@ -1,31 +1,29 @@
 import React from 'react';
-import styled from "styled-components"
+import {useSelector} from "react-redux";
+import L from "../../locale/language.json"
 import {Wrapper, PStyled} from "../Features"
 
 function ElictronicFeater({dataCard}) {
+  const lan = useSelector(state => state.allLanguage)  
     return (
         <div>
             <Wrapper>
             <div className="title">
-              <h1>Features:</h1>
+              <h1>{L.item.fea[lan]}</h1>
               <div className="line" />
             </div>
             <div className="items">
               <PStyled>
                 <div>
-                  <p>Электронный тип</p>
-                  <p>{dataCard.brand_name}</p>
+                  <p>{L.item.tip[lan]}</p>
+                  <p>{dataCard.subtype}</p>
                 </div>
                 <div>
-                  <p>Модель </p>
-                  <p>{dataCard.electronic_model_id}</p>
+                  <p>{L.item.emodel[lan]}</p>
+                  <p>{dataCard.electronic_model_name}</p>
                 </div>
                 <div>
-                  <p>Кондитион </p>
-                  <p>{dataCard.situation}</p>
-                </div>
-                <div>
-                  <p>Место нахождения*</p>
+                  <p>{L.item.loc[lan]}*</p>
                   <p>
                     {dataCard.region_name} {dataCard.city_name}
                   </p>

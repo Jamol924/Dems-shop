@@ -1,27 +1,25 @@
 import React from 'react';
-import styled from "styled-components"
+import {useSelector} from "react-redux";
+import L from "../../locale/language.json"
 import {Wrapper, PStyled} from "../Features"
 
 function BolalatFeater({dataCard}) {
+  const lan = useSelector(state => state.allLanguage)  
     return (
         <div>
             <Wrapper>
             <div className="title">
-              <h1>Features:</h1>
+              <h1>{L.item.fea[lan]}</h1>
               <div className="line" />
             </div>
             <div className="items">
               <PStyled>
                 <div>
-                  <p>тип*</p>
+                  <p>{L.item.tip[lan]}*</p>
                   <p>{dataCard.subtype}</p>
                 </div>
                 <div>
-                  <p>Кондитион </p>
-                  <p>{dataCard.currency}</p>
-                </div>
-                <div>
-                  <p>currency </p>
+                  <p>{L.item.siz[lan]}</p>
                   <p>{dataCard.size}</p>
                 </div>
                 <div>

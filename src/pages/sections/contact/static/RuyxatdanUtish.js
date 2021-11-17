@@ -1,24 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { StyledInputMask } from "./Tizim";
 import axios from "axios";
 import { StyledButton } from "../../Admen/MaterialTovar/Tovar";
+import L from "../../../../locale/language.json";
+import { useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
+import styled from "styled-components";
 
 const schema = yup.object({
-  name: yup.string().required("kritilmadi").min(3, "kamida 3 ta bulsin"),
+  name: yup
+    .string()
+    .required("you did not enter your name")
+    .min(3, "Not less than 3"),
   phone_number: yup
     .string()
     .required()
     .min(7, "telifon raqamingiz 7 ta raqamdan kam buldi"),
 });
 
-function RuyxatdanUtish() {
+function RuyxatdanUtish({ onSuccess }) {
+  const lon = useSelector((state) => state.allLanguage);
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickEr = (variant) => () => {
+    enqueueSnackbar(L.tizim.ut[lon], { variant });
+  };
+  const handleClickNumber = (variant) => () => {
+    enqueueSnackbar(L.tizim.xato[lon], { variant });
+  };
+  const handleClickSc = (variant) => () => {
+    enqueueSnackbar(L.tizim.utdingiz[lon], { variant });
+  };
   const {
     control,
     handleSubmit,
@@ -32,10 +48,21 @@ function RuyxatdanUtish() {
   });
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     axios
-      .post("http://dems.inone.uz/api/sign-up", data)  
-      .then((res) => console.log("Www", res));
+      .post("http://dems.inone.uz/api/sign-up", data)
+      .then(() => {
+        handleClickSc("success")();
+        onSuccess();
+      })
+      .catch((error) => {
+        if (error.response.data.code === 55001) {
+          handleClickNumber("info")();
+        } else {
+          handleClickEr("error")();
+          onSuccess();
+        }
+      });
   };
 
   return (
@@ -45,14 +72,14 @@ function RuyxatdanUtish() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <InputLabel sx={{ mt: 2 }} htmlFor="input-with-icon-adornment">
-          Ismingizni kiriting
+          {L.tizim.name[lon]}
         </InputLabel>
         <Controller
           name="name"
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextField
+            <StyledTextField
               sx={{ marginTop: 1, marginBottom: 0 }}
               fullWidth
               variant="outlined"
@@ -61,19 +88,19 @@ function RuyxatdanUtish() {
             />
           )}
         />
-        <p style={{ color: "red", marginTop: 10 }}>
-          {errors.name?.message}
-        </p>
-        <InputLabel htmlFor="input-with-icon-adornment">Tel nomer</InputLabel>
+        <p style={{ color: "red", marginTop: 10 }}>{errors.name?.message}</p>
+        <InputLabel htmlFor="input-with-icon-adornment">
+          {L.tizim.number[lon]}
+        </InputLabel>
         <Controller
           name="phone_number"
           control={control}
           render={({ field }) => (
             <StyledInputMask
-            name="phone_number"
-            placeholder="+998 (__) ___-__-__"
-            mask="+\9\9\8 (99) 999-99-99"
-            {...field}
+              name="phone_number"
+              placeholder="+998 (__) ___-__-__"
+              mask="+\9\9\8 (99) 999-99-99"
+              {...field}
             />
           )}
         />
@@ -82,7 +109,7 @@ function RuyxatdanUtish() {
           type="submit"
           sx={{
             marginTop: 1,
-            marginBottom: 4,
+            marginBottom: 3,
             letterSpacing: 2,
             fontWeight: 500,
             padding: 1.7,
@@ -91,7 +118,7 @@ function RuyxatdanUtish() {
           fullWidth
           variant="contained"
         >
-          Ruyxatdan uting
+          {L.tizim.but2[lon]}
         </StyledButton>
       </form>
     </div>
@@ -99,3 +126,13 @@ function RuyxatdanUtish() {
 }
 
 export default RuyxatdanUtish;
+
+export const StyledTextField = styled(TextField)`
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+  
+  @media(max-width:550px){
+    padding: 10px 14px ;
+  } 
+}
+ 
+`;

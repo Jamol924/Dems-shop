@@ -12,6 +12,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import { Box } from "@mui/system";
+import L from "../../../../locale/language.json"
 import {
   Wrapper,
   Container,
@@ -20,9 +21,12 @@ import {
   StyledTextField,
   ContentRow,
   StyledFormControl,
+  StyledMenuItem
 } from "../MaterialTovar/Tovar";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Agriculture({ categore }) {
+  const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const agricul = categore;
   const [area, setArea] = useState("");
@@ -117,7 +121,7 @@ function Agriculture({ categore }) {
     textarea: yup
       .string()
       .required("This is required field")
-      .min(90, "You entered less text"),
+      .min(15, "Not less than 15 words"),
   });
   const {
     control,
@@ -141,10 +145,11 @@ function Agriculture({ categore }) {
       <form >
         <Wrapper>
           <Nav2 />
+          <MinNav />
           <BackAdminAgriculture />
           <Container>
             <Typography sx={{ mb: 3 }} variant="h4">
-              Сельское хозяйство
+            {L.tovarAdd.agr.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -154,7 +159,7 @@ function Agriculture({ categore }) {
                 render={({ field }) => (
                   <StyledTextField
                     sx={{ mb: 3 }}
-                    label="заголовок объявления*"
+                    label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
                     onChange={(e) => console.log(e.target.value)}
                     helperText={errors.name?.message}
@@ -167,17 +172,17 @@ function Agriculture({ categore }) {
               <ContentRow>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={mobil} onChange={handleMobile}>
-                    <MenuItem value="melon-crops">melon-crops</MenuItem>
-                    <MenuItem value="cereals">cereals</MenuItem>
-                    <MenuItem value="fruits">fruits </MenuItem>
-                    <MenuItem value="others">others</MenuItem>
+                    <StyledMenuItem value="melon-crops">{L.tovarAdd.agr.clot1[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="cereals">{L.tovarAdd.agr.clot2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="fruits">{L.tovarAdd.agr.clot3[lan]} </StyledMenuItem>
+                    <StyledMenuItem value="others">{L.tovarAdd.agr.clot4[lan]}</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                цена*
+              {L.tovarAdd.cars.sena[lan]} *
               </Typography>
               <ContentRow>
                 <Controller
@@ -188,7 +193,7 @@ function Agriculture({ categore }) {
                     <StyledTextField
                       sx={{ mb: 3 }}
                       onChange={(e) => setSena(e.target.value)}
-                      label="сена*"
+                      label={L.tovarAdd.cars.sena[lan]} 
                       variant="filled"
                       type="number"
                       helperText={errors.sen?.message}
@@ -199,40 +204,40 @@ function Agriculture({ categore }) {
                 />
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={sum} label="sum" onChange={handleSumChange}>
-                    <MenuItem value="uzs">uzs</MenuItem>
-                    <MenuItem value="usd">usd</MenuItem>
+                    <StyledMenuItem value="uzs">uzs</StyledMenuItem>
+                    <StyledMenuItem value="usd">usd</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                местонахождение*
+              {L.tovarAdd.cars.mesto[lan]} *
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>region*</InputLabel>
+                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                  <InputLabel>{L.tovarAdd.cars.region[lan]} *</InputLabel>
                   <Select
                     value={region}
                     label="sum"
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <MenuItem value={Region._id}>{Region.name}</MenuItem>
+                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
-                  <InputLabel>город*</InputLabel>
+                  <InputLabel>{L.tovarAdd.cars.gorod[lan]} *</InputLabel>
                   <Select
                     value={gorod}
                     label="sum"
                     onChange={handleGorodChange}
                   >
                     {gorods.map((Gorod) => (
-                      <MenuItem value={Gorod._id} key={Gorod._id}>
+                      <StyledMenuItem value={Gorod._id} key={Gorod._id}>
                         {Gorod.name}
-                      </MenuItem>
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -240,7 +245,7 @@ function Agriculture({ categore }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-                описане
+              {L.tovarAdd.cars.opesan[lan]} *
               </Typography>
               <Controller
                 name="textarea"
@@ -257,7 +262,7 @@ function Agriculture({ categore }) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder="Добавить краткое описане"
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
                     onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}

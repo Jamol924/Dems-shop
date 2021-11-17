@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+import { useSelector} from "react-redux";
+import L from "../../../locale/language.json"
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import SettingsIcon from "@mui/icons-material/Settings";
 import PostAddIcon from "@mui/icons-material/PostAdd";
@@ -15,7 +12,6 @@ const Navbar = () => {
   const [pageOffset, setPageOffset] = useState(false);
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
-    // setOpen(true);
     setOpen(localStorage.removeItem("token"));
     window.location.reload();
   };
@@ -28,7 +24,7 @@ const Navbar = () => {
     });
   }, []);
 
-
+  const lan = useSelector(state => state.allLanguage) 
   return (
     <>
       <StyledNav isScroll={pageOffset}>
@@ -42,44 +38,25 @@ const Navbar = () => {
             <li>
               <Link to="/My-adds">
                 <a href="">
-                  <span><PostAddIcon /></span> My adds
+                  <span><PostAddIcon /></span> {L.navb.ad[lan]}
                 </a>
               </Link>
             </li>
             <li>
               <Link to="/admenName">
                 <a href="">
-                  <span><SettingsIcon /></span> Settings
+                  <span><SettingsIcon /></span>{L.navb.set[lan]}
                 </a>
               </Link>
             </li>
             <li>
               <LogOut onClick={handleClickOpen}>
-                <span><ExitToAppIcon /></span> Log out
+                <span><ExitToAppIcon /></span> {L.navb.lout[lan]}
               </LogOut>
             </li>
           </ul>
         </StyledB>
       </StyledNav>
-      <div style={{ marginTop: "200px" }}>
-        {/* <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="draggable-dialog-title"
-        >
-          <DialogContent>
-            <DialogContentText>
-              Ruyxatdan utgan qisimdan chiqib ketish
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              No
-            </Button>
-            <Button onClick={handleClose}>Yes!</Button>
-          </DialogActions>
-        </Dialog> */}
-      </div>
     </>
   );
 };
@@ -139,13 +116,17 @@ export const StyledNav = styled.nav`
   right: 0;
   z-index: 300;
   transition: all 0.6s ease;
+  @media(max-width:550px){
+    display: none;
+  } 
 
   ${(props) =>
     props.isScroll
       ? css`
           background: white;
           box-shadow: 5px 0 10px lightgray;
-          height: 70px;
+          transition: all 0.5s ease;
+          height: 60px;
           a {
             color: black;
           }
@@ -153,6 +134,8 @@ export const StyledNav = styled.nav`
       : css`
           background: transparent;
           transition: all 0.5s ease;
+          height: 80px;
+          box-shadow: 5px 0 5px lightgray;
           a {
             color: black;
           }
@@ -167,15 +150,16 @@ export const StyledNav = styled.nav`
     align-items: center;
   }
   span{
-    color: black;
+    color: rgba(0, 0, 0, 0.87);
   }
   ul {
     list-style: none;
     display: flex;
     align-items: center;
+    justify-content: end;
   }
   li:nth-child(3) {
-    margin-right: 92px;
+    margin-right: 12px;
   }
   li {
     margin-left: 32px;

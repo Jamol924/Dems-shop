@@ -80,6 +80,26 @@ export const CardContactSvg = () => {
     </div>
   );
 };
+export const CardIconSvg = () => {
+  return (
+    <SvgDesign
+      width="76"
+      height="75"
+      viewBox="0 0 76 75"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0.5 75V0H76L0.5 75Z" fill="#3545a3" />
+      <path
+        d="M12.6667 23.7417V15.7583C12.6667 14.65 13.3084 14.3833 14.0917 15.1667L16.25 17.325C16.575 17.65 17.1084 17.65 17.425 17.325L20.4084 14.3333C20.7334 14.0083 21.2667 14.0083 21.5834 14.3333L24.575 17.325C24.9 17.65 25.4334 17.65 25.75 17.325L27.9084 15.1667C28.6917 14.3833 29.3334 14.65 29.3334 15.7583V23.75C29.3334 26.25 27.6667 27.9167 25.1667 27.9167H16.8334C14.5334 27.9083 12.6667 26.0417 12.6667 23.7417Z"
+        stroke="#3545a3"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </SvgDesign>
+  );
+};
 export const CardImgSvg = () => {
   return (
     <SvgDesign
@@ -102,6 +122,8 @@ export const CardImgSvg = () => {
 };
 const SvgDesign = styled.svg`
   position: absolute;
+  top:10;
+  z-index: 10;
   img {
     width: 100%;
   }

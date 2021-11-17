@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CategoryItem = (props) => {
   return (
     <Link to={props.id}>
-      <StyledCategoryItem style={{backgroundColor:`${props.color}`}} >
+      <StyledCategoryItem style={{ backgroundColor: `${props.color}` }}>
         <StyledImg src={props.img} />
         <StyledTitle>{props.title}</StyledTitle>
       </StyledCategoryItem>
@@ -24,6 +24,14 @@ export const StyledCategoryItem = styled.div`
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+  @media (max-width: 550px) {
+    width: 110px;
+    height: 90px;
+    margin: 5px;
+    display: flex;
+    border-radius: 10px;
+    border-radius: 8px;
+  }
 `;
 export const StyledImg = styled.img`
   width: auto;
@@ -44,6 +52,11 @@ export const StyledTitle = styled.p`
   z-index: 22;
   color: white;
   font-size: 20px;
+  @media (max-width: 550px) {
+    font-size: 13px;
+    top: -5px;
+    left: 10px;
+  }
 `;
 
 export default CategoryItem;

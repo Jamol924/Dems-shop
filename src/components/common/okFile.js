@@ -3,28 +3,32 @@ import styled from "styled-components";
 import React from "react";
 import { BackAdminFile } from "../Back";
 import Nav2 from "../Nav2";
-import podaroc from "../../assets/pore.png";
 import AddTaskIcon from "@mui/icons-material/AddTask";
+import L from "../../locale/language.json"
+import { useSelector } from "react-redux";
 
-function okFile() {
+const OkFile = () => {
+
+  const lan = useSelector((state) => state.allLanguage)
+
+
   return (
     <>
       <Nav2 />
       <BackAdminFile />
       <StyledColumn>
         <StyledFile>
-          {/* <img src={podaroc} /> */}
           <StyledIcon>
             <AddTaskIcon sx={{fontSize:"90px", color:"#2a3a96"}} />
           </StyledIcon>
-          <Typography variant="h5">Sizning eloningiz joylandi</Typography>
+          <Typography variant="h5">{L.ok[lan]}</Typography>
         </StyledFile>
       </StyledColumn>
     </>
   );
 }
 
-export default okFile;
+export default OkFile;
 
 export const StyledColumn = styled.div`
   display: flex;

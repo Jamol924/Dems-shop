@@ -6,13 +6,15 @@ import Stack from "@mui/material/Stack";
 import styled from "styled-components";
 import datas from "../pages/sections/Admen/Categore/dataCategore";
 import { useSelector } from "react-redux";
+import L from "../locale/language.json";
 
-const data = datas.map((elm) => elm.title);
+const data = datas.map((elm) => elm.title.uz);
 
 export const Cars = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[0]}
@@ -31,12 +33,13 @@ export const Cars = () => {
   );
 };
 export const CarsLink = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[0]}
@@ -55,9 +58,10 @@ export const CarsLink = () => {
   );
 };
 export const BackHome = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[1]}
@@ -76,9 +80,10 @@ export const BackHome = () => {
   );
 };
 export const BackElictronic = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[2]}
@@ -96,8 +101,9 @@ export const BackElictronic = () => {
     </>
   );
 };
-export const BackJobs = () => {
-  const productCard = useSelector((state) => state.productCard);
+export const BackTovarByID = () => {
+  const lan = useSelector((state) => state.allLanguage);
+  const allSetElim = useSelector((state) => state.allSetElim);
 
   return (
     <>
@@ -105,7 +111,32 @@ export const BackJobs = () => {
         <Stack spacing={2}>
           <Breadcrumbs separator="›" aria-label="breadcrumb">
             <Link underline="hover" to="/">
-              Главная часть
+              {L.glavne[lan]}
+            </Link>
+            {allSetElim.data?.data && (
+              <Link underline="hover" to={"/myProfil"}>
+               {L.moyprfel[lan]}
+              </Link>
+            )}
+            {allSetElim.data?.data && (
+              <Typography>{allSetElim.data?.data.type}</Typography>
+            )}
+          </Breadcrumbs>
+        </Stack>
+      </BackCard>
+    </>
+  );
+};
+export const BackJobs = () => {
+  const lan = useSelector((state) => state.allLanguage);
+  const productCard = useSelector((state) => state.productCard);
+  return (
+    <>
+      <BackCard>
+        <Stack spacing={2}>
+          <Breadcrumbs separator="›" aria-label="breadcrumb">
+            <Link underline="hover" to="/">
+              {L.glavne[lan]}
             </Link>
             {productCard && (
               <Link underline="hover" to={productCard?.type}>
@@ -120,9 +151,10 @@ export const BackJobs = () => {
   );
 };
 export const BackFashion = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[4]}
@@ -140,10 +172,33 @@ export const BackFashion = () => {
     </>
   );
 };
-export const BackChildren = () => {
+export const BackJob = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
+    </Link>,
+    <Typography key="3" color="text.primary">
+      {data[3]}
+    </Typography>,
+  ];
+  return (
+    <>
+      <BackCard>
+        <Stack spacing={2}>
+          <Breadcrumbs separator="›" aria-label="breadcrumb">
+            {breadcrumbs}
+          </Breadcrumbs>
+        </Stack>
+      </BackCard>
+    </>
+  );
+};
+export const BackChildren = () => {
+  const lan = useSelector((state) => state.allLanguage);
+  const breadcrumbs = [
+    <Link underline="hover" to="/">
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[5]}
@@ -163,9 +218,10 @@ export const BackChildren = () => {
 };
 
 export const BackBusines = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[6]}
@@ -184,9 +240,10 @@ export const BackBusines = () => {
   );
 };
 export const BackAgriculture = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       {data[7]}
@@ -205,17 +262,18 @@ export const BackAgriculture = () => {
   );
 };
 export const BackMyProfl = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
-      MyProfel
+      {L.moyprfel[lan]}
     </Typography>,
   ];
   return (
     <>
-      <BackCard style={{ marginTop: "-100px" }}>
+      <BackCard >
         <Stack spacing={2}>
           <Breadcrumbs separator="›" aria-label="breadcrumb">
             {breadcrumbs}
@@ -226,12 +284,13 @@ export const BackMyProfl = () => {
   );
 };
 export const BackSetting = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
-      Settings
+      {L.nastroyke[lan]}
     </Typography>,
   ];
   return (
@@ -247,12 +306,13 @@ export const BackSetting = () => {
   );
 };
 export const BackAdmin = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
-      Admin_panel
+      {L.ketogor[lan]}
     </Typography>,
   ];
   return (
@@ -268,12 +328,13 @@ export const BackAdmin = () => {
   );
 };
 export const BackAdminHome = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       home
@@ -292,12 +353,13 @@ export const BackAdminHome = () => {
   );
 };
 export const BackAdminElictron = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       Elictronic
@@ -316,12 +378,13 @@ export const BackAdminElictron = () => {
   );
 };
 export const BackAdminJobs = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       Jobs
@@ -340,12 +403,13 @@ export const BackAdminJobs = () => {
   );
 };
 export const BackAdminFashion = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       Fashion_Style
@@ -364,12 +428,13 @@ export const BackAdminFashion = () => {
   );
 };
 export const BackAdminChildren = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       Children-World
@@ -388,12 +453,13 @@ export const BackAdminChildren = () => {
   );
 };
 export const BackAdminBusines = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       Business
@@ -412,12 +478,13 @@ export const BackAdminBusines = () => {
   );
 };
 export const BackAdminAgriculture = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       Agriculture
@@ -436,12 +503,13 @@ export const BackAdminAgriculture = () => {
   );
 };
 export const BackAdminFile = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Link underline="hover" to="/admen">
-      Admin_panel
+      {L.ketogor[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       file
@@ -460,9 +528,10 @@ export const BackAdminFile = () => {
   );
 };
 export const Back = () => {
+  const lan = useSelector((state) => state.allLanguage);
   const breadcrumbs = [
     <Link underline="hover" to="/">
-      головная часть
+      {L.glavne[lan]}
     </Link>,
     <Typography key="3" color="text.primary">
       отдел поиска
@@ -483,4 +552,8 @@ export const Back = () => {
 const BackCard = styled.div`
   margin-top: 80px;
   padding: 40px 50px;
+  @media(max-width:550px){
+    display: none;
+    
+  }
 `;

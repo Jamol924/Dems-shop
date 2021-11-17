@@ -14,21 +14,23 @@ import {
   StyledLoadingButton,
   ButtonLink,
 } from "../components/common/MaterialComponent/AboutSection";
+import { useSelector } from "react-redux";
+import L from "../locale/language.json";
 
-const SearchMene = ({onFiltersCh}) => {
+const SearchMene = ({ onFiltersCh }) => {
   const [loading, setLoading] = useState(false);
+  const filters = useSelector((state) => state.Search.data);
   function handleClick() {
     setLoading(true);
   }
   const [data, setData] = useState({
-    location: "",
+    location: filters.location,
     search: "",
   });
 
-  
   const funcButton = (data) => {
-    return onFiltersCh(data)
-  }
+    return onFiltersCh(data);
+  };
 
   const changeData = (name, value) => {
     setData({ ...data, [name]: value });
@@ -42,7 +44,6 @@ const SearchMene = ({onFiltersCh}) => {
   const handleRegion = (el) => {
     setValue(el.target.value);
   };
-
 
   const regionFetch = async () => {
     axios
@@ -61,6 +62,14 @@ const SearchMene = ({onFiltersCh}) => {
     regionFetch();
   }, []);
 
+  const lan = useSelector((state) => state.allLanguage);
+  const reg = [
+    {
+      name: L.asia.locationName[lan],
+      id: 1,
+    },
+  ];
+
   return (
     <Wrapper>
       <WrapperMenu>
@@ -71,30 +80,48 @@ const SearchMene = ({onFiltersCh}) => {
               <input
                 onFocus={() => setInput(1)}
                 onClick={handleRegion}
-                value={regions.find((reg) => reg._id === data.location)?.name}
-                placeholder="Select Location"
+                value={
+                  regions.find((reg) => reg._id === data.location)?.name ||
+                  reg.find((el) => el.id === data.location)?.name
+                }
+                placeholder={L.asia.location[lan]}
                 type="text"
               />
             </FormLocation>
             <FormText>
               <SearchSvg3 />
-              <input onChange={e => changeData("search",e.target.value)} placeholder="Enter keyword here..." type="text" />
+              <input
+                onChange={(e) => changeData("search", e.target.value)}
+                placeholder={L.asia.search[lan]}
+                type="text"
+              />
             </FormText>
             <ButtonLink>
-                <StyledLoadingButton
-                  onClick={() =>{funcButton(data)}}
-                  startIcon={<SearchIcon />}
-                  loading={loading}
-                  loadingPosition="start"
-                  variant="contained"
-                >
-                  Search
-                </StyledLoadingButton>
+              <StyledLoadingButton
+                onClick={() => {
+                  funcButton(data);
+                }}
+                startIcon={<SearchIcon />}
+                loading={loading}
+                loadingPosition="start"
+                variant="contained"
+              >
+                {L.asia.button[lan]}
+              </StyledLoadingButton>
             </ButtonLink>
           </FormInput>
           <FormInputActive>
             {input === 1 && (
               <LocationStyles>
+                {reg.map((el) => (
+                  <option
+                    onClick={() => changeData("location", el.id)}
+                    key={el.id}
+                    value={el.id}
+                  >
+                    {el.name}
+                  </option>
+                ))}
                 {regions.map((regon) => (
                   <option
                     onClick={() => changeData("location", regon._id)}

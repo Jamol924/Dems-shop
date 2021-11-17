@@ -1,14 +1,16 @@
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
-import styled, {css} from "styled-components"
+import styled from "styled-components";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import {Tizim} from "./static/Tizim";
+import { Tizim } from "./static/Tizim";
 import RuyxatdanUtish from "./static/RuyxatdanUtish";
+import L from "../../../locale/language.json";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,23 +48,23 @@ export default function ContactMenu() {
     setValue(index);
   };
 
+  const lon = useSelector((state) => state.allLanguage);
 
   return (
-    <Box
+    <StyledBox
+      className="demo"
       sx={{
         bgcolor: "background.paper",
-        width: 450,
         position: "relative",
         minHeight: 200,
         borderRadius: 2,
-        boxShadow:"1px 1px 10px #ccc"
+        boxShadow: "1px 1px 10px #ccc",
       }}
     >
       <AppBar
         sx={{ borderTopRightRadius: 6, borderTopLeftRadius: 6 }}
         position="static"
         color="default"
-        
       >
         <StyledTabs
           value={value}
@@ -72,43 +74,59 @@ export default function ContactMenu() {
           variant="fullWidth"
           aria-label="action tabs example"
           className="demo"
-
         >
           <StyledTab
             sx={{ padding: 3, fontWeight: 600 }}
-            label="Tizimga kirish"
+            label={L.tizim.tz[lon]}
             {...a11yProps(0)}
-            
           />
           <StyledTab
             sx={{ padding: 3, fontWeight: 600 }}
-            label="Ruyxatdan uting"
+            label={L.tizim.rt[lon]}
             {...a11yProps(0)}
-            
           />
         </StyledTabs>
       </AppBar>
       <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+        axis={theme.direction === "rtl" ? "x" : "x-reverse"}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Tizim />
+          <Tizim
+            onSuccess={() => {
+              handleChangeIndex(1);
+            }}
+          />
         </TabPanel>
 
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <RuyxatdanUtish />
+          <RuyxatdanUtish
+            onSuccess={() => {
+              handleChangeIndex(0);
+            }}
+          />
         </TabPanel>
       </SwipeableViews>
-    </Box>
+    </StyledBox>
   );
 }
 
-
-const StyledTabs = styled(Tabs)`
-
-`
+const StyledBox = styled(Box)`
+  &&.css-1avbm31 {
+    position: relative;
+    width: 450px;
+    @media (max-width: 550px) {
+      width: 300px;
+    }
+  }
+`;
+const StyledTabs = styled(Tabs)``;
 const StyledTab = styled(Tab)`
-
-`
+  &&.MuiButtonBase-root {
+    @media (max-width: 550px) {
+      padding: 20px 0px;
+      font-size: 12px;
+    }
+  }
+`;

@@ -1,67 +1,73 @@
 import React from "react";
-import styled from "styled-components";
+import {useSelector} from "react-redux";
+import L from "../../locale/language.json"
 import { Wrapper, PStyled } from "../Features";
 
 function HomeFeater({ dataCard }) {
+  const lan = useSelector(state => state.allLanguage)  
   return (
     <div>
       <Wrapper>
         <div className="title">
-          <h1>Features:</h1>
+          <h1>{L.item.fea[lan]}</h1>
           <div className="line" />
         </div>
         <div className="items">
           <PStyled>
             <div>
-              <p>продажа недвижимости</p>
+              <p>{L.item.tip[lan]}</p>
               <p>{dataCard.subtype}</p>
             </div>
+            {/* <div>
+              <p>{L.item.mulk[lan]}</p>
+              <p>{dataCard.sell_property}</p>
+            </div> */}
             <div>
-              <p>Главнай</p>
+              <p>{L.item.asosiy[lan]}</p>
               <p>{dataCard.home_plan_name}</p>
             </div>
             <div>
-              <p>Высота потолков (m)</p>
+              <p>{L.item.vpotol[lan]}</p>
               <p>{dataCard.celling_height}</p>
             </div>
             <div>
-              <p>Количества комнат*</p>
+              <p>{L.item.komnat[lan]}</p>
               <p>{dataCard.count_room} </p>
             </div>
             <div>
-              <p>Размер</p>
+              <p>{L.item.siz[lan]}</p>
               <p>{dataCard.size}</p>
             </div>
             <div>
-              <p>Доступный (m 2)</p>
+              <p>{L.item.Доступный[lan]}</p>
               <p>{dataCard.available_size}</p>
             </div>
             <div>
-              <p>Кондитион </p>
-              <p>{dataCard.situation}</p>
-            </div>
-            <div>
-              <p>Год постройка/сдачи </p>
+              <p>{L.item.godt[lan]}</p>
               <p>{dataCard.year_house_build}</p>
             </div>
             <div>
-              <p>Конструктион </p>
-              <p>{dataCard.construction}</p>
+              <p>{L.item.sharoitlar[lan]}*</p>
+              <p>{dataCard.appliance_names}</p>
             </div>
             <div>
-              <p>Этаж </p>
+              <p>{L.item.qav[lan]} </p>
               <p>{dataCard.floor}</p>
             </div>
             <div>
-              <p>Этажность дома*</p>
+              <p>{L.item.qavb[lan]}*</p>
               <p>{dataCard.floor_of_house}</p>
             </div>
             <div>
-              <p>расположен рядом</p>
+              <p>{L.item.kons[lan]} </p>
+              <p>{dataCard.construction}</p>
+            </div>
+            <div>
+              <p>{L.item.map[lan]} </p>
               <p>{dataCard.located_near}</p>
             </div>
             <div>
-              <p>Место нахождения </p>
+              <p>{L.item.loc[lan]}</p>
               <p>
                 {dataCard.region_name} {dataCard.city_name}
               </p>

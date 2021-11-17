@@ -1,9 +1,13 @@
-import { Button, FormControl, TextField } from "@mui/material";
+import { Button, FormControl, MenuItem, TextField } from "@mui/material";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100%;
   height: auto;
+  max-width: 100%;
+  @media (max-width: 550px) {
+    margin-bottom: 100px;
+    overflow: hidden;
+  }
 `;
 export const Container = styled.div`
   height: auto;
@@ -11,10 +15,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  /* margin-top: 120px; */
   padding: 20px 150px;
   @media (max-width: 765px) {
     padding: 20px 50px;
+  }
+  @media (max-width: 550px) {
+    padding: 10px 10px;
   }
 `;
 export const MenuContent = styled.div`
@@ -27,6 +33,12 @@ export const MenuContent = styled.div`
   border: 1px solid #ccc;
   margin-bottom: 10px;
   background: #f5f7f7;
+  @media (max-width: 550px) {
+    padding: 10px;
+    border: 0px solid #ccc;
+    margin-bottom: 10px;
+    background: #f5f7f7;
+  }
 `;
 export const MenuTitle = styled.div`
   width: auto;
@@ -41,10 +53,14 @@ export const ContentRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 20px;
 `;
 export const StyledButton = styled(Button)`
   && {
     background: #3545a3;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
 
     &:hover {
       background: #2a3a96;
@@ -81,6 +97,9 @@ export const StyledFormControl = styled(FormControl)`
 `;
 
 export const StyledTextField = styled(TextField)`
+  @media (max-width: 550px) {
+    margin-top: 5px;
+  }
   .MuiInputLabel-root.Mui-focused {
     color: rgb(153, 149, 149);
     border-radius: 20px;
@@ -99,6 +118,9 @@ export const StyledTextField = styled(TextField)`
       border: 1px solid rgb(153, 149, 149);
     }
   }
+  @media (max-width: 550px) {
+    width: 100%;
+  }
 `;
 export const Range = styled.div`
   width: 100%;
@@ -113,21 +135,21 @@ export const StyledColumn = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  img{
+  img {
     gap: 10px;
     padding: 10px;
-  border: 1px solid #ccc;
-  box-shadow:1px 1px 7px #ccc;
-  overflow: hidden;
-  border-radius: 7px;
-  width: 100px;
-  height: 100px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 7px #ccc;
+    overflow: hidden;
+    border-radius: 7px;
+    width: 100px;
+    height: 100px;
   }
 `;
 export const StyledCars = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
-  box-shadow:1px 1px 7px #ccc;
+  box-shadow: 1px 1px 7px #ccc;
   overflow: hidden;
   border-radius: 7px;
   width: 100px;
@@ -136,5 +158,11 @@ export const StyledCars = styled.div`
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+`;
+export const StyledMenuItem = styled(MenuItem)`
+  &&.MuiMenuItem-root {
+    display: block;
+    padding-left: 8px;
   }
 `;

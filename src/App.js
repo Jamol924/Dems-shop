@@ -2,6 +2,7 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Home from "./pages/parts/Home";
 import Item from "./pages/parts/Item";
+import ItemCard from "./pages/sections/Admen/TovarById/GlavneId";
 import Contact from "./pages/parts/contact";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Admin from "./pages/parts/Admen";
@@ -28,6 +29,8 @@ import MyProfil from "./pages/parts/MyProfil";
 import Setting from "./pages/sections/MyProfil/Setting";
 import MyAdss from "./pages/sections/MyProfil/MyAdss";
 import okFilse from "./components/common/okFile";
+import FailFooter from "./components/FailFooter.jsx";
+import "animate.css";
 
 const GlobalStyle = createGlobalStyle`
    * {
@@ -55,62 +58,232 @@ function App() {
             <Route
               exact
               path="/admen/Cars"
-              render={() => <TovarCars category="cars" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarCars category="cars" />{" "}
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/Home"
-              render={() => <TovarHome category="home" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarHome category="home" />
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/Electronics"
-              render={() => <TovarElectronics category="electronics" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarElectronics category="electronics" />
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/Jobs"
-              render={() => <TovarJobs category="jobs" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarJobs category="jobs" />
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/fashion-style"
-              render={() => <TovarFashionStyle category="fashion-style" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarFashionStyle category="fashion-style" />
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/childrens-world"
-              render={() => <TovarChildrensWorld category="childrens-world" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarChildrensWorld category="childrens-world" />
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/business-service"
-              render={() => <TovarbusinesService category="business-service" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarbusinesService category="business-service" />
+                </div>
+              )}
             />
             <Route
               exact
               path="/admen/Agriculture"
-              render={() => <TovarAgriculture categore="agriculture" />}
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <TovarAgriculture categore="agriculture" />
+                </div>
+              )}
             />
-            <Route exact path="/admen" component={Admin} />
+            <Route
+              exact
+              path="/admen"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Admin />
+                </div>
+              )}
+            />
             <Route exact path="/okFilse" component={okFilse} />
 
-            <Route exact path="/Cars" component={Cars} />
-            <Route exact path="/Home" component={Plaze} />
+            <Route
+              exact
+              path="/Cars"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Cars />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/Home"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Plaze />{" "}
+                </div>
+              )}
+            />
             <Route exact path="/Fashion-Style" component={fashion} />
-            <Route exact path="/Electronics" component={Electronics} />
-            <Route exact path="/Childrens-World" component={ChildrenWorld} />
-            <Route exact path="/business-service" component={BusinesStyle} />
-            <Route exact path="/Agriculture" component={Agrikulture} />
-            <Route exact path="/Jobs" component={Jobs} />
+            <Route
+              exact
+              path="/Electronics"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Electronics />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/Childrens-World"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <ChildrenWorld />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/business-service"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <BusinesStyle />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/Agriculture"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Agrikulture />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/Jobs"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Jobs />{" "}
+                </div>
+              )}
+            />
 
-            <Route exact path="/My-adds" component={MyAdss} />
-            <Route exact path="/admenName" component={Setting} />
-            <Route exact path="/myProfil" component={MyProfil} />
-            <Route exact path="/SearchCard" component={SearchCard} />
-            <Route exact path="/AllAds" component={AllAds} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/:productId" component={Item} />
+            <Route
+              exact
+              path="/My-adds"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <MyAdss />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/admenName"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Setting />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/myProfil"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <MyProfil />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/SearchCard"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <SearchCard />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/AllAds"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <AllAds />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/contact"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Contact />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/failFooter"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <FailFooter />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/:productId"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <Item />{" "}
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/card/:productId"
+              render={() => (
+                <div className="animate__animated animate__fadeIn">
+                  <ItemCard />{" "}
+                </div>
+              )}
+            />
             <Route exact path="/" component={Home} />
             <Route>404 Not Found</Route>
           </Switch>

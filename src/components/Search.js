@@ -20,22 +20,22 @@ import {
   ButtonLink,
 } from "../components/common/MaterialComponent/AboutSection";
 import { Link } from "react-router-dom";
+import L from "../locale/language.json";
 
 const Search = () => {
   const dispatch = useDispatch();
- 
+  const lan = useSelector((state) => state.allLanguage);
+  const filters = useSelector((state) => state.Search.data);
 
   const [data, setData] = useState({
-    location: "",
-    category: "",
-    search: "",
+    location: filters.location,
+    category: filters.category,
+    search: filters.search,
   });
 
-
   const FuncButton = (data) => {
-  return ( dispatch(useSearch(data)))
-  }
-
+    return dispatch(useSearch(data));
+  };
 
   const changeData = (name, value) => {
     setData({ ...data, [name]: value });
@@ -47,7 +47,7 @@ const Search = () => {
 
   const [value, setValue] = useState("");
   const handleRegion = (el) => {
-    setValue(el.target.value);  
+    setValue(el.target.value);
   };
 
   const regionFetch = async () => {
@@ -63,12 +63,19 @@ const Search = () => {
       .catch((er) => console.log(er));
   };
 
-  const [eliment, setEliment] = useState("");
-  const [elimen, setElimen] = useState("");
-
+  console.log(datas[0].title[lan]);
   useEffect(() => {
     regionFetch();
   }, []);
+
+  const reg = [
+    {
+      name: L.asia.locationName[lan],
+      id: 1,
+      name1: L.asia.categoryName[lan],
+      id1: 2,
+    },
+  ];
 
   return (
     <Wrapper>
@@ -80,8 +87,11 @@ const Search = () => {
               <input
                 onFocus={() => setInput(1)}
                 onClick={handleRegion}
-                value={regions.find((reg) => reg._id === data.location)?.name || eliment}
-                placeholder="Select Location"
+                value={
+                  regions.find((reg) => reg._id === data.location)?.name ||
+                  reg.find((el) => el.id === data.location)?.name
+                }
+                placeholder={L.asia.location[lan]}
                 type="text"
               />
             </FormLocation>
@@ -89,24 +99,31 @@ const Search = () => {
               <SearchSvg2 />
               <input
                 onFocus={() => setInput(2)}
-                placeholder="Select Category"
+                placeholder={L.asia.category[lan]}
                 type="text"
-                value={datas.find((item) => item.id === data.category)?.title || elimen}
+                value={
+                  datas.find((item) => item.id === data.category)?.title.uz ||
+                  reg.find((e) => e.id1 === data.category)?.name1
+                }
               />
             </FormCategory>
             <FormText>
               <SearchSvg3 />
-              <input onChange={e => changeData("search", e.target.value)} placeholder="Enter keyword here..." type="text" />
+              <input
+                onChange={(e) => changeData("search", e.target.value)}
+                placeholder={L.asia.search[lan]}
+                type="text"
+              />
             </FormText>
             <ButtonLink>
-              <Link to="/searchCard">
+              <Link style={{color:"white"}} to="/searchCard">
                 <StyledLoadingButton
                   onClick={() => FuncButton(data)}
                   startIcon={<SearchIcon />}
                   loadingPosition="start"
                   variant="contained"
-                > 
-                  Search
+                >
+                  {L.asia.button[lan]}
                 </StyledLoadingButton>
               </Link>
             </ButtonLink>
@@ -114,7 +131,15 @@ const Search = () => {
           <FormInputActive>
             {input === 1 && (
               <LocationStyles>
-                <div onClick={(e) => ( changeData( regions._id), setEliment(e.target.textContent))} >Butun Uzbekiston buylab</div>
+                {reg.map((el) => (
+                  <option
+                    onClick={() => changeData("location", el.id)}
+                    key={el.id}
+                    value={el.id}
+                  >
+                    {el.name}
+                  </option>
+                ))}
                 {regions.map((regon) => (
                   <option
                     onClick={() => changeData("location", regon._id)}
@@ -128,10 +153,17 @@ const Search = () => {
             )}
             {input === 2 && (
               <LocationSty>
-                <div onClick={(e) => (changeData(datas._id), setElimen(e.target.textContent))} >Bce Categore</div>
+                {reg.map((el) => (
+                  <p
+                    onClick={() => changeData("category", el.id1)}
+                    value={el.id1}
+                  >
+                    {el.name1}
+                  </p>
+                ))}
                 {datas.map((dat) => (
                   <p onClick={() => changeData("category", dat.id)}>
-                    {dat.title}
+                    {dat.title[lan]}
                   </p>
                 ))}
               </LocationSty>

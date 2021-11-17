@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import MinNav from "../../../components/common/MineNavbar/MinNav.jsx"
 
 import ContactMenu from "./contact";
 import InfoUs from "../home/InfoUs";
@@ -8,6 +9,7 @@ export default function Registration() {
   return (
     <div>
       <Wrapper>
+        <MinNav />
         <Contact>
           <ContactMenu />
         </Contact>

@@ -13,6 +13,7 @@ import SearchMene from "../../../../components/SearchMene";
 
 import CardElictron from "./CardElictron";
 import InfoUs from "../../home/InfoUs";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Elictronic() {
   const [data, setData] = useState({ location: "", search: "" });
@@ -20,6 +21,7 @@ function Elictronic() {
     <Wrapper>
       <NavbarContent>
         <Nav2 />
+        <MinNav/>
       </NavbarContent>
       <BackContent>
         <BackElictronic />

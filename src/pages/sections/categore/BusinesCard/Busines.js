@@ -11,6 +11,7 @@ import {
 } from "../../../sections/SearchProduct/SearchCard";
 import {BackBusines} from "../../../../components/Back";
 import SearchMene from "../../../../components/SearchMene";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Busines() {
   const [data, setData] = useState({ location: "", search: "" });
@@ -18,6 +19,7 @@ function Busines() {
     <Wrapper>
       <NavbarContent>
         <Nav2 />
+        <MinNav />
       </NavbarContent>
       <BackContent>
         <BackBusines />

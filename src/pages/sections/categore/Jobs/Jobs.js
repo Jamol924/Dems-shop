@@ -11,8 +11,9 @@ import {
   SearchContent,
   AdsContent,
 } from "../../../sections/SearchProduct/SearchCard";
-import {BackJobs} from "../../../../components/Back";
+import {BackJob} from "../../../../components/Back";
 import SearchMene from "../../../../components/SearchMene";
+import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
 function Automobile() {
   const [data, setData] = useState({ location: "", search: "" });
@@ -20,9 +21,10 @@ function Automobile() {
     <Wrapper>
       <NavbarContent>
         <Nav2 />
+        <MinNav />
       </NavbarContent>
       <BackContent>
-        <BackJobs />
+        <BackJob />
       </BackContent>
       <SearchContent>
         <SearchMene
