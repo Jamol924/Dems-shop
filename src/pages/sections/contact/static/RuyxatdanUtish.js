@@ -11,6 +11,8 @@ import L from "../../../../locale/language.json";
 import { useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 import styled from "styled-components";
+import Checkbox from "@material-ui/core/Checkbox";
+import { Link } from "react-router-dom";
 
 const schema = yup.object({
   name: yup
@@ -64,6 +66,11 @@ function RuyxatdanUtish({ onSuccess }) {
         }
       });
   };
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   return (
     <div>
@@ -105,21 +112,51 @@ function RuyxatdanUtish({ onSuccess }) {
           )}
         />
         <p style={{ color: "red", marginTop: 10 }}>{errors.email?.message}</p>
-        <StyledButton
-          type="submit"
-          sx={{
-            marginTop: 1,
-            marginBottom: 3,
-            letterSpacing: 2,
-            fontWeight: 500,
-            padding: 1.7,
-            borderRadius: 2,
-          }}
-          fullWidth
-          variant="contained"
-        >
-          {L.tizim.but2[lon]}
-        </StyledButton>
+        <div>
+          <Checkbox
+            checked={checked}
+            onChange={handleChange}
+            defaultChecked
+            color="primary"
+          />
+          <span> * Я принимаю правила Dems.uz <Link to="/failFooter"><a href="" >Правила использования Dems.uz.</a> </Link> </span>
+        </div>
+        {checked ? (
+          <StyledButton
+            type="submit"
+            sx={{
+              marginTop: 1,
+              marginBottom: 3,
+              letterSpacing: 2,
+              fontWeight: 500,
+              padding: 1.7,
+              borderRadius: 2,
+            }}
+            fullWidth
+            variant="contained"
+          >
+            {L.tizim.but2[lon]}
+          </StyledButton>
+        ) : (
+          <>
+            <StyledButton
+              disabled
+              type="submit"
+              sx={{
+                marginTop: 1,
+                marginBottom: 3,
+                letterSpacing: 2,
+                fontWeight: 500,
+                padding: 1.7,
+                borderRadius: 2,
+              }}
+              fullWidth
+              variant="contained"
+            >
+              {L.tizim.but2[lon]}
+            </StyledButton>
+          </>
+        )}
       </form>
     </div>
   );
@@ -128,11 +165,9 @@ function RuyxatdanUtish({ onSuccess }) {
 export default RuyxatdanUtish;
 
 export const StyledTextField = styled(TextField)`
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
-  
-  @media(max-width:550px){
-    padding: 10px 14px ;
-  } 
-}
- 
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    @media (max-width: 550px) {
+      padding: 10px 14px;
+    }
+  }
 `;

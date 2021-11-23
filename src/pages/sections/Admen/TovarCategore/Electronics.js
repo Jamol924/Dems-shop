@@ -24,16 +24,21 @@ import {
   StyledMenuItem
 } from "../MaterialTovar/Tovar";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
+import { useSnackbar } from "notistack";
+
 
 function Electronics({ category }) {
   const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const elictron = category;
-  const [area, setArea] = useState("");
-  const [zagol, setZagol] = useState("");
   const [mobil, setMobil] = useState("phone");
   const handleMobile = (e) => {
     setMobil(e.target.value);
+  };
+
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant) => () => {
+    enqueueSnackbar(L.tizim.tovar[lan], { variant });
   };
   const [tur, setTur] = useState(" ");
   const handleTur = (e) => {
@@ -147,9 +152,9 @@ function Electronics({ category }) {
           },
         }
       )
-      .then((res) => {
-        history.push("/okFilse");
-        console.log(res);
+      .then(() => {
+        history.push("/Admen");
+        handleClickVariant("success")()
       })
       .catch(() => console.log(localStorage.getItem("token")));
   };
@@ -200,7 +205,6 @@ function Electronics({ category }) {
                     sx={{ mb: 3 }}
                     label={L.tovarAdd.cars.title[lan]}
                     variant="filled"
-                    onChange={(e) => setZagol(e.target.value)}
                     helperText={errors?.name?.message}
                     error={errors?.name}
                     {...field}
@@ -316,7 +320,6 @@ function Electronics({ category }) {
                       maxWidth: "1000px",
                     }}
                     placeholder={L.tovarAdd.cars.opesanPlas[lan]}
-                    onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}
                     {...field}
@@ -337,13 +340,13 @@ function Electronics({ category }) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
-              onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 4, display: "inline-block" }}
+                onClick={handleSubmit(handlSubmit)}
+                
                 variant="contained"
-              >
-                опубликовать
+                variant="contained"
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

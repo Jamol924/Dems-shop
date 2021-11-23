@@ -418,13 +418,13 @@ function FashionStyle({ category, dataCard }) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 4, display: "inline-block" }}
+                
                 variant="contained"
-              >
-                опубликовать
+                variant="contained"
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

@@ -34,9 +34,6 @@ export default SearchCard;
 export const Wrapper = styled.div`
 
   width: 100%;
-  /* @media(max-width:550px){
-    margin-bottom: 100px;
-  }  */
 `;
 
 export const NavbarContent = styled.div`

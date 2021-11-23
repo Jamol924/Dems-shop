@@ -19,7 +19,6 @@ import {
 import { Link } from "react-router-dom";
 import {
   CardContactSvg,
-  CardImgSvg,
   CardIconSvg, 
   CardLocationSvg,
   CardTissotSvg,

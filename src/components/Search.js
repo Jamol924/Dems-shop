@@ -45,11 +45,6 @@ const Search = () => {
   const [input, setInput] = useState(null);
   const [regions, setRegions] = useState([]);
 
-  const [value, setValue] = useState("");
-  const handleRegion = (el) => {
-    setValue(el.target.value);
-  };
-
   const regionFetch = async () => {
     axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
@@ -86,7 +81,6 @@ const Search = () => {
               <SearchSvg1 />
               <input
                 onFocus={() => setInput(1)}
-                onClick={handleRegion}
                 value={
                   regions.find((reg) => reg._id === data.location)?.name ||
                   reg.find((el) => el.id === data.location)?.name

@@ -72,10 +72,6 @@ export const AcceptMaxFiles = () => {
 
   return (
     <>
-      {/* <MenuTitle>
-        <Typography variant="h5">{L.tovarAdd.cars.maxImg[lan]}</Typography>
-        <Typography variant="h7">{L.tovarAdd.cars.maxImg[lan]}</Typography>
-      </MenuTitle> */}
       <Box
         component="span"
         sx={{
@@ -91,7 +87,7 @@ export const AcceptMaxFiles = () => {
         <Typography sx={{ mb: 1 }} variant="h5">
         {L.tovarAdd.cars.foto[lan]}
         </Typography>
-        <Typography sx={{ mb: 1 }} variant="h7">
+        <Typography sx={{ mb: 1, textAlign:"center" }} variant="h7">
         {L.tovarAdd.cars.maxImg[lan]}
         </Typography>
         <div {...getRootProps()}>

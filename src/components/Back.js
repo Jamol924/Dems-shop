@@ -295,7 +295,7 @@ export const BackSetting = () => {
   ];
   return (
     <>
-      <BackCard style={{ marginTop: "-100px" }}>
+      <BackCard>
         <Stack spacing={2}>
           <Breadcrumbs separator="›" aria-label="breadcrumb">
             {breadcrumbs}

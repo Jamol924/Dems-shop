@@ -24,6 +24,10 @@ import {
   StyledMenuItem
 } from "../MaterialTovar/Tovar";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
+import { useSnackbar } from "notistack";
+
+
+
 
 function Businesservice({ category }) {
   const lan = useSelector(state => state.allLanguage)  
@@ -34,6 +38,11 @@ function Businesservice({ category }) {
   const [businser, setBusinser] = useState("financial-services");
   const handleMobile = (e) => {
     setBusinser(e.target.value);
+  };
+
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant) => () => {
+    enqueueSnackbar(L.tizim.tovar[lan], { variant });
   };
 
   const [gorod, setGorod] = useState("");
@@ -110,9 +119,9 @@ function Businesservice({ category }) {
           },
         }
       )
-      .then((res) => {
-        history.push("/okFilse");
-        console.log(res);
+      .then(() => {
+        history.push("/Admen");
+        handleClickVariant("success")()
       })
       .catch(() => console.log(localStorage.getItem("token")));
   };
@@ -306,13 +315,13 @@ function Businesservice({ category }) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 4, display: "inline-block" }}
+                
                 variant="contained"
-              >
-                опубликовать
+                variant="contained"
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

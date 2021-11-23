@@ -82,8 +82,19 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    .content{
+    .content {
       max-width: 100%;
+    }
+  }
+  @media (max-width: 350px) {
+    h1 {
+      font-size: 20px;
+      line-height: 12px;
+      text-align: center;
+      padding-bottom: 4px;
+      font-family: "Quicksand", sans-serif;
+      margin-top: 50px;
+      margin-bottom: 30px;
     }
   }
 `;

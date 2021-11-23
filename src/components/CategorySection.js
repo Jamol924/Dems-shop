@@ -37,6 +37,11 @@ export const Wrapper = styled.div`
   @media(max-width:550px){
     margin-top: 100px;
   }
+  
+  @media(max-width:350px){
+    margin-bottom: 0px;
+  }
+  
 `;
 
 export const CategoryList = styled.div`
@@ -79,6 +84,13 @@ margin-top: -100px;
       font-size: 30px;
       line-height: 37px;
       padding-bottom: 20px;
+    }
+  }
+  @media (max-width: 350px) {
+    h2 {
+      font-size: 20px;
+      line-height: 12px;
+      padding-bottom: 30px;
     }
   }
 `;

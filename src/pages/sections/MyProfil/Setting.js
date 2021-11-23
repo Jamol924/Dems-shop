@@ -16,6 +16,7 @@ import {
   MenuContent,
   StyledButton,
   StyledTextField,
+  StyledTextFieldAdd
 } from "../Admen/MaterialTovar/Tovar.jsx";
 import { BackSetting } from "../../../components/Back";
 import MinNav from "../../../components/common/MineNavbar/MinNav";
@@ -138,13 +139,13 @@ function Setting() {
                   </StyledButton>
                 </ContentRow>
               </ContentRow>
-              <ContentRow style={{ display: "flex", justifyContent: "space-between" }}>
+              <ContentRow >
                 <Controller
                   name="name"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <StyledTextField
+                    <StyledTextFieldAdd
                       sx={{mb:2}}
                       label={L.settng.ved[lan]}
                       variant="filled"
@@ -159,7 +160,7 @@ function Setting() {
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <StyledTextField
+                    <StyledTextFieldAdd
                       label={L.settng.pol[lan]}
                       variant="filled"
                       onChange={(e) => setStatus(e.target.value)}
@@ -192,13 +193,13 @@ function Setting() {
               <Typography sx={{ mt: 5, mb: 5 }} variant="h5">
                 {L.settng.contact[lan]}
               </Typography>
-              <ContentRow style={{ display: "flex", justifyContent: "space-between" }}>
+              <ContentRow >
                 <Controller
                   name="phone"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <StyledTextField
+                    <StyledTextFieldAdd
                       sx={{ mb: 2 }}
                       label={L.settng.nomer[lan]}
                       variant="filled"
@@ -216,7 +217,7 @@ function Setting() {
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <StyledTextField
+                    <StyledTextFieldAdd
                       sx={{ mb: 3}}
                       label={L.settng.email[lan]}
                       variant="filled"

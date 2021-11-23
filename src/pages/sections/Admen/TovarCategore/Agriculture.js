@@ -24,14 +24,19 @@ import {
   StyledMenuItem
 } from "../MaterialTovar/Tovar";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
+import { useSnackbar } from "notistack";
 
 function Agriculture({ categore }) {
   const lan = useSelector(state => state.allLanguage)  
   const history = useHistory();
   const agricul = categore;
-  const [area, setArea] = useState("");
-  const [zagol, setZagol] = useState("");
   const [mobil, setMobil] = useState("melon-crops");
+
+    const { enqueueSnackbar } = useSnackbar();
+    const handleClickVariant = (variant) => () => {
+      enqueueSnackbar(L.tizim.tovar[lan], { variant });
+    };
+
   const handleMobile = (e) => {
     setMobil(e.target.value);
   };
@@ -108,9 +113,9 @@ function Agriculture({ categore }) {
           },
         }
       )
-      .then((res) => {
-        history.push("/okFilse");
-        console.log(res);
+      .then(() => {
+        history.push("/Admen");
+        handleClickVariant("success")()
       })
       .catch(() => console.log(localStorage.getItem("token")));
   };
@@ -263,7 +268,6 @@ function Agriculture({ categore }) {
                       maxWidth: "1000px",
                     }}
                     placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
-                    onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}
                     {...field}
@@ -284,14 +288,13 @@ function Agriculture({ categore }) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 4, display: "inline-block" }}
+                
                 variant="contained"
                 variant="contained"
-              >
-                опубликовать
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

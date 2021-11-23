@@ -39,12 +39,14 @@ const CardAuto = ({filters}) => {
   };
   const Filter = products1.filter(
     (eliment) =>
-      (filters.location.length > 0
-        ? eliment.region_id === filters.location
-        : true) &&
-      (filters.search.length > 0
-        ? eliment.title.toLowerCase().includes(filters.search.toLowerCase())
-        : true)
+    (filters.location === 1
+      ? eliment.region_id !== filters.location
+      : filters.location
+      ? eliment.region_id === filters.location
+      : true) &&
+    (filters.search
+      ? eliment.title.toLowerCase().includes(filters.search.toLowerCase())
+      : true)
   );
 
   useEffect(() => {

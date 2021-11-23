@@ -1,5 +1,10 @@
 {
   "tizim": {
+    "tovar": {
+      "uz": "Sizning e'loningiz e'lonlar ro'yxatiga qo'shildi",
+      "ru": "Ваше объявление добавлено в список объявлений",
+      "en": "Your ad has been added to the list of ads"
+    },
     "ut": {
       "uz": "Siz oldin ruyxatdan utgansiz!",
       "ru": "Вы уже зарегистрировались",

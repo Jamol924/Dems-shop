@@ -31,6 +31,8 @@ import {
   StyledMenuItem
 } from "../MaterialTovar/Tovar";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
+import { useSnackbar } from "notistack";
+
 
 function Home({ category }) {
   const lan = useSelector(state => state.allLanguage)  
@@ -39,6 +41,10 @@ function Home({ category }) {
   const [zagol, setZagol] = useState("");
   const handleZagol = (el) => {
     setZagol(el.target.value);
+  };
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant) => () => {
+    enqueueSnackbar(L.tizim.tovar[lan], { variant });
   };
 
   const [glavne, setGlavne] = useState("home");
@@ -216,9 +222,9 @@ function Home({ category }) {
           },
         }
       )
-      .then((res) => {
-        history.push("/okFilse");
-        console.log(res);
+      .then(() => {
+        history.push("/Admen");
+        handleClickVariant("success")()
       })
       .catch(() => console.log(localStorage.getItem("token")));
   };
@@ -631,14 +637,13 @@ function Home({ category }) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 4, display: "inline-block" }}
+                
                 variant="contained"
-                type="submit"
-              >
-                опубликовать
+                variant="contained"
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

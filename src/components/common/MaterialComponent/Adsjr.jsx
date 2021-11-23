@@ -28,6 +28,16 @@ export const Wrapper = styled.div`
     border-radius: 10px;
     overflow: hidden;
   }
+  @media (max-width: 350px) {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 140px;
+    height: 230px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 `;
 export const RowColumn = styled.div`
   margin-left: 20px;
@@ -106,6 +116,14 @@ export const CardTitle = styled.div`
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+  @media (max-width: 350px) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    margin-bottom: 5px;
+  }
 `;
 export const CardW = styled.div`
   display: flex;
@@ -134,6 +152,10 @@ export const WTitle = styled.div`
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+  @media (max-width: 350px) {
+    font-size: 10px;
+  line-height: 10px;
+  }
 `;
 
 export const CardName = styled.div`
@@ -161,6 +183,10 @@ export const NameTitle = styled.div`
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+  @media (max-width: 350px) {
+    font-size: 10px;
+  line-height: 10px;
+  }
 `;
 export const CardLocation = styled.div`
   display: flex;
@@ -187,6 +213,10 @@ export const LocationTitle = styled.div`
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+  @media (max-width: 350px) {
+    font-size: 10px;
+  line-height: 10px;
+  }
 `;
 export const CardPrice = styled.div`
   font-family: Roboto;

@@ -80,6 +80,8 @@ const Wrapper = styled.div`
 
   div.first {
     display: flex;
+    width: 330px;
+    justify-content: space-between;
 
     & > div {
       display: flex;

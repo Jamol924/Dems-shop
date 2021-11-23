@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
-import { Box } from "@mui/system";
+import {  Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { categoreProduct } from "../../../../redux/active/productActions";
 import Nav2 from "../../../../components/Nav2";
@@ -30,9 +30,12 @@ import {
   ContentRow,
   StyledFormControl,
   StyledButton,
-  StyledMenuItem
+  StyledMenuItem,
+  StyledToggleButton
 } from "../MaterialTovar/Tovar.jsx";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
+import { useSnackbar } from "notistack";
+
 
 function Cars(props) {
   const lan = useSelector((state) => state.allLanguage);
@@ -43,7 +46,11 @@ function Cars(props) {
   const [age, setAge] = useState("");
   const CategoreRispons = useSelector((state) => state.CategoreCard.Categore);
   const [model, setModel] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
 
+  const handleClickVariant = (variant) => () => {
+    enqueueSnackbar(L.tizim.tovar[lan], { variant });
+  };
   const handleApi = async () => {
     axios
       .post("http://dems.inone.uz/api/brand/get-pagin", {
@@ -104,7 +111,7 @@ function Cars(props) {
   };
   const [alignment, setAlignment] = useState("#ccc");
   const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
+    setAlignment(newAlignment );
   };
   const [textarea, setTextarea] = useState("");
   const handleTextareaChange = (el) => {
@@ -148,6 +155,7 @@ function Cars(props) {
     setGorod(event.target.value);
   };
 
+  
   useEffect(() => {
     handleApi();
     regionFetch();
@@ -191,9 +199,10 @@ function Cars(props) {
         }
       )
       .then(() => {
-        history.push("/okFilse");
+        history.push("/Admen");
+        handleClickVariant("success")()
       })
-      .catch(() => console.log());
+      .catch((err) => console.log(err));
   };
 
   const schema = yup.object({
@@ -343,57 +352,38 @@ function Cars(props) {
                 onChange={handleAlignment}
                 aria-label="text alignment"
               >
-                <ToggleButton
+                <StyledToggleButton
                   sx={{
-                    backgroundColor: "white",
-                    borderRadius: "none",
                     width: "60px",
                     height: "60px",
-                    marginRight: "20px",
                   }}
                   value="white"
                   aria-label="left aligned"
-                ></ToggleButton>
-                <ToggleButton
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
-                    backgroundColor: "red",
                     width: "60px",
                     height: "60px",
-                    marginRight: "20px",
                   }}
                   value="red"
                   aria-label="centered"
-                ></ToggleButton>
-                <ToggleButton
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
-                    backgroundColor: "green",
                     width: "60px",
                     height: "60px",
-                    marginRight: "20px",
                   }}
                   value="green"
-                  aria-label="right aligned"
-                ></ToggleButton>
-                <ToggleButton
+                  aria-label="left aligned"
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
-                    backgroundColor: "black",
                     width: "60px",
                     height: "60px",
-                    marginRight: "20px",
                   }}
                   value="black"
-                  aria-label="right aligned"
-                ></ToggleButton>
-                <ToggleButton
-                  sx={{
-                    backgroundColor: "yellow",
-                    width: "60px",
-                    height: "60px",
-                    marginRight: "20px",
-                  }}
-                  value="yellow"
-                  aria-label="right aligned"
-                ></ToggleButton>
+                  aria-label="left aligned"
+                ></StyledToggleButton>
               </ToggleButtonGroup>
             </MenuContent>
             <MenuContent>
@@ -508,14 +498,13 @@ function Cars(props) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 2, display: "inline-block" }}
+                
                 variant="contained"
-                type="submit"
-              >
-                опубликовать
+                variant="contained"
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

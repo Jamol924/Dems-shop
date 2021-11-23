@@ -6,14 +6,13 @@ import NoImages from "../assets/NoImages.jpg";
 import { Wrapper, StyledInfo, MenuSection } from "./MaterialComponent/images";
 import { Typography } from "@mui/material";
 import CarouselApp from "./productSlides/Slides";
-import SliderSlice from "./common/SliceCarousel/SliceCarousel";
 
 const Image = ({ dataProduct }) => {
   function day(dataProduct) {
     if (dataProduct == null) {
       return null;
     }
-    let d = new Date(dataProduct).toGMTString().slice(0, -12);
+    let d = new Date(dataProduct).toISOString().slice(0,-14);
     return d;
   }
   return (
@@ -31,7 +30,7 @@ const Image = ({ dataProduct }) => {
       )}
 
       <MenuSection>
-        <StyledTypography variant="h4">{dataProduct.title}</StyledTypography>
+        <StyledTypography>{dataProduct.title}</StyledTypography>
         <StyledTypo>
           {dataProduct.price} <span>{dataProduct.currency}</span>
         </StyledTypo>
@@ -69,7 +68,17 @@ export const StyledTypo = styled.div`
   }
 `;
 export const StyledTypography = styled(Typography)`
+  &&.css-ahj2mt-MuiTypography-root {
+    font-size: 50px;
+  }
   @media (max-width: 550px) {
-    font-size: 10px;
+    &&.css-ahj2mt-MuiTypography-root {
+      font-size: 35px;
+    }
+  }
+  @media (max-width: 350px) {
+    &&.css-ahj2mt-MuiTypography-root {
+      font-size: 25px;
+    }
   }
 `;

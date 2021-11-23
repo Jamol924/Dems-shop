@@ -15,11 +15,11 @@ function FailFooter() {
         <MinNav />
         <Back />
         <StyledTable>
-          <Typography variant="h5">{L.Foter.name[lon]}</Typography>
-          <Typography variant="h6">{L.Foter.qoida[lon]}</Typography>
-          <Typography variant="h6">{L.Foter.qoida1[lon]}</Typography>
-          <Typography variant="h6">{L.Foter.qoida2[lon]}</Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h5">{L.Foter.name[lon]}</Typography>
+          <Typography sx={{mb:1}} variant="h6">{L.Foter.qoida[lon]}</Typography>
+          <Typography sx={{mb:1}} variant="h6">1.{L.Foter.qoida1[lon]}</Typography>
+          <Typography sx={{mb:1}} variant="h6">{L.Foter.qoida2[lon]}</Typography>
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             2.O‘zbekiston Respublikasi Fuqarolik kodeksining 367-375 moddalariga
             muvofiq mazkur Kelishuv ommaviy oferta hisoblanadi hamda quyida
@@ -28,7 +28,7 @@ function FailFooter() {
             o‘rinlarda Foydalanuvchi) mazkur Kelishuv shartlarini bajarish
             majburiyatini zimmasiga oladi.{" "}
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             3.Mazkur ofertada, agar matnda boshqa hol belgilanmasa, quyida
             keltirilgan atamalar quyidagi ma‘nolarni anglatadi: Oferta – har
@@ -70,7 +70,7 @@ function FailFooter() {
             verifikatsiya kodini verifikatsiya sahifasidagi tegishli maydonga
             kiritish orqali amalga oshiriladi.{" "}
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             4.Agar Foydalanuvchi mazkur shartlardan to‘liq yoki qisman norozi
             bo‘lsa, Bajaruvchi undan mazkur saytni tark etishni so‘raydi. Mazkur
@@ -79,7 +79,7 @@ function FailFooter() {
             Foydalanuvchi mazkur kelishuv bilan tanishganini, uni tushunishini
             va uning shartlarini qabul qilishini anglatadi.
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             5.DEMS.uzning qaysidir servisidan foydalanishni boshlaganda yoki
             ro‘yxatdan o‘tib ,Foydalanuvchi Kelishuv shartlarini to‘liq, hech
@@ -87,127 +87,175 @@ function FailFooter() {
             Foydalanuvchi mazkur Kelishuvning qaysidir qoidasidan norozi bo‘lsa
             Foydalanuvchi DEMS.uz servislaridan foydalanishga haqli emas.
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             6.Ushbu orqali Kompaniya Internet tarmog‘i Foydalanuvchilariga o‘z
             servislaridan mazkur Kelishuvda keltirilgan shartlar asosida
-            foydalanishni taklif etadi. Doston Ziyom, [11/15/2021 6:36 AM]
+            foydalanishni taklif etadi.
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             7.Kompaniya Foydalanuvchiga sotish yoki boshqa Foydalanuvchilar
             tomonidan sotib olinishi maqsadida, biroq, faqatgina buning uchun
             emas, turli tovarlar va xizmatlar haqidagi ma‘lumotlarni
             joylashtirish uchun DEMS.uz Saytidan foydalanish bo‘yicha
             xizmatlarni taklif etadi.{" "}
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             8.Foydalanuvchilar o‘rtasidagi barcha bitimlar to‘g‘ridan-to‘g‘ri
             tuziladi, ya‘ni Kompaniya Foydalanuvchilarning bitimlari ishtirokisi
             hisoblanmaydi, balki faqatgina e‘lonlarni joylashtirish uchun
             kommunikatsion savdo platformasini taqdim etadi.{" "}
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
             9. Tomonlarning huquq va majburiyatlari shuningdek,mazkur
             Kelishuvning ajralmas qismi boʻlgan maqolalar va boshqa axborot
-            materiallari bilan ham belgilanishi mumkin. 2. E‘LONLARNI
-            JOYLASHTIRISH 1.Taklif etilayotgan tovarlar va xizmatlarga tavsif
-            berib, maxsus shaklni to‘ldirgandan so‘ng Foydalanuvchi Saytlarda
-            e‘lon joylashtirish huquqiga ega bo‘ladi. 2.Bundan tashqari,
-            qo‘shimcha xizmatlarni olish maqsadida Foydalanuvchi faqat o‘zi
-            foydalanishi mumkin bo‘lgan haqiqiy telefon raqamini, tanlangan
-            parolь, va ro‘yxatdan o‘tish uchun zarur bo‘lgan boshqa
-            ma‘lumotlarni ko‘rsatgan holda shaklni to‘ldirib, Saytda ro‘yxatdan
-            o‘tishi mumkin. Bundan so‘ng Foydalanuvchi SMS-xabar oladi va
-            ro‘yxatdan o‘tishni yakunlash uchun, undagi kodni tegishli qatorda
-            ko‘rsatishi lozim bo‘ladi. 3.Ro‘yxatdan o‘tgan va ro‘yxatdan
-            o‘tmagan Foydalanuvchilar tomonidan Saytning imkoniyatlaridan va
-            servislaridan foydalanish DEMS.uz xizmatlaridan foydalanish bo‘yicha
-            qoidalar va yo‘riqnomalarga rioya etish majburiyatini olganlikni
-            anglatadi. 4.Foydalanuvchi Saytga kirish uchun uning telefon raqami
-            va parolidan foydalanish bo‘yicha barcha harakatlar uchun
-            javobgarlikni o‘z zimmasiga oladi. Foydalanuvchi faqat o‘z telefon
-            raqami va paroli yordamida Saytning xizmatlaridan foydalanish
-            huquqiga ega. 5.Foydalanuvchi unga taqdim etilgan parolning
-            maxfiyligini saqlash va uni uchinchi shaxslarga oshkor qilmaslik
-            majburiyatini oladi. 6.Agar Foydalanuvchida Saytga kirish uchun
-            foydalaniladigan telefon raqami va parol oshkor etilganligi yoki
-            uchinchi shaxslar tomonidan foydalanilishi mumkinligiga gumon qilish
-            uchun asos bo‘lsa u darhol Saytga kirish ma‘lumotlarini
-            o‘zgartirishi lozim. 7.Tovarlar yoki xizmatlarni sotish haqida
-            Saytga e‘lon joylashtirayotgan Foydalanuvchi ular haqidagi
-            ma‘lumotlarni mazkur kelishuv va Saytda keltirilgan yo‘riqnomalarga
-            muvofiq holda joylashtirish va tovarlar va xizmatlar va ularni
-            sotish shartlari haqida aniq va to‘liq ma‘lumot berish majburiyatini
-            oladi. Tovar va xizmat haqida ma‘lumotni joylashtirib, Foydalanuvchi
-            o‘zining ular sotilishi amalga oshiriladigan davlatlar
-            qonunchiligiga muvofiq ushbu tovarni sotishi yoki ushbu xizmatni
-            ko‘rsatish xuquqiga ega ekanligini tasdiqaydi. Xususiy shaxs
-            tomonidan joylashtirilgan ko‘chmas mulk ob’yektini sotish / ijaraga
-            qo‘yish to‘g‘risida e’lon joylashtirilganda, Foydalanuvchi
-            Kompaniyaga joylashtirilayotgan ob’yektga egalik huquqini
-            tasdiqlaydigan hujjatlarni, shu jumladan pasport, ko‘chmas mulkka
-            egalik huquqini va u bilan amalga oshirilgan oldi-sotdilarni
-            tasdiqlaydigan davlat reyestridan ko‘chirma (yoki egalik huquqini
-            tasdiqlaydigan boshqa hujjatlar) taqdim etish majburiyatini oladi.
-            Foydalanuvchi mazkur hujjatlarni taqdim etishdan bosh tortgan
-            taqdirda, Kompaniya Foydalanuvchi e’lon joylashtirishini rad etishga
-            haqli. 8.Foydalanuvchi u tomondan taklif etiladigan
-            tovarlar/xizmatlar, ular sotilishi amalga oshiriladigan davlatlar
-            qonunchiligida belgilangan sifat me‘yorlariga javob berishini va
-            uchinchi shaxslar da‘vosidan ozod ekanligini kafolatlaydi. 9.Agar
-            Foydalanuvchi tomonidan taqdim etiladigan xizmatlar maxsus
+            materiallari bilan ham belgilanishi mumkin.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            2. E‘LONLARNI JOYLASHTIRISH 1.Taklif etilayotgan tovarlar va
+            xizmatlarga tavsif berib, maxsus shaklni to‘ldirgandan so‘ng
+            Foydalanuvchi Saytlarda e‘lon joylashtirish huquqiga ega bo‘ladi.
+            2.Bundan tashqari, qo‘shimcha xizmatlarni olish maqsadida
+            Foydalanuvchi faqat o‘zi foydalanishi mumkin bo‘lgan haqiqiy telefon
+            raqamini, tanlangan parolь, va ro‘yxatdan o‘tish uchun zarur bo‘lgan
+            boshqa ma‘lumotlarni ko‘rsatgan holda shaklni to‘ldirib, Saytda
+            ro‘yxatdan o‘tishi mumkin. Bundan so‘ng Foydalanuvchi SMS-xabar
+            oladi va ro‘yxatdan o‘tishni yakunlash uchun, undagi kodni tegishli
+            qatorda ko‘rsatishi lozim bo‘ladi.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            3.Ro‘yxatdan o‘tgan va ro‘yxatdan o‘tmagan Foydalanuvchilar
+            tomonidan Saytning imkoniyatlaridan va servislaridan foydalanish
+            DEMS.uz xizmatlaridan foydalanish bo‘yicha qoidalar va
+            yo‘riqnomalarga rioya etish majburiyatini olganlikni anglatadi.{" "}
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            4.Foydalanuvchi Saytga kirish uchun uning telefon raqami va
+            parolidan foydalanish bo‘yicha barcha harakatlar uchun javobgarlikni
+            o‘z zimmasiga oladi. Foydalanuvchi faqat o‘z telefon raqami va
+            paroli yordamida Saytning xizmatlaridan foydalanish huquqiga ega.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            5.Foydalanuvchi unga taqdim etilgan parolning maxfiyligini saqlash
+            va uni uchinchi shaxslarga oshkor qilmaslik majburiyatini oladi.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            6.Agar Foydalanuvchida Saytga kirish uchun foydalaniladigan telefon
+            raqami va parol oshkor etilganligi yoki uchinchi shaxslar tomonidan
+            foydalanilishi mumkinligiga gumon qilish uchun asos bo‘lsa u darhol
+            Saytga kirish ma‘lumotlarini o‘zgartirishi lozim.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            7.Tovarlar yoki xizmatlarni sotish haqida Saytga e‘lon
+            joylashtirayotgan Foydalanuvchi ular haqidagi ma‘lumotlarni mazkur
+            kelishuv va Saytda keltirilgan yo‘riqnomalarga muvofiq holda
+            joylashtirish va tovarlar va xizmatlar va ularni sotish shartlari
+            haqida aniq va to‘liq ma‘lumot berish majburiyatini oladi. Tovar va
+            xizmat haqida ma‘lumotni joylashtirib, Foydalanuvchi o‘zining ular
+            sotilishi amalga oshiriladigan davlatlar qonunchiligiga muvofiq
+            ushbu tovarni sotishi yoki ushbu xizmatni ko‘rsatish xuquqiga ega
+            ekanligini tasdiqaydi. Xususiy shaxs tomonidan joylashtirilgan
+            ko‘chmas mulk ob’yektini sotish / ijaraga qo‘yish to‘g‘risida e’lon
+            joylashtirilganda, Foydalanuvchi Kompaniyaga joylashtirilayotgan
+            ob’yektga egalik huquqini tasdiqlaydigan hujjatlarni, shu jumladan
+            pasport, ko‘chmas mulkka egalik huquqini va u bilan amalga
+            oshirilgan oldi-sotdilarni tasdiqlaydigan davlat reyestridan
+            ko‘chirma (yoki egalik huquqini tasdiqlaydigan boshqa hujjatlar)
+            taqdim etish majburiyatini oladi. Foydalanuvchi mazkur hujjatlarni
+            taqdim etishdan bosh tortgan taqdirda, Kompaniya Foydalanuvchi e’lon
+            joylashtirishini rad etishga haqli.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            8.Foydalanuvchi u tomondan taklif etiladigan tovarlar/xizmatlar,
+            ular sotilishi amalga oshiriladigan davlatlar qonunchiligida
+            belgilangan sifat me‘yorlariga javob berishini va uchinchi shaxslar
+            da‘vosidan ozod ekanligini kafolatlaydi.{" "}
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            9.Agar Foydalanuvchi tomonidan taqdim etiladigan xizmatlar maxsus
             ruxsatnoma yoki litsenziya olishni talab etsa, ushbu xizmatlar
             foydalanuvchining bunday faoliyati ustidan nazoratni amalga
             oshirishga vakolatli davlat organlari va qonunchilik talablariga
-            muvofiq amalga oshirilishini kafolatlaydi. Doston Ziyom, [11/15/2021
-            6:36 AM] 10.Foydalanuvchi u tomondan Saytda joylashtirilgan tovarlar
-            va xizmatlar haqidagi barcha ma‘lumotlarni batafsil tekshirishi va
+            muvofiq amalga oshirilishini kafolatlaydi.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            10.Foydalanuvchi u tomondan Saytda joylashtirilgan tovarlar va
+            xizmatlar haqidagi barcha ma‘lumotlarni batafsil tekshirishi va
             noto‘g‘ri ma‘lumot aniqlagan taqdirda tovar yoki xizmatning
             tavsifiga zarur ma‘lumotlarni kiritishi lozim. Agar buning iloji
             bo‘lmasa, e‘lonni bekor qilib, tovar yoki xizmat haqidagi ma‘lumotni
             qayta joylashtirish orqali noto‘g‘ri ma‘lumotni tuzatishi lozim.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
             11.Tovar yetkazib berish shartlari tovar tavsifida, xizmat
             ko‘rsatish shartlari xizmat ko‘rsatish tavsifida berilishi lozim.
             Foydalanuvchi tomonidan tovarni sotish va xizmatlar ko‘rsatish
             shartlari mazkur Kelishuvga va amaldagi qonunchilikka zid
-            bo‘lmasligi lozim. 12.Foydalanuvchi Bajaruvchining raqobatchilariga
-            faol yordam ko‘rsatmaslik va ular tomonidan ko‘rsatiladigan
-            xizmatlar haqidagi ma‘lumotlarni tarqatmaslik majburiyatini oladi.
-            Quyida keltirilganlar kabi, ammo mutloq emas: Boshqa e‘lonlar
-            taxtalari, savdo maydonchalari, internet-auktsionlari va/yoki
+            bo‘lmasligi lozim.{" "}
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            12.Foydalanuvchi Bajaruvchining raqobatchilariga faol yordam
+            ko‘rsatmaslik va ular tomonidan ko‘rsatiladigan xizmatlar haqidagi
+            ma‘lumotlarni tarqatmaslik majburiyatini oladi. Quyida
+            keltirilganlar kabi, ammo mutloq emas: Boshqa e‘lonlar taxtalari,
+            savdo maydonchalari, internet-auktsionlari va/yoki
             internet-do‘konlar haqidagi ma‘lumotlar; Saytda sotilishi
             taqiqlangan tovarlar va xizmatlarni taklif etuvchi
-            internet-resurslar haqida. 13.Kompaniya uning nazorati ostida
-            bo‘lgan yoki nazorati ostida bo‘lmagan texnik sabablarga ko‘ra
-            Foydalanuvchining tovar yoki xizmat haqidagi e‘lonni ko‘chirish,
-            tugatish yoki uni ko‘rsatish muddatini uzaytirish huquqiga ega. Agar
-            Foydalanuvchi tovar yoki xizmatni mazkur Kelishuv yoki amaldagi
-            qonunchilik shartlarini buzgan holda ro‘yxatdan o‘tkazgan bo‘lsa
-            Sayt e‘lon ko‘rsatilishini to‘xtatish huquqiga ega.
-            14.Foydalanuvchiga quyidagilar taqiqlanadi: Aynan bir telefon
-            raqamidan bir xil e‘lonlarni joylashtirish; Mazmunidan aynan bir xil
-            taklif haqida gap borayotgan, mazmun jihatdan bir xil e‘lonlarni
-            joylashtirish; Har xil telefon raqamlaridan bir xil e‘lonlarni
-            joylashtirish; E‘lonlarni uning mazmuniga nomuvofiq ruknlarda
-            joylashtirish; Sarlavhasida takrorlanuvchi punktuatsiya belgilari
-            va/yoki harfli bo‘lmagan belgilar mavjud bo‘lgan e‘lonlarni
-            joylashtirish; Tavsifi va/yoki sarlavhasi/fotosuratlari o‘zaro
-            bog‘liq bo‘lmagan e‘lonlarni joylashtirish; Bir pa ytning o‘zida bir
-            necha tovarlar va xizmatlar taklif qilinayotgan e‘lonlarni
-            joylashtirish; E‘lonlarda zararli elementlar mavjud bo‘lgan
-            sahifalarga yoki saytning bosh sahifasiga havolalar berish; Huquqni
-            qo‘llovchi qonunchilikning buzilishiga olib kelishi mumkin bo‘lgan
-            tovarlar va xizmatlar bo‘yicha e‘lonlarni joylashtirish. E‘lonlar
-            Saytning tegishli funksional sozlamalarida tanlangan geografik
-            viloyat va shaharga muvofiq kelishi lozim. Aniq bir predmet, mulk
-            ob‘ekti, ish o‘rni, xizmat bo‘yicha bitta e‘lonni joylashtirish
-            mumkin. «Go’zallik-salomatlik» bo’limidagi e’lonlarda shaxsiy
-            fotosuratlarni joylashtirish (ommaviy foto banklaridan yuklab
-            olinmagan fotosuratlar); 15.E‘lonlar Kompaniya vakillari tomonidan
-            tanlov asosida post yoki premoderatsiyadan o‘tkazilishi mumkin.
+            internet-resurslar haqida.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            13.Kompaniya uning nazorati ostida bo‘lgan yoki nazorati ostida
+            bo‘lmagan texnik sabablarga ko‘ra Foydalanuvchining tovar yoki
+            xizmat haqidagi e‘lonni ko‘chirish, tugatish yoki uni ko‘rsatish
+            muddatini uzaytirish huquqiga ega. Agar Foydalanuvchi tovar yoki
+            xizmatni mazkur Kelishuv yoki amaldagi qonunchilik shartlarini
+            buzgan holda ro‘yxatdan o‘tkazgan bo‘lsa Sayt e‘lon ko‘rsatilishini
+            to‘xtatish huquqiga ega.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            14.Foydalanuvchiga quyidagilar taqiqlanadi:
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            Aynan bir telefon raqamidan bir xil e‘lonlarni joylashtirish;
+            Mazmunidan aynan bir xil taklif haqida gap borayotgan, mazmun
+            jihatdan bir xil e‘lonlarni joylashtirish; Har xil telefon
+            raqamlaridan bir xil e‘lonlarni joylashtirish; E‘lonlarni uning
+            mazmuniga nomuvofiq ruknlarda joylashtirish; Sarlavhasida
+            takrorlanuvchi punktuatsiya belgilari va/yoki harfli bo‘lmagan
+            belgilar mavjud bo‘lgan e‘lonlarni joylashtirish; Tavsifi va/yoki
+            sarlavhasi/fotosuratlari o‘zaro bog‘liq bo‘lmagan e‘lonlarni
+            joylashtirish; Bir pa ytning o‘zida bir necha tovarlar va xizmatlar
+            taklif qilinayotgan e‘lonlarni joylashtirish; E‘lonlarda zararli
+            elementlar mavjud bo‘lgan sahifalarga yoki saytning bosh sahifasiga
+            havolalar berish; Huquqni qo‘llovchi qonunchilikning buzilishiga
+            olib kelishi mumkin bo‘lgan tovarlar va xizmatlar bo‘yicha
+            e‘lonlarni joylashtirish. E‘lonlar Saytning tegishli funksional
+            sozlamalarida tanlangan geografik viloyat va shaharga muvofiq
+            kelishi lozim. Aniq bir predmet, mulk ob‘ekti, ish o‘rni, xizmat
+            bo‘yicha bitta e‘lonni joylashtirish mumkin.{" "}
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            «Go’zallik-salomatlik» bo’limidagi e’lonlarda shaxsiy fotosuratlarni
+            joylashtirish (ommaviy foto banklaridan yuklab olinmagan
+            fotosuratlar);
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            15.E‘lonlar Kompaniya vakillari tomonidan tanlov asosida post yoki
+            premoderatsiyadan o‘tkazilishi mumkin.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
             16.Quyidagilarning savdosini reklama qiluvchi e‘lonlarni
-            joylashtirish ta‘qiqlanadi: Doston Ziyom, [11/15/2021 6:36 AM]
+            joylashtirish ta‘qiqlanadi:{" "}
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
             spirtli ichimliklarni; tamaki mahsulotlarini; giyohvandlik
             vositalarini; pornografik materiallar yoki predmetlarni;
             farmakologik mahsulotlarni, dori vositalarini, giyohvandlik
@@ -231,42 +279,52 @@ function FailFooter() {
             fikriga ko‘ra, ijtimoiy axloq tamoyillari va negizlariga muvofiq
             kelmaydigan deb hisoblagan e‘lonlarni o‘chirish huquqini o‘zida
             qoldiradi. O‘chirish haqidagi qaror qat‘iy hisoblanadi va qayta
-            ko‘rib chiqilmaydi. 17.Saytning ma‘muriyati va moderatorlari
-            (Kompaniyaning vakillari) quyidagi vakolatlarga ega: Foydalanuvchi
-            e‘lonining matniga, umumiy mazmun-mohiyatiga ta‘sir qilmaydigan,
-            orfografiya va punktuatsiyaga oid bo‘lgan o‘zgartirishlarni
-            kiritish; Joylashtirish uchun ko‘proq mos keladigan rukn
-            aniqlanganida e‘lonlarni ular Saytning boshqa mos ruknlarga
-            ko‘chirib o‘tkazish; E‘lonlar tanlangan bo‘limlarning mavzusiga
-            muvofiq bo‘lmaganda yoki mazkur Kelishuvni buzganida e‘lonlar
-            joylashtirilishini rad etish, shuningdek, Saytdan foydalanishni
-            qulaylashtirish maqsadida sababini ko‘rsatmagan holda bitta
-            Foydalanuvchidan beriladigan e‘lonlar sonini cheklash huquqiga ega.
-            E‘lon taklifining predmetiga noto‘g‘ri tavsif berishga, shuningdek,
-            tovar yoki xizmatni haqiqiy sotish narxiga to‘g‘ri kelmaydigan
-            narxni ko‘rsatish mumkin emas. Narx butun tovar yoki xizmat uchun
-            to‘liq ko‘rsatilishi lozim. Joylashtirilayotgan e‘lonning sarlavhasi
-            e‘lon matniga muvofiq bo‘lishi va o‘zida Foydalanuvchining aloqa
-            yoki shaxsiy ma‘lumotlari (telefon, elektron manzil, internet-resurs
-            manzili)ni aks ettirmasligi lozim. Foydalanuvchi tomonidan sotishga
-            taklif qilinayotgan tovar/xizmatni aks ettiruvchi fotosurat e‘lon
-            sarlavhasiga va matniga muvofiq bo‘lishi lozim. Fotosuratda faqat
-            taklif qilinayotgan ob‘ekt aks etishi lozim. Stok va/yoki internet
-            tarmog‘idan olingan fotosuratlarni joylashtirish mumkin emas.
-            Foydalanuvchilar o‘rtasidagi muloqotni yengillashtirish maqsadida
-            Kompaniya boshqa foydalanuvchilarning aloqa ma‘lumotlarinidan
-            foydalanish imkoniyatini chegaralashi mumkin. Boshqa
-            Foydalanuvchilar tomonidan taqdim etilgan ma‘lumotlardan foydalanish
-            huquqi mazkur Kelishuv bilan cheklanadi. Kompaniya foydalanuvchilar
-            e‘lonlarining mazmuni yoki ularning tavsiflarida keltirilgan
-            resurslarga havolalar uchun javobgarlikni zimmasiga olmaydi.
-            Tovarlar yoki xizmatlar sotiladigan davlatlarning qonunchiligiga
-            muvofiq sotilishi taqiqlanmagan yoki cheklanmagan, shuningdek,
-            mazkur kelishuvga zid kelmaydigan tovarlar yoki xizmatlar
-            e‘lonlarning predmeti bo‘lishi mumkin. 3.FOYDALANUVCHILARNING
-            SHAXSIY MA‘LUMOTLARINI QAYTA ISHLASH SHARTLARI VA BUNGA ROZILIK
+            ko‘rib chiqilmaydi.
           </Typography>
-          <Typography variant="h6">
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            17.Saytning ma‘muriyati va moderatorlari (Kompaniyaning vakillari)
+            quyidagi vakolatlarga ega:{" "}
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            Foydalanuvchi e‘lonining matniga, umumiy mazmun-mohiyatiga ta‘sir
+            qilmaydigan, orfografiya va punktuatsiyaga oid bo‘lgan
+            o‘zgartirishlarni kiritish; Joylashtirish uchun ko‘proq mos
+            keladigan rukn aniqlanganida e‘lonlarni ular Saytning boshqa mos
+            ruknlarga ko‘chirib o‘tkazish; E‘lonlar tanlangan bo‘limlarning
+            mavzusiga muvofiq bo‘lmaganda yoki mazkur Kelishuvni buzganida
+            e‘lonlar joylashtirilishini rad etish, shuningdek, Saytdan
+            foydalanishni qulaylashtirish maqsadida sababini ko‘rsatmagan holda
+            bitta Foydalanuvchidan beriladigan e‘lonlar sonini cheklash huquqiga
+            ega. E‘lon taklifining predmetiga noto‘g‘ri tavsif berishga,
+            shuningdek, tovar yoki xizmatni haqiqiy sotish narxiga to‘g‘ri
+            kelmaydigan narxni ko‘rsatish mumkin emas. Narx butun tovar yoki
+            xizmat uchun to‘liq ko‘rsatilishi lozim. Joylashtirilayotgan
+            e‘lonning sarlavhasi e‘lon matniga muvofiq bo‘lishi va o‘zida
+            Foydalanuvchining aloqa yoki shaxsiy ma‘lumotlari (telefon, elektron
+            manzil, internet-resurs manzili)ni aks ettirmasligi lozim.
+            Foydalanuvchi tomonidan sotishga taklif qilinayotgan tovar/xizmatni
+            aks ettiruvchi fotosurat e‘lon sarlavhasiga va matniga muvofiq
+            bo‘lishi lozim. Fotosuratda faqat taklif qilinayotgan ob‘ekt aks
+            etishi lozim. Stok va/yoki internet tarmog‘idan olingan
+            fotosuratlarni joylashtirish mumkin emas. Foydalanuvchilar
+            o‘rtasidagi muloqotni yengillashtirish maqsadida Kompaniya boshqa
+            foydalanuvchilarning aloqa ma‘lumotlarinidan foydalanish
+            imkoniyatini chegaralashi mumkin. Boshqa Foydalanuvchilar tomonidan
+            taqdim etilgan ma‘lumotlardan foydalanish huquqi mazkur Kelishuv
+            bilan cheklanadi. Kompaniya foydalanuvchilar e‘lonlarining mazmuni
+            yoki ularning tavsiflarida keltirilgan resurslarga havolalar uchun
+            javobgarlikni zimmasiga olmaydi. Tovarlar yoki xizmatlar sotiladigan
+            davlatlarning qonunchiligiga muvofiq sotilishi taqiqlanmagan yoki
+            cheklanmagan, shuningdek, mazkur kelishuvga zid kelmaydigan tovarlar
+            yoki xizmatlar e‘lonlarning predmeti bo‘lishi mumkin.
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
+            {" "}
+            3.FOYDALANUVCHILARNING SHAXSIY MA‘LUMOTLARINI QAYTA ISHLASH
+            SHARTLARI VA BUNGA ROZILIK
+          </Typography>
+          <Typography sx={{mb:1}} variant="h6">
             {" "}
             1.E‘lonlarni joylashtirishda Sayt foydalanuvchilari Kompaniyaga
             ushbu Kelishuvning 1-Ilovasida (MAXFIYLIK SIYOSATI) keltirilgan

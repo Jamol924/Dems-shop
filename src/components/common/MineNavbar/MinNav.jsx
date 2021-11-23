@@ -95,7 +95,7 @@ export default function MinNav() {
   return (
     <Fragment>
       <StyledAppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar classNamr="demo">
+        <Toolbar >
           <Link style={{ color: "white" }} to="/">
             <IconButton edge="start" color="inherit" aria-label="open drawer">
               <HomeIcon color="white" />
@@ -104,7 +104,7 @@ export default function MinNav() {
           <Link style={{ color: "white" }} to="/">
             <IconButton
               style={{ marginLeft: "20px" }}
-              aria-label="account of current user"
+              aria-label="account of current user"  
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleClick}

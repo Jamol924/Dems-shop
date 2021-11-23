@@ -9,7 +9,7 @@ function LoaderSpinner() {
         color="#2a3a96"
         height={100}
         width={100}
-        timeout={6000} //3 secs
+        timeout={2000} //3 secs
       />
     </LoaderContainer>
   );

@@ -30,7 +30,8 @@ import {
   ContentRow,
   StyledFormControl,
   StyledButton,
-  StyledMenuItem
+  StyledMenuItem,
+  StyledToggleButton
 } from "../MaterialTovar/Tovar.jsx";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
@@ -339,7 +340,7 @@ function Cars({category, dataCard}) {
                 onChange={handleAlignment}
                 aria-label="text alignment"
               >
-                <ToggleButton
+                <StyledToggleButton
                   sx={{
                     backgroundColor: "white",
                     borderRadius: "none",
@@ -349,8 +350,8 @@ function Cars({category, dataCard}) {
                   }}
                   value="white"
                   aria-label="left aligned"
-                ></ToggleButton>
-                <ToggleButton
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
                     backgroundColor: "red",
                     width: "60px",
@@ -359,8 +360,8 @@ function Cars({category, dataCard}) {
                   }}
                   value="red"
                   aria-label="centered"
-                ></ToggleButton>
-                <ToggleButton
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
                     backgroundColor: "green",
                     width: "60px",
@@ -369,8 +370,8 @@ function Cars({category, dataCard}) {
                   }}
                   value="green"
                   aria-label="right aligned"
-                ></ToggleButton>
-                <ToggleButton
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
                     backgroundColor: "black",
                     width: "60px",
@@ -379,8 +380,8 @@ function Cars({category, dataCard}) {
                   }}
                   value="black"
                   aria-label="right aligned"
-                ></ToggleButton>
-                <ToggleButton
+                ></StyledToggleButton>
+                <StyledToggleButton
                   sx={{
                     backgroundColor: "yellow",
                     width: "60px",
@@ -389,7 +390,7 @@ function Cars({category, dataCard}) {
                   }}
                   value="yellow"
                   aria-label="right aligned"
-                ></ToggleButton>
+                ></StyledToggleButton>
               </ToggleButtonGroup>
             </MenuContent>
             <MenuContent>
@@ -504,14 +505,13 @@ function Cars({category, dataCard}) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box>
+            <Box sx={{ mt: 2, mb:4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                sx={{ mt: 2, display: "inline-block" }}
+                
                 variant="contained"
-                type="submit"
-              >
-                опубликовать
+                variant="contained"
+              >{L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

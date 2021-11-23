@@ -8,7 +8,7 @@ import { BackMyProfl } from "../../../components/Back";
 import Navbar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { carsEliment } from "../../../redux/active/productActions";
-import L from "../../../locale/language.json"
+import L from "../../../locale/language.json";
 import {
   CardContactSvg,
   CardImgSvg,
@@ -39,7 +39,7 @@ import PaginationLink from "../../../components/pagenaton/Paginat";
 import MinNav from "../../../components/common/MineNavbar/MinNav";
 
 function MyAdss() {
-  const lan = useSelector(state => state.allLanguage) 
+  const lan = useSelector((state) => state.allLanguage);
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
 
@@ -100,11 +100,11 @@ function MyAdss() {
     if (data == null) {
       return null;
     }
-    let d = new Date(data).toISOString().slice(0,-14);
+    let d = new Date(data).toISOString().slice(0, -14);
     return d;
   }
   return (
-    <>
+    <Main>
       <Navbar />
       <MinNav />
       <BackMyProfl />
@@ -114,11 +114,11 @@ function MyAdss() {
           <Wrapper key={dat._id}>
             <ImgDi>
               {dat.state === "active" ? (
-                <StyledBut style={{ backgroundColor: "blue" }}>
+                <StyledBut style={{ backgroundColor: "#2a3a96" }}>
                   active
                 </StyledBut>
               ) : (
-                <StyledBut style={{ backgroundColor: "red" }}>
+                <StyledBut style={{ backgroundColor: "white", color:"#2a3a96" }}>
                   pending
                 </StyledBut>
               )}
@@ -173,12 +173,17 @@ function MyAdss() {
         ))}
       </Row>
       <PaginationLink setPag={setPag} pagNumber={numberOf} />
-    </>
+    </Main>
   );
 }
 
 export default MyAdss;
 
+const Main = styled.div`
+  @media (max-width: 550px) {
+    margin-bottom: 120px;
+  }
+`;
 const Wrapper = styled.div`
   margin-left: 20px;
   width: 235px;
@@ -206,7 +211,16 @@ const Wrapper = styled.div`
     margin-bottom: 10px;
     border-radius: 10px;
     overflow: hidden;
-  } 
+  }
+  @media (max-width: 350px) {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 140px;
+    height: 270px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
 `;
 
 const CardIcon = styled.div`
@@ -219,14 +233,16 @@ const CardIcon = styled.div`
   &:nth-child(3) {
     color: white;
   }
-  @media(max-width:550px){
-    width: 80%;
+  @media (max-width: 550px) {
+    width: 90%;
     margin-top: -10px;
-  } 
+    margin-bottom: 2px;
+    font-size: 10px;
+  }
 `;
 const Bloc = styled.div`
-display: none;
-  @media(max-width:550px){
+  display: none;
+  @media (max-width: 550px) {
     display: block;
     font-style: normal;
     font-weight: bold;
@@ -237,7 +253,16 @@ display: none;
     font-family: "Quicksand", sans-serif;
     margin-top: 50px;
     margin-bottom: 43px;
-  } 
+  }
+  @media (max-width: 350px) {
+    font-size: 20px;
+    line-height: 12px;
+    text-align: center;
+    padding-bottom: 4px;
+    font-family: "Quicksand", sans-serif;
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
 `;
 const StyledBut = styled.span`
   position: absolute;

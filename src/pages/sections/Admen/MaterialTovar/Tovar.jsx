@@ -1,4 +1,10 @@
-import { Button, FormControl, MenuItem, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  MenuItem,
+  TextField,
+  ToggleButton,
+} from "@mui/material";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -15,14 +21,64 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 20px 150px;
-  @media (max-width: 765px) {
+  padding: 20px 120px;
+  @media (max-width: 1024px) {
+    padding: 20px 70px;
+  }
+  @media (max-width: 768px) {
     padding: 20px 50px;
   }
   @media (max-width: 550px) {
     padding: 10px 10px;
   }
 `;
+export const StyledToggleButton = styled(ToggleButton)`
+  &&.MuiToggleButton-sizeMedium{
+    border-radius: 50%;
+
+  }
+    &&.css-1c8m7p7-MuiButtonBase-root-MuiToggleButton-root.Mui-selected:hover {
+      background-color: blue;
+      border-radius: 50%;
+  }
+  &&.css-1c8m7p7-MuiButtonBase-root-MuiToggleButton-root.Mui-selected:focus {
+    border-radius: 50%;
+    background-color: blue;
+  }
+  &&.css-1c8m7p7-MuiButtonBase-root-MuiToggleButton-root.Mui-selected:active {
+    border-radius: 50%;
+    background-color: blue;
+  }
+  &&.MuiButtonBase-root:nth-child(1) {
+    background-color: white;
+    border-radius: 30%;
+    transition: all 0.3s;
+    margin-right: 5px;
+    box-shadow: 1px 1px 20px #ccc;
+  }
+  &&.MuiButtonBase-root:nth-child(2) {
+    background-color: red;
+    border-radius: 30%;
+    transition: all 0.3s;
+    margin-right: 5px;
+    box-shadow: 1px 1px 20px #ccc;
+  }
+  &&.MuiButtonBase-root:nth-child(3) {
+    background-color: black;
+    border-radius: 30%;
+    transition: all 0.3s;
+    margin-right: 5px;
+    box-shadow: 1px 1px 20px #ccc;
+  }
+  &&.MuiButtonBase-root:nth-child(4) {
+    background-color: gray;
+    border-radius: 30%;
+    transition: all 0.3s;
+    margin-right: 5px;
+    box-shadow: 1px 1px 20px #ccc;
+  }
+`;
+
 export const MenuContent = styled.div`
   width: auto;
   height: auto;
@@ -33,6 +89,7 @@ export const MenuContent = styled.div`
   border: 1px solid #ccc;
   margin-bottom: 10px;
   background: #f5f7f7;
+
   @media (max-width: 550px) {
     padding: 10px;
     border: 0px solid #ccc;
@@ -59,8 +116,8 @@ export const StyledButton = styled(Button)`
   && {
     background: #3545a3;
     color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
+    padding: 10px 18px;
+    border-radius: 25px;
 
     &:hover {
       background: #2a3a96;
@@ -97,9 +154,6 @@ export const StyledFormControl = styled(FormControl)`
 `;
 
 export const StyledTextField = styled(TextField)`
-  @media (max-width: 550px) {
-    margin-top: 5px;
-  }
   .MuiInputLabel-root.Mui-focused {
     color: rgb(153, 149, 149);
     border-radius: 20px;
@@ -120,6 +174,32 @@ export const StyledTextField = styled(TextField)`
   }
   @media (max-width: 550px) {
     width: 100%;
+    margin-top: 5px;
+  }
+`;
+export const StyledTextFieldAdd = styled(TextField)`
+  width: 48%;
+  .MuiInputLabel-root.Mui-focused {
+    color: rgb(153, 149, 149);
+    border-radius: 20px;
+  }
+  .MuiFilledInput-underline:before {
+    border-bottom: 2px solid white;
+  }
+  .MuiFilledInput-underline:after {
+    border-bottom: 2px solid #4f4747;
+  }
+  .MuiFilledInput-input {
+    background: white;
+  }
+  && {
+    .MuiInputBase-root.Mui-focused fieldset {
+      border: 1px solid rgb(153, 149, 149);
+    }
+  }
+  @media (max-width: 550px) {
+    width: 100%;
+    margin-top: 5px;
   }
 `;
 export const Range = styled.div`
@@ -163,6 +243,6 @@ export const StyledCars = styled.div`
 export const StyledMenuItem = styled(MenuItem)`
   &&.MuiMenuItem-root {
     display: block;
-    padding-left: 8px;
+    padding: 12px;
   }
 `;

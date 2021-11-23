@@ -1,16 +1,16 @@
 import { Typography } from "@mui/material";
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
 import { BackAdminFile } from "../Back";
 import Nav2 from "../Nav2";
 import AddTaskIcon from "@mui/icons-material/AddTask";
+import gif from "../../assets/gif/subscripe.gif"
 import L from "../../locale/language.json"
 import { useSelector } from "react-redux";
 
 const OkFile = () => {
 
   const lan = useSelector((state) => state.allLanguage)
-
 
   return (
     <>
@@ -23,6 +23,10 @@ const OkFile = () => {
           </StyledIcon>
           <Typography variant="h5">{L.ok[lan]}</Typography>
         </StyledFile>
+        <StyledFileMin>
+            <img src={gif} />
+          <Typography variant="h5">{L.ok[lan]}</Typography>
+        </StyledFileMin>
       </StyledColumn>
     </>
   );
@@ -50,6 +54,27 @@ export const StyledFile = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
+  @media(max-width:550px){
+    display: none;
+  } 
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+`;
+export const StyledFileMin = styled.div`
+  display:none;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  @media(max-width:550px){
+    display:block;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  } 
 
   img {
     width: 200px;

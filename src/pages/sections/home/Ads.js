@@ -12,7 +12,7 @@ const Ads = () => {
   const dispatch1 = useDispatch();
   const products1 = useSelector((state) => state.allProducts.products);
   const filters = useSelector((state) => state.Search.data);
-  console.log("FILTERS::", filters);
+  console.log("FILTERS::", filters.search);
 
   const [pag, setPag] = useState(1);
   const [numberOf, setNumberOf] = useState();
@@ -29,6 +29,7 @@ const Ads = () => {
       .post("ad/latest/get-pagin", {
         limit: 10,
         page: pag,
+        search:filters.search
       })
       .then((res) => {
         dispatch1(setProducts(res.data.data.data));
@@ -103,6 +104,17 @@ export const Wrapper = styled.div`
       margin-top: 50px;
     }
   } 
+  @media (max-width: 350px) {
+    h1 {
+      font-size: 20px;
+      line-height: 12px;
+      text-align: center;
+      padding-bottom: 4px;
+      font-family: "Quicksand", sans-serif;
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+  }
 `;
 
 export const Row = styled.div`
