@@ -242,7 +242,7 @@ const CardIcon = styled.div`
 `;
 const Bloc = styled.div`
   display: none;
-  @media (max-width: 550px) {
+  @media (max-width: 700px) {
     display: block;
     font-style: normal;
     font-weight: bold;

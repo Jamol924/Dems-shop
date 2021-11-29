@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  @media(max-width:550px){
+  @media (max-width: 550px) {
     margin-top: 20px;
-  } 
+  }
 `;
 export const WrapperMenu = styled.div`
   width: 90%;
@@ -67,7 +68,8 @@ export const FormInput = styled.div`
   border-radius: 1px;
 `;
 export const FormLocation = styled.div`
-  height: 24px;
+  height: 100%;
+  width: 25%;
   display: flex;
   align-items: center;
   padding-left: 7px;
@@ -82,7 +84,8 @@ export const FormLocation = styled.div`
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
-    line-height: 16px;
+    line-height: 2;
+    letter-spacing: 2px;
   }
 
   @media (max-width: 1091px) {
@@ -101,7 +104,8 @@ export const FormLocation = styled.div`
   }
 `;
 export const FormCategory = styled.div`
-  height: 24px;
+  height: 100%;
+  width: 25%;
   display: flex;
   align-items: center;
   border-left: 1px solid grey;
@@ -111,8 +115,14 @@ export const FormCategory = styled.div`
     outline: none;
     border: none;
     margin-left: 5px;
-    width: 200px;
+    width: 100%;
     height: 100%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 2;
+    letter-spacing: 2px;
   }
   @media (max-width: 1091px) {
     width: 48%;
@@ -132,7 +142,8 @@ export const FormCategory = styled.div`
   }
 `;
 export const FormText = styled.div`
-  height: 24px;
+  height: 100%;
+  width: 28%;
   display: flex;
   align-items: center;
   border-left: 1px solid grey;
@@ -142,11 +153,14 @@ export const FormText = styled.div`
     outline: none;
     border: none;
     margin-left: 5px;
-    width: 200px;
+    width: 100%;
     height: 100%;
-    & > input {
-      width: 100%;
-    }
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 2;
+    letter-spacing: 2px;
   }
   @media (max-width: 1091px) {
     width: 100%;
@@ -238,7 +252,7 @@ export const LocationStyles = styled.div`
       color: white;
       background: #2a3a96;
     }
-    @media(max-width:550px){
+    @media (max-width: 550px) {
       flex: 1 0 40%;
       padding: 10px 10px;
       font-size: 12px;
@@ -286,7 +300,7 @@ export const LocationSty = styled.div`
       color: white;
       background: #2a3a96;
     }
-    @media(max-width:550px){
+    @media (max-width: 550px) {
       flex: 1 0 40%;
       padding: 10px 10px;
       font-size: 12px;
@@ -294,27 +308,54 @@ export const LocationSty = styled.div`
   }
 `;
 export const StyledLoadingButton = styled(LoadingButton)`
-  &.css-h4t5eh-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root {
-    background: #3545a3;
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  border-radius: 0px;
+  &.MuiButton-root {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    padding: 0px 20px;
     border-radius: 0px;
-    && {
-      background: #3545a3;
-      color: white;
+  
+  }
+  && {
+    background: #3545a3;
+    color: white;
+    padding: 0px 20px;
+    border-radius: 0px;
 
-      &:hover {
-        background: #2a3a96;
-      }
+    &:hover {
+      background: #2a3a96;
     }
+  }
+  @media (max-width: 1265px) {
+    width: 100%;
+  }
+`;
+export const LinkStyled = styled(Link)`
+  color: white;
+  @media (max-width: 1265px) {
+    display: block;
+    width: 100%;
   }
 `;
 export const ButtonLink = styled.div`
-  height: 100%;
+  height: 54px;
+  width: 100%;
+  @media (max-width: 1265px) {
+    display: block;
+    width: 100%;
+  }
+`;
+export const ButtonLinkItem = styled.div`
+  height: 54px;
   width: 200px;
-  @media (max-width: 1091px) {
-    line-height: 40px;
-    margin: 0px;
+  display: flex;
+  justify-content: flex-end;
+  @media (max-width: 1265px) {
+    display: block;
     width: 100%;
   }
 `;

@@ -12,7 +12,7 @@ import {
   FormInputActive,
   LocationStyles,
   StyledLoadingButton,
-  ButtonLink,
+  ButtonLinkItem,
 } from "../components/common/MaterialComponent/AboutSection";
 import { useSelector } from "react-redux";
 import L from "../locale/language.json";
@@ -96,19 +96,17 @@ const SearchMene = ({ onFiltersCh }) => {
                 type="text"
               />
             </FormText>
-            <ButtonLink>
+            <ButtonLinkItem>
               <StyledLoadingButton
+                ingButton
                 onClick={() => {
                   funcButton(data);
                 }}
                 startIcon={<SearchIcon />}
-                loading={loading}
-                loadingPosition="start"
-                variant="contained"
               >
                 {L.asia.button[lan]}
               </StyledLoadingButton>
-            </ButtonLink>
+            </ButtonLinkItem>
           </FormInput>
           <FormInputActive>
             {input === 1 && (

@@ -9,7 +9,7 @@ import LoaderSpinner from "../../../../Loader/loader";
 import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
-import L from "../../../../locale/language.json"
+import L from "../../../../locale/language.json";
 import * as yup from "yup";
 import {
   InputLabel,
@@ -19,6 +19,7 @@ import {
   Typography,
   ListItemText,
   Checkbox,
+  Autocomplete,
 } from "@mui/material";
 import {
   StyledTextField,
@@ -28,14 +29,13 @@ import {
   ContentRow,
   StyledFormControl,
   StyledButton,
-  StyledMenuItem
+  StyledMenuItem,
 } from "../MaterialTovar/Tovar";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
 import { useSnackbar } from "notistack";
 
-
 function Home({ category }) {
-  const lan = useSelector(state => state.allLanguage)  
+  const lan = useSelector((state) => state.allLanguage);
   const history = useHistory();
   const homee = category;
   const [zagol, setZagol] = useState("");
@@ -149,16 +149,25 @@ function Home({ category }) {
     setTextarea(el.target.value);
   };
   const [personName, setPersonName] = useState([]);
-  const [eror, setEror] = useState();
+  const [abs,setAbs] = useState([]);
 
+  const [names, setNames] = useState([]);
+  
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+    let ids = names.filter(n => {
+      const index = value.findIndex(val => val === n.name);
+      if(index !== -1){
+        return n
+      }
+    });
+    const idname = ids.map(item => item._id);
+    setAbs(idname)
+    setPersonName(typeof value === "string" ? value.split(" , ") : value);
   };
 
-  const [names, setNames] = useState([]);
   const handleBitovay = () => {
     fetch("http://dems.inone.uz/api/appliances/get", {
       headers: {
@@ -203,8 +212,8 @@ function Home({ category }) {
           has_additional_cost: cost,
           floor: parseInt(value.etaj),
           floor_of_house: parseInt(value.etajd),
-          appliances: personName,
-          located_near: (value.rya),
+          appliances: abs,
+          located_near: value.rya,
           size: parseInt(value.raz),
           available_size: parseInt(value.dos),
           price: parseInt(value.sen),
@@ -224,7 +233,7 @@ function Home({ category }) {
       )
       .then(() => {
         history.push("/Admen");
-        handleClickVariant("success")()
+        handleClickVariant("success")();
       })
       .catch(() => console.log(localStorage.getItem("token")));
   };
@@ -280,7 +289,7 @@ function Home({ category }) {
           <BackAdminHome />
           <Container style={{ marginTop: 0 }}>
             <Typography sx={{ mb: 3 }} variant="h4">
-            {L.tovarAdd.home.name[lan]}
+              {L.tovarAdd.home.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -297,30 +306,50 @@ function Home({ category }) {
                     helperText={errors?.name?.message}
                     error={errors?.name}
                     {...field}
-                  />  
+                  />
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <Select value={glavne} onChange={handleGlavneChange}>
-                    <StyledMenuItem value="home">{L.tovarAdd.home.glav1[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="apartment">{L.tovarAdd.home.glav2[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="earth">{L.tovarAdd.home.glav3[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="garage">{L.tovarAdd.home.glav4[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="home">
+                      {L.tovarAdd.home.glav1[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="apartment">
+                      {L.tovarAdd.home.glav2[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="earth">
+                      {L.tovarAdd.home.glav3[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="garage">
+                      {L.tovarAdd.home.glav4[lan]}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={arend} onChange={handleArend}>
-                    <StyledMenuItem value="sell">{L.tovarAdd.home.aren1[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="rent">{L.tovarAdd.home.aren2[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="dialy-rent">{L.tovarAdd.home.aren3[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="sell">
+                      {L.tovarAdd.home.aren1[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="rent">
+                      {L.tovarAdd.home.aren2[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="dialy-rent">
+                      {L.tovarAdd.home.aren3[lan]}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <Select value={tips} label="sum" onChange={handleTips}>
                     {tip.map((tp) => (
                       <StyledMenuItem value={tp._id}>{tp.name}</StyledMenuItem>
@@ -329,7 +358,9 @@ function Home({ category }) {
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={novy} label="Age" onChange={handleNovyChange}>
-                    <StyledMenuItem value="new">{L.tovarAdd.fash.now[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="new">
+                      {L.tovarAdd.fash.now[lan]}
+                    </StyledMenuItem>
                     <StyledMenuItem value="old">B/У</StyledMenuItem>
                   </Select>
                 </StyledFormControl>
@@ -371,10 +402,17 @@ function Home({ category }) {
                 )}
               />
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <Select value={has} label="has" onChange={handleHas}>
-                    <StyledMenuItem value={false}>{L.tovarAdd.home.has[lan]}</StyledMenuItem>
-                    <StyledMenuItem value={true}>{L.tovarAdd.home.has2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value={false}>
+                      {L.tovarAdd.home.has[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value={true}>
+                      {L.tovarAdd.home.has2[lan]}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <Controller
@@ -397,26 +435,47 @@ function Home({ category }) {
                 />
               </ContentRow>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <Select value={otremont} label="has" onChange={handleRem}>
-                    <StyledMenuItem value="repaired">{L.tovarAdd.home.ot[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="not-repaired">{L.tovarAdd.home.ot2[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="repaired">
+                      {L.tovarAdd.home.ot[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="not-repaired">
+                      {L.tovarAdd.home.ot2[lan]}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={kir} label="has" onChange={handleKir}>
-                    <StyledMenuItem value="brick">{L.tovarAdd.home.krpch1[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="panel">{L.tovarAdd.home.krpch2[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="monolithic">{L.tovarAdd.home.krpch3[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="foam-block">{L.tovarAdd.home.krpch4[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="other">{L.tovarAdd.home.krpch5[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="brick">
+                      {L.tovarAdd.home.krpch1[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="panel">
+                      {L.tovarAdd.home.krpch2[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="monolithic">
+                      {L.tovarAdd.home.krpch3[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="foam-block">
+                      {L.tovarAdd.home.krpch4[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="other">
+                      {L.tovarAdd.home.krpch5[lan]}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
               <StyledFormControl variant="filled" sx={{ mt: 3, minWidth: 120 }}>
                 <Select value={cost} label="has" onChange={handleCost}>
-                  <StyledMenuItem value={true}>{L.tovarAdd.home.have[lan]}</StyledMenuItem>
-                  <StyledMenuItem value={false}>{L.tovarAdd.home.have2[lan]}</StyledMenuItem>
+                  <StyledMenuItem value={true}>
+                    {L.tovarAdd.home.have[lan]}
+                  </StyledMenuItem>
+                  <StyledMenuItem value={false}>
+                    {L.tovarAdd.home.have2[lan]}
+                  </StyledMenuItem>
                 </Select>
               </StyledFormControl>
             </MenuContent>
@@ -461,7 +520,7 @@ function Home({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h4">
-              {L.tovarAdd.home.komfort[lan]}
+                {L.tovarAdd.home.komfort[lan]}
               </Typography>
               <StyledFormControl variant="filled" sx={{ mb: 3, minWidth: 120 }}>
                 <Select
@@ -472,13 +531,20 @@ function Home({ category }) {
                   label="sum"
                 >
                   {names.map((tp) => (
-                    <StyledMenuItem key={tp._id} value={tp._id}>
+                    <StyledMenuItem key={tp._id} value={tp.name}>
                       {/* <Checkbox checked={personName.indexOf(tp.name) > -1} /> */}
                       <ListItemText primary={tp.name} />
                     </StyledMenuItem>
                   ))}
                 </Select>
               </StyledFormControl>
+
+              {/* <Autocomplete
+                multiple
+                options={names}
+                getOptionLabel={(option) => `$`}
+                defaultValue={[names[13]]}
+              /> */}
               <Controller
                 name="rya"
                 control={control}
@@ -564,10 +630,13 @@ function Home({ category }) {
 
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-              {L.tovarAdd.cars.mesto[lan]} *
+                {L.tovarAdd.cars.mesto[lan]} *
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <InputLabel>{L.tovarAdd.cars.region[lan]} *</InputLabel>
                   <Select
                     value={region}
@@ -575,7 +644,9 @@ function Home({ category }) {
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
+                      <StyledMenuItem value={Region._id}>
+                        {Region.name}
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -597,7 +668,7 @@ function Home({ category }) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-              {L.tovarAdd.cars.opesan[lan]} *
+                {L.tovarAdd.cars.opesan[lan]} *
               </Typography>
               <Controller
                 name="textarea"
@@ -614,7 +685,7 @@ function Home({ category }) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]}
                     value={textarea}
                     onChange={handleTextareaChange}
                     helperText={errors.name?.message}
@@ -637,13 +708,13 @@ function Home({ category }) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box sx={{ mt: 2, mb:4 }}>
+            <Box sx={{ mt: 2, mb: 4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                
                 variant="contained"
                 variant="contained"
-              >{L.tovarAdd.cars.but12[lan]}
+              >
+                {L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

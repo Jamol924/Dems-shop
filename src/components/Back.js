@@ -552,7 +552,7 @@ export const Back = () => {
 const BackCard = styled.div`
   margin-top: 80px;
   padding: 40px 50px;
-  @media(max-width:550px){
+  @media(max-width:700px){
     display: none;
     
   }

@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
   align-items: center;
   position: relative;
   margin-bottom: 80px;
-  @media(max-width:550px){
+  @media(max-width:700px){
     margin-top: 100px;
   }
   

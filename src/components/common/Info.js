@@ -165,7 +165,19 @@ const FlexItem = styled.div`
   width: 20%;
   padding-right: 20px;
   margin-top: 71px;
-
+  && > h1{
+    height: 45px;
+  }
+  && > h2{
+    height: 36px;
+  }
+  && > ul{
+    li{
+      button{
+        text-align: inherit;
+      }
+    }
+  }
   @media (max-width: 1000px) {
     width: 40%;
     margin-top: 50px;
@@ -179,6 +191,9 @@ const FlexItem = styled.div`
       line-height: 50px;
       font-family: "Quicksand", sans-serif;
       padding-bottom: 10px;
+    }
+    && > button {
+      text-align: inherit;
     }
     h2 {
       font-family: "Quicksand", sans-serif;
@@ -212,9 +227,9 @@ const FlexItem = styled.div`
   }
 
   @media (max-width: 800px) {
-    width: 100%;
+    width: 40%;
+    margin-top: 50px;
     text-align: center;
-    margin-top: 22px;
 
     h1 {
       color: white;
@@ -269,6 +284,7 @@ const FlexItem = styled.div`
       line-height: 30px;
       font-family: "Quicksand", sans-serif;
       padding-bottom: 0px;
+      margin-top: 15px;
     }
     h2 {
       font-family: "Quicksand", sans-serif;
@@ -285,11 +301,14 @@ const FlexItem = styled.div`
       line-height: 10px;
       font-family: "Inter", sans-serif;
       color: #999999;
+      margin-top: 30px;
       padding-top: 0px;
       line-height: 1.4;
     }
     ul {
       list-style: none;
+      margin-top: 40px;
+
     }
     li {
       font-weight: 100;
@@ -308,7 +327,7 @@ const FlexItem = styled.div`
       color: #999999;
       padding-top: 0px;
       line-height: 1.4;
-      margin-top: 25px;
+      /* margin-top: 25px; */
   }
   }
 `;

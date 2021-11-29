@@ -58,6 +58,9 @@ export const Wrapper = styled.div`
   padding: 0px 30px 30px;
   justify-content: space-between;
   flex-direction: column;
+  @media(max-width:700px){
+    padding: 0px 15px 15px;
+  }
   div.title {
     display: flex;
     flex-direction: column;

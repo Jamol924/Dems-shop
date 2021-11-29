@@ -1,5 +1,15 @@
 {
   "tizim": {
+    "chick": {
+      "uz": "* Men Dems.uz qoidalarni qabul qilaman",
+      "ru": "* Я принимаю правила Dems.uz",
+      "en": "* I accept the rules of Dems.uz"
+    },
+    "chickLink": {
+      "uz": " Foydalanish shartlari Dems.uz.",
+      "ru": " Правила использования Dems.uz.",
+      "en": " Terms of use Dems.uz."
+    },
     "tovar": {
       "uz": "Sizning e'loningiz e'lonlar ro'yxatiga qo'shildi",
       "ru": "Ваше объявление добавлено в список объявлений",

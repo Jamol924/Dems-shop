@@ -54,7 +54,7 @@ export const StyledFile = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-  @media(max-width:550px){
+  @media(max-width:700px){
     display: none;
   } 
 
@@ -69,7 +69,7 @@ export const StyledFileMin = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-  @media(max-width:550px){
+  @media(max-width:700px){
     display:block;
   align-items: center;
   justify-content: center;

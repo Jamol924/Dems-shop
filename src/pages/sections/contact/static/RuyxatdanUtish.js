@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { StyledInputMask } from "./Tizim";
 import axios from "axios";
-import { StyledButton } from "../../Admen/MaterialTovar/Tovar";
+import { StyledButton, StyledLink } from "../../Admen/MaterialTovar/Tovar";
 import L from "../../../../locale/language.json";
 import { useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
@@ -119,7 +119,12 @@ function RuyxatdanUtish({ onSuccess }) {
             defaultChecked
             color="primary"
           />
-          <span> * Я принимаю правила Dems.uz <Link to="/failFooter"><a href="" >Правила использования Dems.uz.</a> </Link> </span>
+          <StyledLink>
+            {L.tizim.chick[lon]}{" "}
+            <Link to="/failFooter">
+              <a href="">{L.tizim.chickLink[lon]}</a>{" "}
+            </Link>{" "}
+          </StyledLink>
         </div>
         {checked ? (
           <StyledButton
@@ -129,7 +134,6 @@ function RuyxatdanUtish({ onSuccess }) {
               marginBottom: 3,
               letterSpacing: 2,
               fontWeight: 500,
-              padding: 1.7,
               borderRadius: 2,
             }}
             fullWidth
@@ -147,7 +151,6 @@ function RuyxatdanUtish({ onSuccess }) {
                 marginBottom: 3,
                 letterSpacing: 2,
                 fontWeight: 500,
-                padding: 1.7,
                 borderRadius: 2,
               }}
               fullWidth
@@ -166,6 +169,7 @@ export default RuyxatdanUtish;
 
 export const StyledTextField = styled(TextField)`
   .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    padding: 16.5px 14px;
     @media (max-width: 550px) {
       padding: 10px 14px;
     }

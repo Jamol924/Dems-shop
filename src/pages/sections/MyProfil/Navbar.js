@@ -116,7 +116,7 @@ export const StyledNav = styled.nav`
   right: 0;
   z-index: 300;
   transition: all 0.6s ease;
-  @media(max-width:550px){
+  @media(max-width:700px){
     display: none;
   } 
 

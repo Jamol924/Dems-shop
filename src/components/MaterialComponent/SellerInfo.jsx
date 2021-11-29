@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 
 export const Wrapper = styled.div`
-  padding: 25px;
+  padding: 30px;
   background: white;
+  
   div {
     display: flex;
     align-items: center;
@@ -28,6 +29,9 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     font-family: "Roboto", sans-serif;
+  }
+  @media(max-width:700px){
+    padding: 15px;
   }
 
 `;

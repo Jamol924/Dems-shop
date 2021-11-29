@@ -18,6 +18,7 @@ import {
   LocationSty,
   StyledLoadingButton,
   ButtonLink,
+  LinkStyled
 } from "../components/common/MaterialComponent/AboutSection";
 import { Link } from "react-router-dom";
 import L from "../locale/language.json";
@@ -109,18 +110,16 @@ const Search = () => {
                 type="text"
               />
             </FormText>
-            <ButtonLink>
-              <Link style={{color:"white"}} to="/searchCard">
+            <LinkStyled  to="/searchCard">
+              <ButtonLink>
                 <StyledLoadingButton
                   onClick={() => FuncButton(data)}
                   startIcon={<SearchIcon />}
-                  loadingPosition="start"
-                  variant="contained"
                 >
                   {L.asia.button[lan]}
                 </StyledLoadingButton>
-              </Link>
-            </ButtonLink>
+              </ButtonLink>
+            </LinkStyled>
           </FormInput>
           <FormInputActive>
             {input === 1 && (

@@ -37,8 +37,8 @@ export const GlavneSlider = () => {
     dots: true,
     infinite: true,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 100,
+    // speed: 2000,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -66,7 +66,7 @@ export const GlavneSlider = () => {
 };
 export const Wrapper = styled.div`
  display: none;
- @media (max-width: 550px) {
+ @media (max-width: 700px) {
     display: block;
   }
 `;
@@ -105,7 +105,12 @@ export const StyledSlider = styled.div`
   align-items: center;
   border-radius: 20px;
   overflow: hidden;
+  @media (max-width: 700px) {
+    height: 350px;
+    display: block;
+  }
   @media (max-width: 550px) {
+    height: 260px;
     display: block;
   }
 `;
@@ -118,5 +123,11 @@ export const CarouselApp = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  @media (max-width: 700px) {
+    height: 300px;
+  }
+  @media (max-width: 550px) {
+    height: 210px;
   }
 `;

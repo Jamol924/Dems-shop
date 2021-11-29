@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
     margin: 0 auto;
     flex-direction: column;
   }
+  @media (max-width: 550px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 export const Left = styled.div`
   width: 680px;

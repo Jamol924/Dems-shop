@@ -5,6 +5,9 @@ padding: 30px 30px 0px;
   background: white;
   display: flex;
   flex-direction:column;
+  @media(max-width:700px){
+    padding: 25px 15px 0px;
+  }
 `;
 export const TopImages = styled.div`
   width: 100%;

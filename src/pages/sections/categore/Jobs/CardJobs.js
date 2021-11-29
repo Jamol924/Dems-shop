@@ -6,7 +6,8 @@ import axios from "axios";
 import PaginationLink from "../../../../components/pagenaton/Paginat";
 import { Wrapper, Row } from "../../home/Ads";
 import L from "../../../../locale/language.json";
-import images from "../../../../assets/removeQuti.png"
+import images from "../../../../assets/removeQuti.png";
+import LoaderSpinner from "../../../../Loader/loaderSpiner";
 
 const CardAuto = ({ filters }) => {
   const lan = useSelector((state) => state.allLanguage);
@@ -40,14 +41,14 @@ const CardAuto = ({ filters }) => {
   };
   const Filter = products1.filter(
     (eliment) =>
-    (filters.location === 1
-      ? eliment.region_id !== filters.location
-      : filters.location
-      ? eliment.region_id === filters.location
-      : true) &&
-    (filters.search
-      ? eliment.title.toLowerCase().includes(filters.search.toLowerCase())
-      : true)
+      (filters.location === 1
+        ? eliment.region_id !== filters.location
+        : filters.location
+        ? eliment.region_id === filters.location
+        : true) &&
+      (filters.search
+        ? eliment.title.toLowerCase().includes(filters.search.toLowerCase())
+        : true)
   );
 
   useEffect(() => {
@@ -62,7 +63,7 @@ const CardAuto = ({ filters }) => {
             <h1>{L.category.job[lan]}</h1>
           </div>
           <div>
-            <img src={images} />
+            <img style={{maxWidth:"100%"}} src={images} />
           </div>
         </div>
       </Wrapper>
@@ -74,10 +75,19 @@ const CardAuto = ({ filters }) => {
           <div>
             <h1>{L.category.job[lan]}</h1>
           </div>
-          <Row>
-            <Adsjr datas={Filter.length >= 0 ? Filter : products1} />
-          </Row>
-          <PaginationLink setPag={setPag} pagNumber={numberOf} />
+          {products1.length === 0 ? (
+            <>
+              {" "}
+              <LoaderSpinner />{" "}
+            </>
+          ) : (
+            <>
+              <Row>
+                <Adsjr datas={Filter.length >= 0 ? Filter : products1} />
+              </Row>
+              <PaginationLink setPag={setPag} pagNumber={numberOf} />
+            </>
+          )}
         </div>
       </Wrapper>
     </div>

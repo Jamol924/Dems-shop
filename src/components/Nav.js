@@ -4,9 +4,6 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { language } from "../redux/active/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import L from "../locale/language.json";
@@ -21,9 +18,9 @@ const Nav = () => {
   }, []);
 
   const [age, setAge] = useState(localStorage.getItem("language") || "uz");
+  console.log(age);
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.allCounter);
-
   return (
     <>
       <StyledNav isScroll={pageOffset}>
@@ -34,21 +31,18 @@ const Nav = () => {
         </Link>
 
         <ul>
-          <li>
-            <StyledFormControl fullWidth>
-              <Select
-                sx={{ display: "flex" }}
-                value={age}
-                onChange={(e) => {
-                  setAge(e.target.value);
-                  dispatch(language(e.target.value));
-                }}
-              >
-                <MenuItem value="uz">{L.til.uzbek[lan]}</MenuItem>
-                <MenuItem value="ru">{L.til.rus[lan]}</MenuItem>
-                <MenuItem value="en">{L.til.eng[lan]}</MenuItem>
-              </Select>
-            </StyledFormControl>
+          <li> 
+            <select
+              value={age}
+              onChange={(e) => {
+                setAge(e.target.value);
+                dispatch(language(e.target.value));
+              }}
+            >
+              <option value="uz">{L.til.uzbek[lan]}</option>
+              <option value="ru">{L.til.rus[lan]}</option>
+              <option value="en">{L.til.eng[lan]}</option>
+            </select>
           </li>
           {counter ? (
             <li style={{ display: "flex" }}>
@@ -97,24 +91,6 @@ export const StyledButton = styled(Button)`
   }
 `;
 
-export const StyledFormControl = styled(FormControl)`
-  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-    color: white;
-  }
-  .css-1oybtu7-MuiInputBase-root-MuiOutlinedInput-root {
-    color: white;
-  }
-  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border: none;
-    color: white;
-  }
-  .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
-    color: white;
-  }
-  .css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
-    color: white;
-  }
-`;
 
 export const StyledNav = styled.nav`
   display: flex;
@@ -128,7 +104,7 @@ export const StyledNav = styled.nav`
   right: 0;
   z-index: 300;
   transition: all 0.6s ease;
-  @media (max-width: 550px) {
+  @media (max-width: 700px) {
     display: none;
   }
   ${(props) =>

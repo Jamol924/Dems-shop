@@ -6,7 +6,7 @@ import PaginationLink from "../../../components/pagenaton/Paginat.js";
 import L from "../../../locale/language.json";
 import axios from "axios";
 import Tovar from "../../../components/common/Tovar.js";
-import Gif from "../../../assets/gif/clout.gif";
+import LoaderSpinner from "../../../Loader/loaderSpiner.js";
 
 const AdCard = () => {
   const lan = useSelector((state) => state.allLanguage);
@@ -43,7 +43,7 @@ const AdCard = () => {
   useEffect(() => {
     productFetch();
   }, [pag]);
-  console.log(products1.length)
+  console.log(products1.length);
 
   return (
     <div style={{ maxWidth: "100%" }}>
@@ -52,16 +52,36 @@ const AdCard = () => {
           <div>
             <h1>{L.cardname[lan]}</h1>
           </div>
+          {products1.length === 0 ? (
+          <StyledLoader>
+            <div>
+              <LoaderSpinner />
+            </div>
+          </StyledLoader>
+           ) : ( 
+          <>
             <Row>
-              <Tovar datas={products1} />
+               <Tovar datas={products1} />
+            
             </Row>
-          <PaginationLink setPag={setPag} pagNumber={numberOf} />
+            <PaginationLink setPag={setPag} pagNumber={numberOf} />
+          </>
+           )}
         </div>
       </Wrapper>
     </div>
   );
 };
 
+export const StyledLoader = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+  margin-bottom: 200px;
+`;
 export const Wrapper = styled.div`
   width: 100%;
   height: auto;

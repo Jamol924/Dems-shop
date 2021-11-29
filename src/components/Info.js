@@ -12,8 +12,8 @@ import {
   Wrapper,
   StyledText,
   StyledInfo,
-  List,
-  TextArea
+  TextArea,
+  StyledGroup
 } from "./MaterialComponent/info";
 
 const Info = ({ dataInfo }) => {
@@ -29,7 +29,7 @@ const Info = ({ dataInfo }) => {
           </div>
           <StyledText>{dataInfo.description}</StyledText>
         </TextArea>
-        <div style={{ width:"33%", marginLeft: 30 }}>
+        <StyledGroup >
           <div>
             <h1> {L.item.ovr[lan]}</h1>
           </div>
@@ -44,7 +44,7 @@ const Info = ({ dataInfo }) => {
             </h2>
             <h2>{L.item.kur[lan]} <span>{dataInfo.view_count}</span></h2>
           </StyledInfo>
-        </div>
+        </StyledGroup>
       </Wrapper>
     </>
   );

@@ -33,13 +33,12 @@ export const Container = styled.div`
   }
 `;
 export const StyledToggleButton = styled(ToggleButton)`
-  &&.MuiToggleButton-sizeMedium{
+  &&.MuiToggleButton-sizeMedium {
     border-radius: 50%;
-
   }
-    &&.css-1c8m7p7-MuiButtonBase-root-MuiToggleButton-root.Mui-selected:hover {
-      background-color: blue;
-      border-radius: 50%;
+  &&.css-1c8m7p7-MuiButtonBase-root-MuiToggleButton-root.Mui-selected:hover {
+    background-color: blue;
+    border-radius: 50%;
   }
   &&.css-1c8m7p7-MuiButtonBase-root-MuiToggleButton-root.Mui-selected:focus {
     border-radius: 50%;
@@ -116,13 +115,23 @@ export const StyledButton = styled(Button)`
   && {
     background: #3545a3;
     color: white;
-    padding: 10px 18px;
+    padding: 13px 18px;
     border-radius: 25px;
 
     &:hover {
       background: #2a3a96;
     }
   }
+  @media (max-width: 550px) {
+    && {
+      padding: 10px 18px;
+      border-radius: 20px;
+    }
+  }
+`;
+export const StyledLink = styled.span`
+  font-size: 13px;
+  margin-bottom: 50px;
 `;
 export const StyledFormControl = styled(FormControl)`
   .MuiFilledInput-input {

@@ -49,7 +49,10 @@ export const SearchContent = styled.div`
 `;
 export const AdsContent = styled.div`
   width: 100%;
-  @media(max-width:550px){
-    margin-top: 100px;
+  @media(max-width:700px){
+    margin-top: 90px;
+  }
+  @media(max-width:1024px){
+    margin-top: 80px;
   }
 `;

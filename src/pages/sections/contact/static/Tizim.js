@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { countItem } from "../../../../redux/active/productActions";
 import L from "../../../../locale/language.json";
 
-export const Tizim = ({onSuccess}) => {
+export const Tizim = ({ onSuccess }) => {
   const [counter, setCounter] = useState(false);
 
   const dispatch = useDispatch();
@@ -46,14 +46,13 @@ export const Tizim = ({onSuccess}) => {
         })
         .then(() => (setStep(1), handleClickSuc("success")()))
         .catch((error) => {
-          if(error.response.data.code === 55001){
-            handleClickNumber("error")()
-          }else{
-            handleClickVariant("warning")()
-            onSuccess()
+          if (error.response.data.code === 55001) {
+            handleClickNumber("error")();
+          } else {
+            handleClickVariant("warning")();
+            onSuccess();
           }
         });
-        
     } else {
       axios
         .post("http://dems.inone.uz/api/sign-verify", {
@@ -127,9 +126,8 @@ export const StyledInputMask = styled(InputMask)`
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
-  @media(max-width:550px){
+  @media (max-width: 550px) {
     padding: 10px;
-  font-size: 17px;
+    font-size: 17px;
   }
 `;
-

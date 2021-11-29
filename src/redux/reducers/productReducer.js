@@ -89,7 +89,7 @@ export const setCounter = (
 };
 
 export const setLanguage = (
-  state = localStorage.getItem("language") ,
+  state = localStorage.getItem("language") || "uz" ,
   { type, payload }
 ) => {
   switch (type) {

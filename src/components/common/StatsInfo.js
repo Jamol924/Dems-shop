@@ -81,11 +81,13 @@ const Wrapper = styled.div`
   div.first {
     display: flex;
     width: 330px;
-    justify-content: space-between;
-
+    & > img{
+      width: 80px;
+    }
     & > div {
       display: flex;
       flex-direction: column;
+
       padding: 10px;
       margin-left: 20px;
     }

@@ -6,6 +6,7 @@ import PaginationLink from "../../../components/pagenaton/Paginat.js";
 import { useSelector, useDispatch } from "react-redux";
 import L from "../../../locale/language.json";
 import axios from "axios";
+import LoaderSpinner from "../../../Loader/loaderSpiner";
 
 const Ads = () => {
   const lan = useSelector((state) => state.allLanguage);
@@ -68,10 +69,16 @@ const Ads = () => {
           <div>
             <h1>{L.cardname[lan]}</h1>
           </div>
-          <Row>
-            <Adsjr datas={Filter.length >= 0 ? Filter : products1} />
-          </Row>
-          <PaginationLink setPag={setPag} pagNumber={numberOf} />
+          {products1.length === 0 ? (
+            <> <LoaderSpinner /> </>
+          ) : (
+            <>
+              <Row>
+                <Adsjr datas={Filter.length >= 0 ? Filter : products1} />
+              </Row>
+              <PaginationLink setPag={setPag} pagNumber={numberOf} />
+            </>
+          )}
         </div>
       </Wrapper>
     </div>
@@ -97,7 +104,7 @@ export const Wrapper = styled.div`
     margin-top: 69px;
     margin-bottom: 43px;
   }
-  @media(max-width:550px){
+  @media(max-width:700px){
     max-width: 100%;
     .content{
       max-width: 100%;

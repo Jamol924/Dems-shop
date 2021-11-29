@@ -15,26 +15,18 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Select from "@mui/material/Select";
 import L from "../../../locale/language.json";
-import { FormControl } from "@mui/material";
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import { LogOut } from "../../../pages/sections/MyProfil/Navbar";
 import SearchIcon from "@material-ui/icons/Search";
 import LanguageIcon from "@material-ui/icons/Language";
-import Contact from "../../../pages/parts/contact";
-import AcountCircle from "./AcountCircle";
+import Intro from "../../../pages/sections/home/Intro.js";
 
 const useStyles = makeStyles((theme) => ({
-  text: {
-    padding: theme.spacing(2, 2, 0),
-  },
-  paper: {
-    paddingBottom: 50,
-  },
-  list: {
-    marginBottom: theme.spacing(2),
-  },
-  subheader: {
-    backgroundColor: theme.palette.background.paper,
-  },
   appBar: {
     top: "auto",
     bottom: 0,
@@ -45,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   fabButton: {
     position: "absolute",
     zIndex: 1,
-    top: -30,
+    top: -20,
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -54,8 +46,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MinNav() {
   const auth = localStorage.getItem("token");
+  if (auth) {
+    console.log("true");
+  }
   const lan = useSelector((state) => state.allLanguage);
   const [age, setAge] = useState(localStorage.getItem("language") || "uz");
+  console.log(age);
   const dispatch = useDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -95,24 +91,22 @@ export default function MinNav() {
   return (
     <Fragment>
       <StyledAppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar >
+        <Toolbar>
           <Link style={{ color: "white" }} to="/">
             <IconButton edge="start" color="inherit" aria-label="open drawer">
               <HomeIcon color="white" />
             </IconButton>
           </Link>
-          <Link style={{ color: "white" }} to="/">
-            <IconButton
-              style={{ marginLeft: "20px" }}
-              aria-label="account of current user"  
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleClick}
-              color="inherit"
-            >
-              <LanguageIcon />
-            </IconButton>
-          </Link>
+          <IconButton
+            style={{ marginLeft: "20px" }}
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleClick}
+            color="inherit"
+          >
+            <LanguageIcon />
+          </IconButton>
           <Link to="/admen">
             <Fab color="default" aria-label="add" className={classes.fabButton}>
               <AddIcon />
@@ -125,18 +119,34 @@ export default function MinNav() {
               <SearchIcon />
             </IconButton>
           </Link>
-          <Link style={{ color: "white" }} to="/myProfil">
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Link>
+          {auth ? (
+            <>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>{" "}
+            </>
+          ) : (
+            <>
+              <IconButton
+                disabled
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>{" "}
+            </>
+          )}
         </Toolbar>
       </StyledAppBar>
       {auth ? (
@@ -174,31 +184,47 @@ export default function MinNav() {
         open={Boolean(anchor)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
-          <StyledFormControl fullWidth>
-            <Select
-              sx={{ color: "white" }}
-              value={age}
-              onChange={(e) => {
-                setAge(e.target.value);
-                dispatch(language(e.target.value));
-              }}
-            >
-              <MenuItem value="uz">{L.til.uzbek[lan]}</MenuItem>
-              <MenuItem value="ru">{L.til.rus[lan]}</MenuItem>
-              <MenuItem value="en">{L.til.eng[lan]}</MenuItem>
-            </Select>
-          </StyledFormControl>
-        </MenuItem>
+        <FormControl onClick={handleClose} component="fieldset">
+          <RadioGroup
+            aria-label="gender"
+            defaultValue={age}
+            onChange={(e) => {
+              dispatch(language(e.target.value));
+            }}
+          >
+            <StyledFormLabel
+              value="uz"
+              control={<Radio />}
+              label={L.til.uzbek[lan]}
+            />
+            <StyledFormLabel
+              value="ru"
+              control={<Radio />}
+              label={L.til.rus[lan]}
+            />
+            <StyledFormLabel
+              value="en"
+              control={<Radio />}
+              label={L.til.eng[lan]}
+            />
+          </RadioGroup>
+        </FormControl>
       </Menu>
     </Fragment>
   );
 }
 
+const StyledFormLabel = styled(FormControlLabel)`
+  &&.css-j204z7-MuiFormControlLabel-root {
+    margin: 0px;
+    padding: 7px;
+}
+  
+`;
 const StyledAppBar = styled(AppBar)`
   .MuiToolbar-regular {
     display: none;
-    @media (max-width: 550px) {
+    @media (max-width: 700px) {
       display: block;
       display: flex;
     }
