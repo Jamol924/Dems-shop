@@ -52,7 +52,7 @@ function Cars(props) {
     enqueueSnackbar(L.tizim.tovar[lan], { variant });
   };
   const handleApi = async () => {
-    axios
+   await axios
       .post("http://dems.inone.uz/api/brand/get-pagin", {
         limit: 10,
         page: 1,
@@ -65,7 +65,7 @@ function Cars(props) {
   };
 
   const getModels = async (id) => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/model/get-pagin ", {
         brand_id: id,
         page: 1,
@@ -163,7 +163,7 @@ function Cars(props) {
 
   const state = useSelector((state) => state.allImage);
   const itemImages = Object.values(state);
-  const handlSubmit = (values) => {
+  const handlSubmit = async (values) => {
     console.log(
       "QIYMAT",
       values.name,
@@ -171,7 +171,7 @@ function Cars(props) {
       values.sen,
       values.textarea
     );
-    axios
+   await axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {

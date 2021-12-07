@@ -214,7 +214,7 @@ export default function MinNav() {
   );
 }
 
-const StyledFormLabel = styled(FormControlLabel)`
+export const StyledFormLabel = styled(FormControlLabel)`
   &&.css-j204z7-MuiFormControlLabel-root {
     margin: 0px;
     padding: 7px;

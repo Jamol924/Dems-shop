@@ -218,6 +218,7 @@ export const Range = styled.div`
 `;
 
 export const StyledColumn = styled.div`
+position: relative;
   width: 100%;
   height: auto;
   margin-top: 20px;

@@ -33,6 +33,7 @@ import FailFooter from "./components/FailFooter.jsx";
 import "animate.css";
 import LoaderSpinner from "./Loader/loader";
 import { useSelector } from "react-redux";
+import FileUploader from "./components/common/Upload/UploadImages";
 
 const GlobalStyle = createGlobalStyle`
    * {
@@ -156,6 +157,7 @@ function App() {
               render={() => (
                 <div className="animate__animated animate__fadeIn">
                   <Plaze />{" "}
+                  {/* <FileUploader /> */}
                 </div>
               )}
             />

@@ -6,7 +6,14 @@ import { Link } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { language } from "../redux/active/productActions";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import L from "../locale/language.json";
+import { StyledFormLabel } from "./common/MineNavbar/MinNav";
 const Nav = () => {
   const lan = useSelector((state) => state.allLanguage);
   const [pageOffset, setPageOffset] = useState(false);
@@ -31,6 +38,34 @@ const Nav = () => {
         </Link>
 
         <ul>
+          {/* <li>
+            
+          <FormControl  component="fieldset">
+          <RadioGroup
+            aria-label="gender"
+            defaultValue={age}
+            onChange={(e) => {
+              dispatch(language(e.target.value));
+            }}
+          >
+            <StyledFormLabel
+              value="uz"
+              control={<Radio />}
+              label={L.til.uzbek[lan]}
+            />
+            <StyledFormLabel
+              value="ru"
+              control={<Radio />}
+              label={L.til.rus[lan]}
+            />
+            <StyledFormLabel
+              value="en"
+              control={<Radio />}
+              label={L.til.eng[lan]}
+            />
+          </RadioGroup>
+        </FormControl>
+          </li> */}
           <li> 
             <select
               value={age}

@@ -56,11 +56,11 @@ function Setting() {
 
   const img = images.data?.data.path;
   console.log("ssd", img);
-  const handleImgChange = (e) => {
+  const handleImgChange = async (e) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
 
-    axios
+    await axios
       .post("http://dems.inone.uz/api/upload-file", formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -78,8 +78,8 @@ function Setting() {
   const [nomer, setNomer] = useState("");
   const id = user._id;
 
-  const handleSetting = (value) => {
-    axios
+  const handleSetting = async (value) => {
+    await axios
       .post(
         "http://dems.inone.uz/api/update-profile",
         {

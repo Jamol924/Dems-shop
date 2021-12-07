@@ -51,8 +51,8 @@ function Electronics({ category }) {
       TexnicFunc();
     }
   }, [mobil]);
-  const TexnicFunc = () => {
-    axios
+  const TexnicFunc = async () => {
+    await axios
       .post(
         "http://dems.inone.uz/api/electronic-model/get-pagin",
         {
@@ -82,7 +82,7 @@ function Electronics({ category }) {
   const [regions, setRegions] = useState([]);
 
   const regionFetch = async () => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,
@@ -95,7 +95,7 @@ function Electronics({ category }) {
       .catch((er) => console.log(er));
   };
   const gorodFetch = async (id) => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/city/get-pagin", {
         limit: 20,
         page: 1,
@@ -126,9 +126,9 @@ function Electronics({ category }) {
 
   const state = useSelector((state) => state.allImage);
   const itemImages = Object.values(state);
-  const handlSubmit = (value) => {
+  const handlSubmit = async (value) => {
     console.log(value)
-    axios
+   await axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {

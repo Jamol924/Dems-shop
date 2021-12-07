@@ -47,8 +47,8 @@ function FashionStyle({ category, dataCard }) {
       TexnicFunc();
     }
   }, [mobil]);
-  const TexnicFunc = () => {
-    axios
+  const TexnicFunc = async () => {
+    await  axios
       .post(
         "http://dems.inone.uz/api/fashion-watches/get-pagin",
         {
@@ -77,7 +77,7 @@ function FashionStyle({ category, dataCard }) {
   const [regions, setRegions] = useState([]);
 
   const regionFetch = async () => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,
@@ -90,7 +90,7 @@ function FashionStyle({ category, dataCard }) {
       .catch((er) => console.log(er));
   };
   const gorodFetch = async (id) => {
-    axios
+   await axios
       .post("http://dems.inone.uz/api/city/get-pagin", {
         limit: 20,
         page: 1,
@@ -121,8 +121,8 @@ function FashionStyle({ category, dataCard }) {
 
   const state = useSelector((state) => state.allImage);
   const itemImages = Object.values(state);
-  const handlSubmit = (value) => {
-    axios
+  const handlSubmit = async (value) => {
+    await axios
       .post(
         "http://dems.inone.uz/api/ad/update",
         {

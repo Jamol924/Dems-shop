@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { setProducts } from "../../../redux/active/productActions";
+import { setProducts, Scrol } from "../../../redux/active/productActions";
 import { useSelector, useDispatch } from "react-redux";
 import PaginationLink from "../../../components/pagenaton/Paginat.js";
 import L from "../../../locale/language.json";
@@ -12,8 +12,9 @@ const AdCard = () => {
   const lan = useSelector((state) => state.allLanguage);
   const dispatch1 = useDispatch();
   const products1 = useSelector((state) => state.allProducts.products);
+  const scr = useSelector((state) => state.allScrol);
   const filters = useSelector((state) => state.Search.data);
-
+  console.log(scr)
   const [pag, setPag] = useState(1);
   const [numberOf, setNumberOf] = useState();
   const productFetch = async () => {
@@ -39,6 +40,11 @@ const AdCard = () => {
         console.log("Err", err);
       });
   };
+  const [ scrol, setScrol ] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    dispatch1(Scrol(scrol))
+  }, [scrol])
 
   useEffect(() => {
     productFetch();
@@ -60,8 +66,9 @@ const AdCard = () => {
           </StyledLoader>
            ) : ( 
           <>
-            <Row>
-               <Tovar datas={products1} />
+            <Row onClick={() => setScrol((scrol) => !scrol )}>
+
+               <Tovar scrol={scrol} datas={products1} />
             
             </Row>
             <PaginationLink setPag={setPag} pagNumber={numberOf} />

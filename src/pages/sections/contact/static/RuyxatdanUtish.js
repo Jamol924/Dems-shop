@@ -49,9 +49,8 @@ function RuyxatdanUtish({ onSuccess }) {
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    axios
+  const onSubmit = async (data) => {
+    await axios
       .post("http://dems.inone.uz/api/sign-up", data)
       .then(() => {
         handleClickSc("success")();
@@ -62,7 +61,7 @@ function RuyxatdanUtish({ onSuccess }) {
           handleClickNumber("info")();
         } else {
           handleClickEr("error")();
-          onSuccess();
+          onSuccess();  
         }
       });
   };

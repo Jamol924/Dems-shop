@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NoImages from "../../assets/NoImages.jpg";
 import { useSelector } from "react-redux";
 import {
@@ -33,10 +33,10 @@ function day(data) {
   return d;
 }
 
-const Tovar = ({ datas }) => {
+const Tovar = ({ scrol, datas }) => {
   const produc = useSelector((state) => state.allProduc.products);
   const uniqueArray = datas?.filter(item => produc.findIndex(prod => item?._id === prod?._id) === -1);
-  console.log(datas, uniqueArray)
+
   
   return (
     <>

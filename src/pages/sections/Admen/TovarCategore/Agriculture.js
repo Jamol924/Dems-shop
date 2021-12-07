@@ -46,7 +46,7 @@ function Agriculture({ categore }) {
   const [regions, setRegions] = useState([]);
 
   const regionFetch = async () => {
-    axios
+   await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,
@@ -59,7 +59,7 @@ function Agriculture({ categore }) {
       .catch((er) => console.log(er));
   };
   const gorodFetch = async (id) => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/city/get-pagin", {
         limit: 20,
         page: 1,
@@ -90,8 +90,8 @@ function Agriculture({ categore }) {
 
   const state = useSelector((state) => state.allImage);
   const itemImages = Object.values(state);
-  const handlSubmit = (value) => {
-    axios
+  const handlSubmit = async(value) => {
+    await axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {

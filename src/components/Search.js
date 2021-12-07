@@ -18,7 +18,7 @@ import {
   LocationSty,
   StyledLoadingButton,
   ButtonLink,
-  LinkStyled
+  LinkStyled,
 } from "../components/common/MaterialComponent/AboutSection";
 import { Link } from "react-router-dom";
 import L from "../locale/language.json";
@@ -47,7 +47,7 @@ const Search = () => {
   const [regions, setRegions] = useState([]);
 
   const regionFetch = async () => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,
@@ -110,7 +110,7 @@ const Search = () => {
                 type="text"
               />
             </FormText>
-            <LinkStyled  to="/searchCard">
+            <LinkStyled to="/searchCard">
               <ButtonLink>
                 <StyledLoadingButton
                   onClick={() => FuncButton(data)}

@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 import Nav2 from "../../../../components/Nav2";
 import { useSelector } from "react-redux";
 import { InputLabel, TextareaAutosize } from "@material-ui/core";
-import { BackAdminAgriculture, BackTovarByID } from "../../../../components/Back";
+import {
+  BackAdminAgriculture,
+  BackTovarByID,
+} from "../../../../components/Back";
 import LoaderSpinner from "../../../../Loader/loader";
 import { AcceptMaxFiles } from "../../MyProfil/DropZovn";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,11 +24,11 @@ import {
   StyledTextField,
   ContentRow,
   StyledFormControl,
-  StyledMenuItem
+  StyledMenuItem,
 } from "../MaterialTovar/Tovar";
 import MinNav from "../../../../components/common/MineNavbar/MinNav";
 
-function Agriculture({ categore ,dataCard}) {
+function Agriculture({ categore, dataCard }) {
   const lan = useSelector((state) => state.allLanguage);
   const history = useHistory();
   const agricul = categore;
@@ -41,7 +44,7 @@ function Agriculture({ categore ,dataCard}) {
   const [regions, setRegions] = useState([]);
 
   const regionFetch = async () => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,
@@ -54,7 +57,7 @@ function Agriculture({ categore ,dataCard}) {
       .catch((er) => console.log(er));
   };
   const gorodFetch = async (id) => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/city/get-pagin", {
         limit: 20,
         page: 1,
@@ -85,8 +88,8 @@ function Agriculture({ categore ,dataCard}) {
 
   const state = useSelector((state) => state.allImage);
   const itemImages = Object.values(state);
-  const handlSubmit = (value) => {
-    axios
+  const handlSubmit = async (value) => {
+    await axios
       .post(
         "http://dems.inone.uz/api/ad/update",
         {
@@ -143,14 +146,14 @@ function Agriculture({ categore ,dataCard}) {
     <LoaderSpinner />
   ) : (
     <>
-      <form >
+      <form>
         <Wrapper>
           <Nav2 />
           <MinNav />
           <BackTovarByID />
           <Container>
             <Typography sx={{ mb: 3 }} variant="h4">
-            {L.tovarAdd.agr.name[lan]}
+              {L.tovarAdd.agr.name[lan]}
             </Typography>
             <MenuContent>
               <Controller
@@ -166,24 +169,31 @@ function Agriculture({ categore ,dataCard}) {
                     helperText={errors.name?.message}
                     error={errors?.name}
                     {...field}
-                    
                   />
                 )}
               />
               <ContentRow>
                 <StyledFormControl variant="filled" sx={{ minWidth: 120 }}>
                   <Select value={mobil} onChange={handleMobile}>
-                    <StyledMenuItem value="melon-crops">{L.tovarAdd.agr.clot1[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="cereals">{L.tovarAdd.agr.clot2[lan]}</StyledMenuItem>
-                    <StyledMenuItem value="fruits">{L.tovarAdd.agr.clot3[lan]} </StyledMenuItem>
-                    <StyledMenuItem value="others">{L.tovarAdd.agr.clot4[lan]}</StyledMenuItem>
+                    <StyledMenuItem value="melon-crops">
+                      {L.tovarAdd.agr.clot1[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="cereals">
+                      {L.tovarAdd.agr.clot2[lan]}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="fruits">
+                      {L.tovarAdd.agr.clot3[lan]}{" "}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="others">
+                      {L.tovarAdd.agr.clot4[lan]}
+                    </StyledMenuItem>
                   </Select>
                 </StyledFormControl>
               </ContentRow>
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-              {L.tovarAdd.cars.sena[lan]} *
+                {L.tovarAdd.cars.sena[lan]} *
               </Typography>
               <ContentRow>
                 <Controller
@@ -194,7 +204,7 @@ function Agriculture({ categore ,dataCard}) {
                     <StyledTextField
                       sx={{ mb: 3 }}
                       onChange={(e) => setSena(e.target.value)}
-                      label={L.tovarAdd.cars.sena[lan]} 
+                      label={L.tovarAdd.cars.sena[lan]}
                       variant="filled"
                       type="number"
                       helperText={errors.sen?.message}
@@ -213,10 +223,13 @@ function Agriculture({ categore ,dataCard}) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-              {L.tovarAdd.cars.mesto[lan]} *
+                {L.tovarAdd.cars.mesto[lan]} *
               </Typography>
               <ContentRow>
-                <StyledFormControl variant="filled" sx={{mb:3, minWidth: 120 }}>
+                <StyledFormControl
+                  variant="filled"
+                  sx={{ mb: 3, minWidth: 120 }}
+                >
                   <InputLabel>{L.tovarAdd.cars.region[lan]} *</InputLabel>
                   <Select
                     value={region}
@@ -224,7 +237,9 @@ function Agriculture({ categore ,dataCard}) {
                     onChange={handleRegionChange}
                   >
                     {regions.map((Region) => (
-                      <StyledMenuItem value={Region._id}>{Region.name}</StyledMenuItem>
+                      <StyledMenuItem value={Region._id}>
+                        {Region.name}
+                      </StyledMenuItem>
                     ))}
                   </Select>
                 </StyledFormControl>
@@ -246,7 +261,7 @@ function Agriculture({ categore ,dataCard}) {
             </MenuContent>
             <MenuContent>
               <Typography sx={{ mb: 3 }} variant="h5">
-              {L.tovarAdd.cars.opesan[lan]} *
+                {L.tovarAdd.cars.opesan[lan]} *
               </Typography>
               <Controller
                 name="textarea"
@@ -263,7 +278,7 @@ function Agriculture({ categore ,dataCard}) {
                       borderRadius: "4px",
                       maxWidth: "1000px",
                     }}
-                    placeholder={L.tovarAdd.cars.opesanPlas[lan]} 
+                    placeholder={L.tovarAdd.cars.opesanPlas[lan]}
                     onChange={(e) => setArea(e.target.value)}
                     helperText={errors.name?.message}
                     error={errors?.textarea}
@@ -285,13 +300,13 @@ function Agriculture({ categore ,dataCard}) {
               </p>
             </MenuContent>
             <AcceptMaxFiles />
-            <Box sx={{ mt: 2, mb:4 }}>
+            <Box sx={{ mt: 2, mb: 4 }}>
               <StyledButton
                 onClick={handleSubmit(handlSubmit)}
-                
                 variant="contained"
                 variant="contained"
-              >{L.tovarAdd.cars.but12[lan]}
+              >
+                {L.tovarAdd.cars.but12[lan]}
               </StyledButton>
             </Box>
           </Container>

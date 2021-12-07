@@ -48,11 +48,11 @@ function MyAdss() {
 
   console.log(numberOf);
 
-  const handleDelete = (dataId) => {
+  const handleDelete = async (dataId) => {
     const counter = data.filter((fil) => fil._id !== dataId);
     setData(counter);
 
-    axios
+    await axios
       .post(
         "http://dems.inone.uz/api/ad/delete",
         {
@@ -69,8 +69,8 @@ function MyAdss() {
       .then((res) => console.log(res));
   };
 
-  const handleData = () => {
-    axios
+  const handleData = async () => {
+    await axios
       .post(
         "http://dems.inone.uz/api/ad/my-ads",
         {

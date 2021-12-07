@@ -35,12 +35,12 @@ export const Tizim = ({ onSuccess }) => {
     enqueueSnackbar(L.tizim.xatokrit[lon], { variant });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { phone_number, otp } = data;
 
     if (step === 0) {
-      axios
+      await axios
         .post("http://dems.inone.uz/api/sign-in", {
           phone_number,
         })
@@ -54,7 +54,7 @@ export const Tizim = ({ onSuccess }) => {
           }
         });
     } else {
-      axios
+     await  axios
         .post("http://dems.inone.uz/api/sign-verify", {
           phone_number,
           otp,

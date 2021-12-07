@@ -46,7 +46,7 @@ const SearchMene = ({ onFiltersCh }) => {
   };
 
   const regionFetch = async () => {
-    axios
+   await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,

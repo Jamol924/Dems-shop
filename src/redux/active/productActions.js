@@ -7,6 +7,12 @@ export const setImag = (produc) =>{
         payload: produc,
     }
 };
+export const Scrol = (pr) =>{
+    return{
+        type: ActionType.SET_SCROL,
+        payload: pr,
+    }
+};
 export const setProducts = (products) =>{
     return{
         type: ActionType.SET_PRODUCTS,

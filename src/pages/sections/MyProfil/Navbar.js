@@ -15,6 +15,7 @@ const Navbar = () => {
     setOpen(localStorage.removeItem("token"));
     window.location.reload();
   };
+  
  
 
   useEffect(() => {

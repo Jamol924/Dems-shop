@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Box } from "@mui/system";
+import { StyledButton, StyledColumn } from "../Admen/MaterialTovar/Tovar";
 import { Typography } from "@mui/material";
-import { MenuTitle, StyledButton, StyledColumn } from "../Admen/MaterialTovar/Tovar";
 import { useDispatch, useSelector } from "react-redux";
-import { setImag } from "../../../redux/active/productActions";
 import L from "../../../locale/language.json"
+import { setImag } from "../../../redux/active/productActions";
 
 const uploader = async (file) => {
   try {

@@ -10,6 +10,7 @@ import {
   setCars,
   setElim,
   productFeature,
+  setScrol,
 } from "./productReducer";
 
 const reducer = combineReducers({
@@ -23,6 +24,7 @@ const reducer = combineReducers({
   allSetCars:setCars,
   allSetElim: setElim,
   allProduc:productFeature,
+  allScrol:setScrol,
 });
 
 export default reducer;

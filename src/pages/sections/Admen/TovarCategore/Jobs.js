@@ -66,7 +66,7 @@ function Jobs({ category }) {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const regionFetch = async () => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/region/get-pagin", {
         limit: 20,
         page: 1,
@@ -79,7 +79,7 @@ function Jobs({ category }) {
       .catch((er) => console.log(er));
   };
   const gorodFetch = async (id) => {
-    axios
+    await axios
       .post("http://dems.inone.uz/api/city/get-pagin", {
         limit: 20,
         page: 1,
@@ -103,8 +103,8 @@ function Jobs({ category }) {
 
   const [area, setArea] = useState("");
 
-  const handlSubmit = (value) => {
-    axios
+  const handlSubmit = async (value) => {
+    await axios
       .post(
         "http://dems.inone.uz/api/ad/create",
         {
